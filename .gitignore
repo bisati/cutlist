@@ -5,3 +5,7 @@ node_modules/
 .vercel/
 data/transcripts/
 *.log
+
+# Experiment caches: transcripts and embedding vectors, regenerable and large
+experiments/*/out/cache/
+experiments/*/node_modules/
