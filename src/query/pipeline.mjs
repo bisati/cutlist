@@ -305,11 +305,21 @@ export function pack(clusters, concepts, budgetMin,
 
 // ------------------------------------------------------------------ 6. order
 
-const PLAN_SCHEMA = {
+/**
+ * The array is bounded to exactly n items.
+ *
+ * Without the bounds the model quietly returns fewer than it was given: on one
+ * 17 segment plan it returned 12, then 7, across two attempts, despite the
+ * prompt saying to return every segment exactly once. Instructions did not
+ * hold; a schema constraint the decoder has to satisfy does.
+ */
+const planSchema = (n) => ({
   type: 'object',
   properties: {
     plan: {
       type: 'array',
+      minItems: n,
+      maxItems: n,
       items: {
         type: 'object',
         properties: { id: { type: 'integer' }, why: { type: 'string' } },
@@ -318,7 +328,7 @@ const PLAN_SCHEMA = {
     },
   },
   required: ['plan'],
-};
+});
 
 const mmss = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 
@@ -370,12 +380,12 @@ export async function order(topic, budgetMin, concepts, segments, { attempts = 2
   const tries = [];
   for (let i = 0; i < attempts; i++) {
     const model = ORDER_MODEL;
-    const { data, ms } = await gen(model, prompt, { label: 'query: order the plan', schema: PLAN_SCHEMA });
+    const { data, ms } = await gen(model, prompt, { label: 'query: order the plan', schema: planSchema(segments.length) });
     const check = integrity(data.plan, segments);
     tries.push({ model, ms, check });
     if (check.ok) return { plan: data.plan, model, ms, tries, escalated: false };
   }
-  const { data, ms } = await gen(ORDER_FALLBACK, prompt, { label: 'query: order the plan (escalated)', schema: PLAN_SCHEMA });
+  const { data, ms } = await gen(ORDER_FALLBACK, prompt, { label: 'query: order the plan (escalated)', schema: planSchema(segments.length) });
   const check = integrity(data.plan, segments);
   tries.push({ model: ORDER_FALLBACK, ms, check });
   return { plan: data.plan, model: ORDER_FALLBACK, ms, tries, escalated: true, integrity: check };

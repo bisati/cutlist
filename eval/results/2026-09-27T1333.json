@@ -1,0 +1,4460 @@
+{
+  "scorecard": {
+    "at": "2026-09-27T13:33:37.840Z",
+    "indexSegments": 967,
+    "simFloor": 0.78,
+    "topics": 20,
+    "succeeded": 20,
+    "budgetMetPct": 90,
+    "conceptCoveragePct": 85,
+    "mustCoverPct": 64,
+    "integrityPct": 100,
+    "escalatedPct": 0,
+    "meanMaxPairwise": 0.831,
+    "meanCreators": 15.9,
+    "meanLongestShare": 0.116,
+    "meanSeconds": 11.2,
+    "totalInr": 9.75,
+    "meanInr": 0.487,
+    "mechanicalFailures": 0,
+    "verifyMismatches": 48,
+    "driftMinutes": 0
+  },
+  "results": [
+    {
+      "id": "rag-basics",
+      "topic": "how RAG works",
+      "budgetMin": 120,
+      "notes": null,
+      "ok": true,
+      "segments": 23,
+      "minutes": 119.7,
+      "budgetMet": true,
+      "creators": 23,
+      "depth": {
+        "intro": 4,
+        "mechanism": 12,
+        "example": 5,
+        "debate": 2
+      },
+      "depthShortfall": {},
+      "longestSegMin": 14,
+      "longestShare": 0.117,
+      "concepts": 9,
+      "covered": 9,
+      "missing": [],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "why a language model needs external documents at all",
+          "met": true,
+          "sim": 0.768,
+          "segment": "The limitations of standalone LLMs"
+        },
+        {
+          "phrase": "turning text into vectors that capture meaning",
+          "met": true,
+          "sim": 0.83,
+          "segment": "Word and sentence embeddings"
+        },
+        {
+          "phrase": "splitting documents into chunks before storing them",
+          "met": false,
+          "sim": 0.739,
+          "segment": "Agentic chunking and proposition grouping"
+        },
+        {
+          "phrase": "searching by meaning rather than keywords",
+          "met": false,
+          "sim": 0.735,
+          "segment": "Implementing semantic similarity search"
+        },
+        {
+          "phrase": "putting retrieved text into the prompt",
+          "met": true,
+          "sim": 0.799,
+          "segment": "Generation in RAG pipelines"
+        }
+      ],
+      "mustCoverMet": 3,
+      "avoid": [
+        {
+          "phrase": "training a model from scratch",
+          "closest": 0.673,
+          "minutesSpent": 0
+        },
+        {
+          "phrase": "reinforcement learning",
+          "closest": 0.698,
+          "minutesSpent": 0
+        },
+        {
+          "phrase": "image and video models",
+          "closest": 0.639,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.812,
+      "maxPairwiseAt": [
+        "Advanced RAG design patterns",
+        "Context engineering and retrieval pipelines"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 3,
+      "seconds": 14.6,
+      "inr": 0.6208,
+      "plan": [
+        {
+          "concept": "The limitations of standalone LLMs",
+          "depth": "intro",
+          "channel": "IBM Technology",
+          "min": 4.6,
+          "why": "This opening segment grounds you in the core problem of static model limitations and introduces why retrieval augmentation is necessary.",
+          "url": "https://youtube.com/watch?v=T-D1OfcDW1M&t=0s"
+        },
+        {
+          "concept": "Chatbot and AI assistant architecture",
+          "depth": "mechanism",
+          "channel": "Pankaj Shukla",
+          "min": 14,
+          "why": "You will now see the broader architectural blueprint of how memory and external tools transform basic language models.",
+          "url": "https://youtube.com/watch?v=Trocyguviow&t=45s"
+        },
+        {
+          "concept": "How text embeddings represent data",
+          "depth": "mechanism",
+          "channel": "Chai aur Code",
+          "min": 2.9,
+          "why": "Now that you know the system architecture, you need to understand how text is actually translated into numerical form.",
+          "url": "https://youtube.com/watch?v=DcNxg61kSFc&t=613s"
+        },
+        {
+          "concept": "Word and sentence embeddings",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 2.8,
+          "why": "This continues the exploration of text representation by showing how individual sentences map into vector spaces.",
+          "url": "https://youtube.com/watch?v=72XgD322wZ8&t=42s"
+        },
+        {
+          "concept": "Mathematical nature of embeddings",
+          "depth": "mechanism",
+          "channel": "Annie Sexton",
+          "min": 2.5,
+          "why": "You can now examine the underlying geometry that gives these numerical representations their semantic power.",
+          "url": "https://youtube.com/watch?v=izbifbq3-eI&t=21s"
+        },
+        {
+          "concept": "Word embeddings and vector space",
+          "depth": "example",
+          "channel": "Grant Sanderson",
+          "min": 12.2,
+          "why": "This deep dive connects high-dimensional math directly to semantic relationships and analogies.",
+          "url": "https://youtube.com/watch?v=KJtZARuO3JY&t=611s"
+        },
+        {
+          "concept": "Vector database semantic search",
+          "depth": "mechanism",
+          "channel": "Ctrl Alt Explain",
+          "min": 2.1,
+          "why": "With the math established, you will see how specialized databases store and organize these vectors for rapid lookup.",
+          "url": "https://youtube.com/watch?v=W-_OBmwrNk4&t=213s"
+        },
+        {
+          "concept": "Vector database architecture",
+          "depth": "mechanism",
+          "channel": "Pinecone",
+          "min": 5.3,
+          "why": "This segment expands on database architecture, teaching you how scalability and indexing handle massive data volumes.",
+          "url": "https://youtube.com/watch?v=7RF03_WQJpQ&t=1250s"
+        },
+        {
+          "concept": "Pinecone database workflow",
+          "depth": "mechanism",
+          "channel": "Albert Mends",
+          "min": 4.8,
+          "why": "You will now walk through a complete workflow of creating and querying a vector index from scratch.",
+          "url": "https://youtube.com/watch?v=SyuhQ_OtqV0&t=42s"
+        },
+        {
+          "concept": "Implementing semantic similarity search",
+          "depth": "example",
+          "channel": "KodeKloud",
+          "min": 2.1,
+          "why": "This explains the exact distance calculations used to match user queries with stored vector policies.",
+          "url": "https://youtube.com/watch?v=VVNYQKDLY5s&t=435s"
+        },
+        {
+          "concept": "Advanced RAG design patterns",
+          "depth": "example",
+          "channel": "Aishwarya Srinivasan",
+          "min": 7.4,
+          "why": "Here, you bridge basic storage with advanced design patterns like metadata filtering and multi-modal retrieval.",
+          "url": "https://youtube.com/watch?v=v0ynfDPpe4E&t=253s"
+        },
+        {
+          "concept": "Agentic chunking and proposition grouping",
+          "depth": "mechanism",
+          "channel": "Mervin Praison",
+          "min": 4.4,
+          "why": "This introduces the practical hurdles of splitting large documents into clean, retrievable chunks.",
+          "url": "https://youtube.com/watch?v=pIGRwMjhMaQ&t=576s"
+        },
+        {
+          "concept": "Context engineering and retrieval pipelines",
+          "depth": "mechanism",
+          "channel": "Refreshing AI Latest",
+          "min": 4.5,
+          "why": "You will now examine how structured pipelines and hybrid retrieval safeguard the model's context window.",
+          "url": "https://youtube.com/watch?v=nLNuPsQ-Jlo&t=0s"
+        },
+        {
+          "concept": "Generation in RAG pipelines",
+          "depth": "mechanism",
+          "channel": "freeCodeCamp.org",
+          "min": 2.9,
+          "why": "This demonstrates the precise moment retrieved data is injected into the prompt template.",
+          "url": "https://youtube.com/watch?v=sVcwVQRHIc8&t=959s"
+        },
+        {
+          "concept": "Integrating LLMs for augmented generation",
+          "depth": "example",
+          "channel": "Krish Naik",
+          "min": 9.6,
+          "why": "You can now review a complete integration example of combining queries and retrieved context to generate answers.",
+          "url": "https://youtube.com/watch?v=o126p1QN_RI&t=5608s"
+        },
+        {
+          "concept": "Fundamentals of prompt engineering",
+          "depth": "intro",
+          "channel": "Tech With Tim",
+          "min": 2.1,
+          "why": "This shifts focus to instructing the model effectively once the context is successfully provided.",
+          "url": "https://youtube.com/watch?v=2BpCk4d2Cc0&t=104s"
+        },
+        {
+          "concept": "Reliability and grounding in RAG",
+          "depth": "debate",
+          "channel": "Computerphile",
+          "min": 2.2,
+          "why": "This debate highlights the tension between grounding answers securely and handling missing information.",
+          "url": "https://youtube.com/watch?v=YDdKiQNw80c&t=1088s"
+        },
+        {
+          "concept": "Long context versus RAG tradeoffs",
+          "depth": "debate",
+          "channel": "Prompt Engineering",
+          "min": 4.4,
+          "why": "You will explore the ongoing industry debate comparing massive context windows against traditional retrieval.",
+          "url": "https://youtube.com/watch?v=tmiBae2goJM&t=646s"
+        },
+        {
+          "concept": "Limitations of classic RAG for agents",
+          "depth": "intro",
+          "channel": "AI News & Strategy Daily | Nate B Jones",
+          "min": 2.1,
+          "why": "This exposes where classic retrieval pipelines break down when facing autonomous agent workflows.",
+          "url": "https://youtube.com/watch?v=lqiwQiDglGk&t=187s"
+        },
+        {
+          "concept": "Challenges in vector database benchmarking",
+          "depth": "mechanism",
+          "channel": "Better Stack",
+          "min": 4.9,
+          "why": "You now enter the testing phase, learning the benchmarking challenges inherent in large vector datasets.",
+          "url": "https://youtube.com/watch?v=6Uj6GXIpX9s&t=64s"
+        },
+        {
+          "concept": "Determining evaluation data size",
+          "depth": "mechanism",
+          "channel": "Peter Yang",
+          "min": 2.3,
+          "why": "This practical guide helps you determine the right dataset size to begin your testing iterations.",
+          "url": "https://youtube.com/watch?v=TL527yTpxlk&t=1484s"
+        },
+        {
+          "concept": "Building a high-coverage evaluation set",
+          "depth": "example",
+          "channel": "Databricks",
+          "min": 13.7,
+          "why": "You will learn how to build robust evaluation sets that validate system performance and protect user trust.",
+          "url": "https://youtube.com/watch?v=2CIIQ5KZWUM&t=270s"
+        },
+        {
+          "concept": "RAG-specific evaluation metrics",
+          "depth": "intro",
+          "channel": "Logical Lenses",
+          "min": 6.1,
+          "why": "This final segment ties everything together by providing specialized metrics to measure generation faithfulness.",
+          "url": "https://youtube.com/watch?v=7_LTU0LA374&t=320s"
+        }
+      ]
+    },
+    {
+      "id": "rag-short",
+      "topic": "I need to understand RAG before a meeting",
+      "budgetMin": 30,
+      "notes": "Short budget. Should be orientation heavy and skip implementation detail entirely.",
+      "ok": true,
+      "segments": 9,
+      "minutes": 29.4,
+      "budgetMet": true,
+      "creators": 9,
+      "depth": {
+        "intro": 1,
+        "mechanism": 3,
+        "example": 3,
+        "debate": 2
+      },
+      "depthShortfall": {},
+      "longestSegMin": 4.6,
+      "longestShare": 0.156,
+      "concepts": 3,
+      "covered": 3,
+      "missing": [],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "what retrieval augmented generation is for",
+          "met": true,
+          "sim": 0.796,
+          "segment": "The limitations of standalone LLMs"
+        },
+        {
+          "phrase": "the retrieve then generate loop",
+          "met": false,
+          "sim": 0.738,
+          "segment": "Retrieval and response generation"
+        }
+      ],
+      "mustCoverMet": 1,
+      "avoid": [
+        {
+          "phrase": "mathematical derivations",
+          "closest": 0.626,
+          "minutesSpent": 0
+        },
+        {
+          "phrase": "coding a system from scratch",
+          "closest": 0.676,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.808,
+      "maxPairwiseAt": [
+        "The RAG indexing and retrieval process",
+        "Retrieval and response generation"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 2,
+      "seconds": 7.9,
+      "inr": 0.2304,
+      "plan": [
+        {
+          "concept": "The limitations of standalone LLMs",
+          "depth": "intro",
+          "channel": "IBM Technology",
+          "min": 4.6,
+          "why": "This opening segment exposes the inherent limitations of standalone language models, showing you precisely why external data grounding is necessary.",
+          "url": "https://youtube.com/watch?v=T-D1OfcDW1M&t=0s"
+        },
+        {
+          "concept": "Vector-based retrieval mechanism",
+          "depth": "mechanism",
+          "channel": "freeCodeCamp.org",
+          "min": 3,
+          "why": "You will now discover how vector spaces and nearest-neighbor searches make the underlying document retrieval possible.",
+          "url": "https://youtube.com/watch?v=sVcwVQRHIc8&t=643s"
+        },
+        {
+          "concept": "Retrieval-Augmented Generation workflow",
+          "depth": "mechanism",
+          "channel": "Chai aur Code",
+          "min": 2.3,
+          "why": "This walkthrough illustrates how large documents are broken into manageable chunks to fit neatly within operational token limits.",
+          "url": "https://youtube.com/watch?v=DcNxg61kSFc&t=435s"
+        },
+        {
+          "concept": "The RAG indexing and retrieval process",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 3.6,
+          "why": "Next, you will examine the complete indexing pipeline that translates raw business texts into searchable vector embeddings.",
+          "url": "https://youtube.com/watch?v=dDkynerzV-Q&t=124s"
+        },
+        {
+          "concept": "Retrieval and response generation",
+          "depth": "example",
+          "channel": "AWS Developers",
+          "min": 4,
+          "why": "This practical demonstration reveals how querying mixed media sources equips the model to answer complex questions accurately.",
+          "url": "https://youtube.com/watch?v=jDFpEnJeSVg&t=451s"
+        },
+        {
+          "concept": "Building an end-to-end RAG pipeline",
+          "depth": "example",
+          "channel": "KodeKloud",
+          "min": 4.1,
+          "why": "Seeing an end-to-end implementation clarifies how to initialize databases and establish functional retrieval interfaces.",
+          "url": "https://youtube.com/watch?v=_HQ2H_0Ayy0&t=300s"
+        },
+        {
+          "concept": "LLMs as conversational engines",
+          "depth": "debate",
+          "channel": "Nick Saraev",
+          "min": 3.6,
+          "why": "Shifting to strategic discussions, this segment reinforces why conversational engines demand external databases to maintain factual integrity.",
+          "url": "https://youtube.com/watch?v=CxbHw93oWP0&t=1144s"
+        },
+        {
+          "concept": "Reliability and grounding in RAG",
+          "depth": "debate",
+          "channel": "Computerphile",
+          "min": 2.2,
+          "why": "You will now weigh the trade-offs regarding hallucination risks and learn how grounding responses mitigates operational errors.",
+          "url": "https://youtube.com/watch?v=YDdKiQNw80c&t=1088s"
+        },
+        {
+          "concept": "Practical enterprise use cases for AI",
+          "depth": "example",
+          "channel": "Harvard Business School",
+          "min": 2.2,
+          "why": "This concluding business-focused overview arms you with the enterprise use cases and talking points required for your upcoming meeting.",
+          "url": "https://youtube.com/watch?v=U05IWKf94sM&t=328s"
+        }
+      ]
+    },
+    {
+      "id": "transformers",
+      "topic": "how transformers work",
+      "budgetMin": 120,
+      "notes": null,
+      "ok": true,
+      "segments": 25,
+      "minutes": 118.2,
+      "budgetMet": true,
+      "creators": 24,
+      "depth": {
+        "intro": 4,
+        "mechanism": 17,
+        "example": 3,
+        "debate": 1
+      },
+      "depthShortfall": {
+        "debate": 1
+      },
+      "longestSegMin": 11.9,
+      "longestShare": 0.101,
+      "concepts": 9,
+      "covered": 9,
+      "missing": [],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "what attention is doing conceptually",
+          "met": true,
+          "sim": 0.806,
+          "segment": "The intuition behind self-attention"
+        },
+        {
+          "phrase": "queries keys and values",
+          "met": true,
+          "sim": 0.77,
+          "segment": "Multi-headed attention and scaling"
+        },
+        {
+          "phrase": "why several attention heads instead of one",
+          "met": true,
+          "sim": 0.802,
+          "segment": "Multi-headed attention and scaling"
+        },
+        {
+          "phrase": "how word order is represented",
+          "met": false,
+          "sim": 0.7,
+          "segment": "Positional encoding in transformers"
+        },
+        {
+          "phrase": "stacking blocks into a full architecture",
+          "met": false,
+          "sim": 0.663,
+          "segment": "Transformer architecture overview"
+        }
+      ],
+      "mustCoverMet": 3,
+      "avoid": [
+        {
+          "phrase": "prompt engineering tips",
+          "closest": 0.671,
+          "minutesSpent": 0
+        },
+        {
+          "phrase": "which chatbot is best",
+          "closest": 0.624,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.83,
+      "maxPairwiseAt": [
+        "Core Transformer architecture components",
+        "Attention mechanism in Transformers"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 8,
+      "seconds": 13.9,
+      "inr": 0.6847,
+      "plan": [
+        {
+          "concept": "Recurrent Neural Network Architecture",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 11.9,
+          "why": "Before looking at transformers, you will see how traditional sequential models handle text and why they ultimately create bottlenecks.",
+          "url": "https://youtube.com/watch?v=Y2wfIKQyd1I&t=0s"
+        },
+        {
+          "concept": "Core design criteria of Transformers",
+          "depth": "mechanism",
+          "channel": "Lex Clips",
+          "min": 4.5,
+          "why": "This high-level overview introduces the core design criteria that make transformers the dominant architecture for handling sequences.",
+          "url": "https://youtube.com/watch?v=9uw3F6rndnA&t=23s"
+        },
+        {
+          "concept": "Transformer architecture overview",
+          "depth": "intro",
+          "channel": "Aladdin Persson",
+          "min": 3.5,
+          "why": "You now get a foundational map of the entire encoder-decoder layout before diving into its individual pieces.",
+          "url": "https://youtube.com/watch?v=U0s0f995w14&t=65s"
+        },
+        {
+          "concept": "Core Transformer architecture components",
+          "depth": "mechanism",
+          "channel": "ByteByteGo and ByteByteAI",
+          "min": 4.5,
+          "why": "This reinforces how moving away from sequential bottlenecks lets the architecture combine attention and multi-layer perceptrons.",
+          "url": "https://youtube.com/watch?v=avjX3QrYkls&t=0s"
+        },
+        {
+          "concept": "Introduction to LLM Tokenization",
+          "depth": "intro",
+          "channel": "Andrej Karpathy",
+          "min": 4.3,
+          "why": "Now that you understand the big picture, you will learn how raw text is broken down into integer tokens for the model.",
+          "url": "https://youtube.com/watch?v=zduSFxRajkE&t=0s"
+        },
+        {
+          "concept": "How LLM tokenization works",
+          "depth": "mechanism",
+          "channel": "Matt Pocock",
+          "min": 5.2,
+          "why": "This segment expands on tokenization by showing how vocabulary size and subwords impact the encoding of text.",
+          "url": "https://youtube.com/watch?v=nKSk_TiR8YA&t=126s"
+        },
+        {
+          "concept": "Text embeddings and semantic representation",
+          "depth": "mechanism",
+          "channel": "freeCodeCamp.org",
+          "min": 4.1,
+          "why": "You are introduced to high-dimensional text embeddings, which transform those tokens into representations of semantic meaning.",
+          "url": "https://youtube.com/watch?v=_ZvnD73m40o&t=2217s"
+        },
+        {
+          "concept": "How text embeddings represent data",
+          "depth": "mechanism",
+          "channel": "Chai aur Code",
+          "min": 2.9,
+          "why": "This short review solidifies how these numerical vectors allow the system to mathematically compare different concepts.",
+          "url": "https://youtube.com/watch?v=DcNxg61kSFc&t=613s"
+        },
+        {
+          "concept": "Tokenization and positional encoding",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 3.6,
+          "why": "Since parallel processing loses word order, you will see how positional data must be explicitly injected right alongside your tokens.",
+          "url": "https://youtube.com/watch?v=ZhAz268Hdpw&t=1186s"
+        },
+        {
+          "concept": "Positional encoding in transformers",
+          "depth": "mechanism",
+          "channel": "Gal Lahat",
+          "min": 2.1,
+          "why": "This deep dive shows how sine waves of varying frequencies are specifically used to supply order-agnostic attention with positional context.",
+          "url": "https://youtube.com/watch?v=RNF0FvRjGZk&t=602s"
+        },
+        {
+          "concept": "Word embeddings and positional encoding",
+          "depth": "mechanism",
+          "channel": "StatQuest with Josh Starmer",
+          "min": 2.8,
+          "why": "You get a clear visual recap of how input tokens and positional encodings combine via matrix operations.",
+          "url": "https://youtube.com/watch?v=KphmOJnLAdI&t=106s"
+        },
+        {
+          "concept": "The intuition behind self-attention",
+          "depth": "intro",
+          "channel": "Hedu AI by Batool Haider",
+          "min": 2.5,
+          "why": "With tokenization and position handled, you begin exploring the intuitive core of how words dynamically weigh each other's meaning.",
+          "url": "https://youtube.com/watch?v=mMa2PmYJlCo&t=43s"
+        },
+        {
+          "concept": "Attention mechanism in Transformers",
+          "depth": "mechanism",
+          "channel": "James Briggs",
+          "min": 4.3,
+          "why": "This segment maps out how the attention mechanism specifically encodes contextual relationships by shifting vectors closer together.",
+          "url": "https://youtube.com/watch?v=qU7wO02urYU&t=0s"
+        },
+        {
+          "concept": "Self-Supervised Learning for Training",
+          "depth": "mechanism",
+          "channel": "Gaurav Sen",
+          "min": 7.8,
+          "why": "You discover how self-supervised learning uses this attention capability to train on raw text without manual labeling.",
+          "url": "https://youtube.com/watch?v=OYvlznJ4IZQ&t=266s"
+        },
+        {
+          "concept": "Multi-headed attention and scaling",
+          "depth": "mechanism",
+          "channel": "Grant Sanderson",
+          "min": 9.1,
+          "why": "Building on basic attention, this part demonstrates how running multiple attention processes in parallel captures diverse relationships.",
+          "url": "https://youtube.com/watch?v=KJtZARuO3JY&t=2241s"
+        },
+        {
+          "concept": "Multi-Head Attention Architecture",
+          "depth": "mechanism",
+          "channel": "Umar Jamil",
+          "min": 9.5,
+          "why": "You examine the mechanics of splitting embeddings into smaller subspaces to focus on different grammatical roles simultaneously.",
+          "url": "https://youtube.com/watch?v=bCz4OMemCcA&t=1717s"
+        },
+        {
+          "concept": "Multi-head latent attention architecture",
+          "depth": "mechanism",
+          "channel": "Welch Labs",
+          "min": 2.9,
+          "why": "This modern variation introduces latent attention, compressing keys and values into a shared space for massive memory reduction.",
+          "url": "https://youtube.com/watch?v=0VLAoVGf_74&t=826s"
+        },
+        {
+          "concept": "Transformer encoder architecture components",
+          "depth": "mechanism",
+          "channel": "DeepFindr",
+          "min": 2.8,
+          "why": "You zoom out to look at the complete encoder block, seeing how normalization and feed-forward networks wrap around your attention layers.",
+          "url": "https://youtube.com/watch?v=j3VNqtJUoz0&t=491s"
+        },
+        {
+          "concept": "GPT-2 decoder layer flow",
+          "depth": "example",
+          "channel": "Under The Hood",
+          "min": 3.1,
+          "why": "This practical case study walks you step-by-step through an actual GPT-2 decoder layer flow.",
+          "url": "https://youtube.com/watch?v=KMHkbXzHn7s&t=1077s"
+        },
+        {
+          "concept": "Transformer attention and feed-forward layers",
+          "depth": "intro",
+          "channel": "Sasha Rush",
+          "min": 3.9,
+          "why": "You analyze how independent feed-forward layers and quadratic attention layers balance parallelization with cross-token dependencies.",
+          "url": "https://youtube.com/watch?v=dKJEpOtVgXc&t=20s"
+        },
+        {
+          "concept": "Mechanism of the attention layer",
+          "depth": "mechanism",
+          "channel": "Google Cloud Tech",
+          "min": 2.2,
+          "why": "This segment ties encoder states to the decoder to show how weighted scores prioritize relevant input during generation.",
+          "url": "https://youtube.com/watch?v=fjJOgb-E41w&t=105s"
+        },
+        {
+          "concept": "Self-attention mechanism during autoregressive decoding",
+          "depth": "mechanism",
+          "channel": "Efficient NLP",
+          "min": 3,
+          "why": "You tackle the computational challenges that arise when self-attention is applied during autoregressive generation.",
+          "url": "https://youtube.com/watch?v=80bIUggRJf4&t=63s"
+        },
+        {
+          "concept": "Iterative generation and architectural limitations",
+          "depth": "debate",
+          "channel": "LearnThatStack",
+          "min": 2.3,
+          "why": "This discussion addresses the live limitations of iterative generation and the quadratic complexity constraints of attention.",
+          "url": "https://youtube.com/watch?v=NKnZYvZA7w4&t=428s"
+        },
+        {
+          "concept": "Speculative decoding workflow",
+          "depth": "example",
+          "channel": "IBM Technology",
+          "min": 5,
+          "why": "You explore speculative decoding as an advanced workflow designed to speed up the text generation process.",
+          "url": "https://youtube.com/watch?v=VkWlLSTdHs8&t=141s"
+        },
+        {
+          "concept": "Applying RLHF to language models",
+          "depth": "example",
+          "channel": "Luis Serrano Academy",
+          "min": 10.3,
+          "why": "The plan concludes by showing how human feedback and reinforcement learning fine-tune the final outputs for high quality and coherence.",
+          "url": "https://youtube.com/watch?v=Z_JUqJBpVOk&t=253s"
+        }
+      ]
+    },
+    {
+      "id": "attention-deep",
+      "topic": "I want to really understand self attention, not just the analogy",
+      "budgetMin": 90,
+      "notes": "Explicitly asks past the analogy. A plan of introductory overviews fails this.",
+      "ok": true,
+      "segments": 17,
+      "minutes": 88.2,
+      "budgetMet": true,
+      "creators": 17,
+      "depth": {
+        "intro": 2,
+        "mechanism": 13,
+        "example": 2,
+        "debate": 0
+      },
+      "depthShortfall": {
+        "example": 1,
+        "debate": 2
+      },
+      "longestSegMin": 10.4,
+      "longestShare": 0.118,
+      "concepts": 6,
+      "covered": 5,
+      "missing": [
+        "Softmax Normalization"
+      ],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "the dot product between query and key vectors",
+          "met": true,
+          "sim": 0.827,
+          "segment": "Computing the attention filter"
+        },
+        {
+          "phrase": "why the result is scaled before softmax",
+          "met": false,
+          "sim": 0.716,
+          "segment": "Computing the attention filter"
+        },
+        {
+          "phrase": "softmax turning scores into weights",
+          "met": true,
+          "sim": 0.744,
+          "segment": "Applying attention weights to decoding"
+        },
+        {
+          "phrase": "masking so a token cannot see the future",
+          "met": false,
+          "sim": 0.698,
+          "segment": "The self-attention algorithm mechanism"
+        }
+      ],
+      "mustCoverMet": 2,
+      "avoid": [
+        {
+          "phrase": "high level overviews with no mathematics",
+          "closest": 0.663,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.829,
+      "maxPairwiseAt": [
+        "Computing the attention filter",
+        "Multi-Head Attention Architecture"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 1,
+      "seconds": 12.5,
+      "inr": 0.4531,
+      "plan": [
+        {
+          "concept": "Introduction to LLM Tokenization",
+          "depth": "intro",
+          "channel": "Andrej Karpathy",
+          "min": 4.3,
+          "why": "This opening segment bridges raw text into numerical tokens so you can see the foundational starting point before any attention operations occur.",
+          "url": "https://youtube.com/watch?v=zduSFxRajkE&t=0s"
+        },
+        {
+          "concept": "Vision Transformer Input Processing",
+          "depth": "mechanism",
+          "channel": "AGI Lambda",
+          "min": 2.1,
+          "why": "Observe how input data is transformed and augmented with positional encodings to preserve sequence order.",
+          "url": "https://youtube.com/watch?v=vJF3TBI8esQ&t=0s"
+        },
+        {
+          "concept": "Adding position embeddings to patches",
+          "depth": "mechanism",
+          "channel": "Vizuara",
+          "min": 3.1,
+          "why": "Examine how position embeddings explicitly lock in the relative structural context of your data.",
+          "url": "https://youtube.com/watch?v=DdsVwTodycw&t=471s"
+        },
+        {
+          "concept": "Attention mechanism in Transformers",
+          "depth": "mechanism",
+          "channel": "James Briggs",
+          "min": 4.3,
+          "why": "This segment introduces the core intuition of mapping tokens closer together in a shared vector space to capture relationships.",
+          "url": "https://youtube.com/watch?v=qU7wO02urYU&t=0s"
+        },
+        {
+          "concept": "Query, Key, and Value vectors",
+          "depth": "mechanism",
+          "channel": "Under The Hood",
+          "min": 2.8,
+          "why": "Dive directly into the query, key, and value vectors to understand how tokens assign importance to one another.",
+          "url": "https://youtube.com/watch?v=KMHkbXzHn7s&t=148s"
+        },
+        {
+          "concept": "The self-attention algorithm mechanism",
+          "depth": "mechanism",
+          "channel": "Gal Lahat",
+          "min": 7.5,
+          "why": "Unpack the full self-attention algorithm to see how those vectors calculate weighted influences across long-range dependencies.",
+          "url": "https://youtube.com/watch?v=RNF0FvRjGZk&t=0s"
+        },
+        {
+          "concept": "Computing the attention filter",
+          "depth": "mechanism",
+          "channel": "Hedu AI by Batool Haider",
+          "min": 6.5,
+          "why": "Trace the database retrieval analogy as raw dot products are scaled and filtered.",
+          "url": "https://youtube.com/watch?v=mMa2PmYJlCo&t=295s"
+        },
+        {
+          "concept": "Applying attention weights to decoding",
+          "depth": "example",
+          "channel": "StatQuest with Josh Starmer",
+          "min": 2.5,
+          "why": "Watch how softmax normalization turns those raw similarity scores into strict probability distributions.",
+          "url": "https://youtube.com/watch?v=PSs6nxngL6k&t=708s"
+        },
+        {
+          "concept": "Self-attention mechanism during autoregressive decoding",
+          "depth": "mechanism",
+          "channel": "Efficient NLP",
+          "min": 3,
+          "why": "Explore how these dot products execute during autoregressive decoding while confronting computational scaling limits.",
+          "url": "https://youtube.com/watch?v=80bIUggRJf4&t=63s"
+        },
+        {
+          "concept": "Mechanism of the attention layer",
+          "depth": "mechanism",
+          "channel": "Google Cloud Tech",
+          "min": 2.2,
+          "why": "See how passing hidden states and applying weighted scores prioritizes relevant information dynamically.",
+          "url": "https://youtube.com/watch?v=fjJOgb-E41w&t=105s"
+        },
+        {
+          "concept": "Preparing tensors for multi-head attention",
+          "depth": "example",
+          "channel": "CodeEmporium",
+          "min": 5,
+          "why": "Learn to prepare and reshape tensor dimensions specifically to set up parallel processing heads.",
+          "url": "https://youtube.com/watch?v=HQn1QKQYXVg&t=150s"
+        },
+        {
+          "concept": "Multi-Head Attention Architecture",
+          "depth": "mechanism",
+          "channel": "Umar Jamil",
+          "min": 9.5,
+          "why": "Break down how splitting embeddings into subspaces lets the model track distinct grammatical roles simultaneously.",
+          "url": "https://youtube.com/watch?v=bCz4OMemCcA&t=1717s"
+        },
+        {
+          "concept": "Multi-headed attention and scaling",
+          "depth": "mechanism",
+          "channel": "Grant Sanderson",
+          "min": 9.1,
+          "why": "Grasp how multi-headed scaling empowers the architecture to execute multiple parallel updates across token representations.",
+          "url": "https://youtube.com/watch?v=KJtZARuO3JY&t=2241s"
+        },
+        {
+          "concept": "Multi-head self-attention mechanism",
+          "depth": "mechanism",
+          "channel": "freeCodeCamp.org",
+          "min": 10.4,
+          "why": "Consolidate your multi-head intuition by reviewing how projected spaces isolate different features concurrently.",
+          "url": "https://youtube.com/watch?v=4XgDdxpXHEQ&t=1921s"
+        },
+        {
+          "concept": "Multi-head attention and feed-forward networks",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 8.9,
+          "why": "Observe how subsequent feed-forward networks act on these multi-head outputs to further enrich token embeddings.",
+          "url": "https://youtube.com/watch?v=ZhAz268Hdpw&t=2528s"
+        },
+        {
+          "concept": "Multi-head latent attention architecture",
+          "depth": "mechanism",
+          "channel": "Welch Labs",
+          "min": 2.9,
+          "why": "Investigate advanced latent compression architectures designed to achieve massive memory savings without hurting performance.",
+          "url": "https://youtube.com/watch?v=0VLAoVGf_74&t=826s"
+        },
+        {
+          "concept": "Transformer attention and feed-forward layers",
+          "depth": "intro",
+          "channel": "Sasha Rush",
+          "min": 3.9,
+          "why": "Tie everything together by examining how parallel feed-forward layers and quadratic attention layers cooperate across all previous time steps.",
+          "url": "https://youtube.com/watch?v=dKJEpOtVgXc&t=20s"
+        }
+      ]
+    },
+    {
+      "id": "finetuning",
+      "topic": "fine tuning an LLM",
+      "budgetMin": 120,
+      "notes": null,
+      "ok": true,
+      "segments": 21,
+      "minutes": 119.9,
+      "budgetMet": true,
+      "creators": 21,
+      "depth": {
+        "intro": 4,
+        "mechanism": 10,
+        "example": 4,
+        "debate": 3
+      },
+      "depthShortfall": {},
+      "longestSegMin": 14.1,
+      "longestShare": 0.117,
+      "concepts": 9,
+      "covered": 9,
+      "missing": [],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "what changes inside the model when you fine tune",
+          "met": true,
+          "sim": 0.806,
+          "segment": "Introduction to LLM fine-tuning"
+        },
+        {
+          "phrase": "preparing a training dataset",
+          "met": true,
+          "sim": 0.751,
+          "segment": "Preparing raw transcript data"
+        },
+        {
+          "phrase": "LoRA and adapters instead of full retraining",
+          "met": true,
+          "sim": 0.852,
+          "segment": "Parameter-efficient fine-tuning with adapters"
+        },
+        {
+          "phrase": "when fine tuning is the wrong choice",
+          "met": true,
+          "sim": 0.799,
+          "segment": "Common fine-tuning misconceptions"
+        }
+      ],
+      "mustCoverMet": 4,
+      "avoid": [
+        {
+          "phrase": "basic prompt writing",
+          "closest": 0.645,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.85,
+      "maxPairwiseAt": [
+        "Motivation behind LoRA",
+        "Theory of Low Rank Adaptation"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 1,
+      "seconds": 11.6,
+      "inr": 0.5853,
+      "plan": [
+        {
+          "concept": "Introduction to LLM fine-tuning",
+          "depth": "intro",
+          "channel": "Shaw Talebi",
+          "min": 3.5,
+          "why": "This opens your journey by showing you how a raw base model transforms into a practical, task-aligned tool.",
+          "url": "https://youtube.com/watch?v=eC6Hd1hFvos&t=0s"
+        },
+        {
+          "concept": "Core concepts of LLM fine-tuning",
+          "depth": "intro",
+          "channel": "Tech With Tim",
+          "min": 2.1,
+          "why": "You will now ground your understanding in the core definition of adapting a model versus retraining from scratch.",
+          "url": "https://youtube.com/watch?v=4JofSJIrjwU&t=20s"
+        },
+        {
+          "concept": "Pre-training vs fine-tuning",
+          "depth": "debate",
+          "channel": "Andrej Karpathy",
+          "min": 5.4,
+          "why": "This segment clarifies the distinction between initial document completion and the fine-tuning stages that follow.",
+          "url": "https://youtube.com/watch?v=kCc8FmEb1nY&t=6540s"
+        },
+        {
+          "concept": "Generative AI Training Stages",
+          "depth": "mechanism",
+          "channel": "Microsoft Developer",
+          "min": 2.8,
+          "why": "Examining the broader training lifecycle helps you place fine-tuning correctly within pre-training and safety alignment.",
+          "url": "https://youtube.com/watch?v=DwFVhFdD2fs&t=484s"
+        },
+        {
+          "concept": "Fine-Tuning Base Models",
+          "depth": "mechanism",
+          "channel": "Gaurav Sen",
+          "min": 2.5,
+          "why": "You will explore how updating a base model with specific examples specializes its behavior for distinct domains.",
+          "url": "https://youtube.com/watch?v=OYvlznJ4IZQ&t=860s"
+        },
+        {
+          "concept": "Common fine-tuning misconceptions",
+          "depth": "debate",
+          "channel": "Mark Hennings",
+          "min": 4.5,
+          "why": "Clearing up common misconceptions ensures you approach fine-tuning with realistic expectations about facts and datasets.",
+          "url": "https://youtube.com/watch?v=YVWxbHJakgg&t=379s"
+        },
+        {
+          "concept": "Tradeoffs between RAG and fine-tuning",
+          "depth": "debate",
+          "channel": "IBM Technology",
+          "min": 2.1,
+          "why": "Weighing fine-tuning against retrieval-augmented generation helps you decide which technique actually fits your problem.",
+          "url": "https://youtube.com/watch?v=00Q0G84kq3M&t=214s"
+        },
+        {
+          "concept": "Preparing raw transcript data",
+          "depth": "intro",
+          "channel": "Zen van Riel",
+          "min": 2.4,
+          "why": "You are now ready to look at practical data work, starting with cleaning and structuring raw transcripts into usable formats.",
+          "url": "https://youtube.com/watch?v=XGwp1tN4LKw&t=63s"
+        },
+        {
+          "concept": "Preparing custom datasets for fine-tuning",
+          "depth": "example",
+          "channel": "Venelin Valkov",
+          "min": 9,
+          "why": "This deepens your dataset preparation skills by teaching you how to handle padding tokens and token length filters.",
+          "url": "https://youtube.com/watch?v=0XPZlR3_GgI&t=320s"
+        },
+        {
+          "concept": "Preparing datasets for fine-tuning",
+          "depth": "example",
+          "channel": "Matt Williams",
+          "min": 5.3,
+          "why": "You will learn to assemble question-answer pairs into JSONL files and integrate your results with local deployment tools.",
+          "url": "https://youtube.com/watch?v=3UQ7GY9hNwk&t=128s"
+        },
+        {
+          "concept": "Fine-tuning Gemma 2 with TRL",
+          "depth": "mechanism",
+          "channel": "Google Cloud Tech",
+          "min": 2.1,
+          "why": "This introduces parameter-efficient strategies to help you bypass massive hardware constraints by freezing base weights.",
+          "url": "https://youtube.com/watch?v=cnGyyM0vOes&t=130s"
+        },
+        {
+          "concept": "Parameter-efficient fine-tuning with adapters",
+          "depth": "mechanism",
+          "channel": "The Coding Gopher",
+          "min": 2.1,
+          "why": "You will see how inserting small trainable adapter layers achieves task adaptation without altering original weights.",
+          "url": "https://youtube.com/watch?v=uKDEE71oFUY&t=353s"
+        },
+        {
+          "concept": "Low-Rank Adaptation (LoRA)",
+          "depth": "mechanism",
+          "channel": "Keerti Purswani",
+          "min": 13.7,
+          "why": "This breaks down why full fine-tuning is computationally prohibitive and how parameter efficiency solves that memory bottleneck.",
+          "url": "https://youtube.com/watch?v=3LGw54I9FDs&t=190s"
+        },
+        {
+          "concept": "Motivation behind LoRA",
+          "depth": "intro",
+          "channel": "DeepFindr",
+          "min": 7.7,
+          "why": "You will discover the intrinsic dimensionality of large models that makes low-rank matrix approximation possible.",
+          "url": "https://youtube.com/watch?v=t509sv5MT0w&t=403s"
+        },
+        {
+          "concept": "Low-Rank Adaptation (LoRA) mechanism",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 9.2,
+          "why": "This demonstrates how decomposing weight update matrices drastically cuts down the number of trainable parameters.",
+          "url": "https://youtube.com/watch?v=IIvORO248Zs&t=412s"
+        },
+        {
+          "concept": "Low-Rank Adaptation mechanism",
+          "depth": "mechanism",
+          "channel": "AI Coffee Break with Letitia",
+          "min": 4.2,
+          "why": "You get a focused look at how freezing original weights and using two smaller matrices keeps resource needs low.",
+          "url": "https://youtube.com/watch?v=KEv-F5UkhxU&t=112s"
+        },
+        {
+          "concept": "Theory of Low Rank Adaptation",
+          "depth": "mechanism",
+          "channel": "NeuralNine",
+          "min": 14.1,
+          "why": "Exploring the underlying theory solidifies your grasp of how low-rank adaptation achieves efficient model modification.",
+          "url": "https://youtube.com/watch?v=XDOSVh9jJiA&t=42s"
+        },
+        {
+          "concept": "LoRa hyperparameters and mechanics",
+          "depth": "mechanism",
+          "channel": "Prompt Engineering",
+          "min": 7.3,
+          "why": "You will connect LoRA mechanics with practical hyperparameters like rank and alpha using instruction fine-tuning workflows.",
+          "url": "https://youtube.com/watch?v=rpAtVIZB72U&t=398s"
+        },
+        {
+          "concept": "Quantized LoRA (QLoRA)",
+          "depth": "mechanism",
+          "channel": "freeCodeCamp.org",
+          "min": 2.1,
+          "why": "This pushes efficiency even further by combining LoRA with 4-bit quantization to run massive models locally.",
+          "url": "https://youtube.com/watch?v=iOdFUJiB0Zc&t=3263s"
+        },
+        {
+          "concept": "Saving and testing fine-tuned models",
+          "depth": "example",
+          "channel": "Krish Naik",
+          "min": 3.9,
+          "why": "You will practice saving your newly trained adapters and writing pipelines to generate custom responses.",
+          "url": "https://youtube.com/watch?v=Vg3dS-NLUT4&t=1342s"
+        },
+        {
+          "concept": "Building a high-coverage evaluation set",
+          "depth": "example",
+          "channel": "Databricks",
+          "min": 13.7,
+          "why": "This final segment teaches you how to build robust evaluation sets so you can measure success before production deployment.",
+          "url": "https://youtube.com/watch?v=2CIIQ5KZWUM&t=270s"
+        }
+      ]
+    },
+    {
+      "id": "finetune-vs-rag",
+      "topic": "should I fine tune or use RAG",
+      "budgetMin": 60,
+      "notes": "A comparison question. The plan should be weighted toward tradeoffs and debate, not mechanism.",
+      "ok": true,
+      "segments": 16,
+      "minutes": 58.1,
+      "budgetMet": true,
+      "creators": 15,
+      "depth": {
+        "intro": 4,
+        "mechanism": 4,
+        "example": 3,
+        "debate": 5
+      },
+      "depthShortfall": {},
+      "longestSegMin": 6.1,
+      "longestShare": 0.105,
+      "concepts": 4,
+      "covered": 4,
+      "missing": [],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "what each approach actually changes",
+          "met": false,
+          "sim": 0.652,
+          "segment": "Common fine-tuning misconceptions"
+        },
+        {
+          "phrase": "cost and effort of each",
+          "met": false,
+          "sim": 0.637,
+          "segment": "Long context versus RAG tradeoffs"
+        },
+        {
+          "phrase": "the cases where retrieval wins",
+          "met": false,
+          "sim": 0.739,
+          "segment": "Long context versus RAG tradeoffs"
+        },
+        {
+          "phrase": "the cases where fine tuning wins",
+          "met": true,
+          "sim": 0.824,
+          "segment": "Modern use cases for fine-tuning"
+        }
+      ],
+      "mustCoverMet": 1,
+      "avoid": [
+        {
+          "phrase": "deep architecture internals",
+          "closest": 0.644,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.836,
+      "maxPairwiseAt": [
+        "Common fine-tuning misconceptions",
+        "Tradeoffs between RAG and fine-tuning"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 1,
+      "seconds": 10.1,
+      "inr": 0.4216,
+      "plan": [
+        {
+          "concept": "LLM fine-tuning vs RAG",
+          "depth": "intro",
+          "channel": "codebasics",
+          "min": 4.3,
+          "why": "This high-level overview gives you a foundational map of how RAG and fine-tuning differ before diving into the details.",
+          "url": "https://youtube.com/watch?v=IIvORO248Zs&t=22s"
+        },
+        {
+          "concept": "Core concepts of LLM fine-tuning",
+          "depth": "intro",
+          "channel": "Tech With Tim",
+          "min": 2.1,
+          "why": "You will now grasp the core mechanics of how fine-tuning alters pre-trained models on a structural level.",
+          "url": "https://youtube.com/watch?v=4JofSJIrjwU&t=20s"
+        },
+        {
+          "concept": "Pre-training versus Fine-tuning LLMs",
+          "depth": "mechanism",
+          "channel": "Discover AI",
+          "min": 3.2,
+          "why": "This segment clarifies the distinct boundary between building a foundational model from scratch versus targeted weight adaptation.",
+          "url": "https://youtube.com/watch?v=_FYwnO_g-4E&t=0s"
+        },
+        {
+          "concept": "Pre-training vs fine-tuning",
+          "depth": "debate",
+          "channel": "Andrej Karpathy",
+          "min": 5.4,
+          "why": "You gain insight into the multi-stage lifecycle of modern models, moving from raw completion to specialized assistants.",
+          "url": "https://youtube.com/watch?v=kCc8FmEb1nY&t=6540s"
+        },
+        {
+          "concept": "Methods for fine-tuning models",
+          "depth": "mechanism",
+          "channel": "Shaw Talebi",
+          "min": 2.5,
+          "why": "This breakdown introduces the specific technical training methodologies you can use to actually execute a fine-tuning run.",
+          "url": "https://youtube.com/watch?v=eC6Hd1hFvos&t=272s"
+        },
+        {
+          "concept": "Instruction tuning for LLMs",
+          "depth": "mechanism",
+          "channel": "AI Thought",
+          "min": 6,
+          "why": "You will understand how instruction tuning and preference alignment turn basic predictors into reliable conversational agents.",
+          "url": "https://youtube.com/watch?v=MhI1JBrCcU4&t=2s"
+        },
+        {
+          "concept": "Principles of high-quality fine-tuning data",
+          "depth": "intro",
+          "channel": "Unfold Data Science",
+          "min": 2.5,
+          "why": "This highlights why dataset curation matters more than raw volume when preparing your own fine-tuning files.",
+          "url": "https://youtube.com/watch?v=etI2ov2eS_4&t=65s"
+        },
+        {
+          "concept": "RLHF implementation in LLMs",
+          "depth": "mechanism",
+          "channel": "CodeEmporium",
+          "min": 2.7,
+          "why": "You learn the advanced mechanics of reinforcement learning from human feedback to shape optimal model outputs.",
+          "url": "https://youtube.com/watch?v=dCelRItdGfc&t=304s"
+        },
+        {
+          "concept": "Modern use cases for fine-tuning",
+          "depth": "example",
+          "channel": "IBM Technology",
+          "min": 2,
+          "why": "This grounds your understanding in practical scenarios where fine-tuning remains the best architectural choice.",
+          "url": "https://youtube.com/watch?v=-W2JdSl1v48&t=460s"
+        },
+        {
+          "concept": "Common fine-tuning misconceptions",
+          "depth": "debate",
+          "channel": "Mark Hennings",
+          "min": 4.5,
+          "why": "Clearing up common misconceptions prevents you from misapplying fine-tuning to problems it cannot solve.",
+          "url": "https://youtube.com/watch?v=YVWxbHJakgg&t=379s"
+        },
+        {
+          "concept": "Building an end-to-end RAG pipeline",
+          "depth": "example",
+          "channel": "KodeKloud",
+          "min": 4.1,
+          "why": "You transition into the world of RAG by watching a complete, end-to-end pipeline come together.",
+          "url": "https://youtube.com/watch?v=_HQ2H_0Ayy0&t=300s"
+        },
+        {
+          "concept": "Retrieval and response generation",
+          "depth": "example",
+          "channel": "AWS Developers",
+          "min": 4,
+          "why": "This demonstrates how query mechanics and multimodal embeddings successfully pull external facts into generation.",
+          "url": "https://youtube.com/watch?v=jDFpEnJeSVg&t=451s"
+        },
+        {
+          "concept": "Reliability and grounding in RAG",
+          "depth": "debate",
+          "channel": "Computerphile",
+          "min": 2.2,
+          "why": "You explore the crucial reliability challenges and hallucination risks inherent in retrieval-augmented setups.",
+          "url": "https://youtube.com/watch?v=YDdKiQNw80c&t=1088s"
+        },
+        {
+          "concept": "Long context versus RAG tradeoffs",
+          "depth": "debate",
+          "channel": "Prompt Engineering",
+          "min": 4.4,
+          "why": "This addresses modern scaling challenges by comparing long-context windows directly against traditional retrieval.",
+          "url": "https://youtube.com/watch?v=tmiBae2goJM&t=646s"
+        },
+        {
+          "concept": "RAG-specific evaluation metrics",
+          "depth": "intro",
+          "channel": "Logical Lenses",
+          "min": 6.1,
+          "why": "You learn how to scientifically measure whether your retrieval and generation components are actually performing well.",
+          "url": "https://youtube.com/watch?v=7_LTU0LA374&t=320s"
+        },
+        {
+          "concept": "Tradeoffs between RAG and fine-tuning",
+          "depth": "debate",
+          "channel": "IBM Technology",
+          "min": 2.1,
+          "why": "This concluding synthesis gives you the exact framework needed to choose between RAG and fine-tuning for your own projects.",
+          "url": "https://youtube.com/watch?v=00Q0G84kq3M&t=214s"
+        }
+      ]
+    },
+    {
+      "id": "agents",
+      "topic": "AI agents and tool use",
+      "budgetMin": 120,
+      "notes": null,
+      "ok": true,
+      "segments": 21,
+      "minutes": 110.2,
+      "budgetMet": true,
+      "creators": 12,
+      "depth": {
+        "intro": 2,
+        "mechanism": 12,
+        "example": 5,
+        "debate": 2
+      },
+      "depthShortfall": {},
+      "longestSegMin": 14,
+      "longestShare": 0.127,
+      "concepts": 8,
+      "covered": 4,
+      "missing": [
+        "Tool Definition",
+        "Function Calling API",
+        "Tool Selection Logic",
+        "Error Handling and Retries"
+      ],
+      "conceptsWithNoMatch": [
+        "Tool Definition",
+        "Function Calling API",
+        "Tool Selection Logic"
+      ],
+      "mustCover": [
+        {
+          "phrase": "what makes something an agent rather than a chatbot",
+          "met": true,
+          "sim": 0.806,
+          "segment": "Defining Agentic AI through evolution"
+        },
+        {
+          "phrase": "how a model is given tools it can call",
+          "met": false,
+          "sim": 0.737,
+          "segment": "Internal architecture of AI agents"
+        },
+        {
+          "phrase": "the loop of thinking then acting then observing",
+          "met": false,
+          "sim": 0.698,
+          "segment": "ReACT Agent Workflow"
+        },
+        {
+          "phrase": "what goes wrong when an agent fails partway",
+          "met": false,
+          "sim": 0.71,
+          "segment": "Iterative coding and debugging with agents"
+        }
+      ],
+      "mustCoverMet": 1,
+      "avoid": [
+        {
+          "phrase": "training language models",
+          "closest": 0.743,
+          "minutesSpent": 0
+        },
+        {
+          "phrase": "image generation",
+          "closest": 0.7,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.867,
+      "maxPairwiseAt": [
+        "Architecting secure AI agent gateways",
+        "Applying zero trust to AI agents"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 4,
+      "seconds": 12.8,
+      "inr": 0.5816,
+      "plan": [
+        {
+          "concept": "Defining Agentic AI through evolution",
+          "depth": "intro",
+          "channel": "codebasics",
+          "min": 6.4,
+          "why": "This opening segment establishes the core mental model that an agent is a system that uses an LLM as a reasoning engine to plan and execute tasks.",
+          "url": "https://youtube.com/watch?v=15_pppse4fY&t=0s"
+        },
+        {
+          "concept": "Core Characteristics of AI Agents",
+          "depth": "mechanism",
+          "channel": "Jeff Su",
+          "min": 2.5,
+          "why": "You will now see how an agent differs from a basic workflow by letting the LLM act as the central decision-maker.",
+          "url": "https://youtube.com/watch?v=FwOTs4UxQS4&t=320s"
+        },
+        {
+          "concept": "Distinguishing agents from generative AI",
+          "depth": "debate",
+          "channel": "codebasics",
+          "min": 2.5,
+          "why": "This helps you separate raw generative output from true agentic orchestration and memory loops.",
+          "url": "https://youtube.com/watch?v=15_pppse4fY&t=677s"
+        },
+        {
+          "concept": "Complex Task Execution with Agents",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 6,
+          "why": "Now you are ready to explore how agents handle multi-step tasks by coordinating tools and APIs.",
+          "url": "https://youtube.com/watch?v=O2gerCxEXvc&t=0s"
+        },
+        {
+          "concept": "Core components of AI agents",
+          "depth": "mechanism",
+          "channel": "AI Engineer",
+          "min": 10.3,
+          "why": "This breakdown gives you a structured view of the four primary components required for any functional agent.",
+          "url": "https://youtube.com/watch?v=640KMYtxCeI&t=150s"
+        },
+        {
+          "concept": "Chatbot and AI assistant architecture",
+          "depth": "mechanism",
+          "channel": "Pankaj Shukla",
+          "min": 14,
+          "why": "You will learn how chatbots and assistants extend static language models by adding memory and conversational loops.",
+          "url": "https://youtube.com/watch?v=Trocyguviow&t=45s"
+        },
+        {
+          "concept": "LLM statelessness and conversational history",
+          "depth": "mechanism",
+          "channel": "New Machina",
+          "min": 2.1,
+          "why": "This segment addresses the stateless nature of LLMs and why external applications must explicitly manage conversational history.",
+          "url": "https://youtube.com/watch?v=y5wBbDSe0cM&t=21s"
+        },
+        {
+          "concept": "Chain of thought prompting mechanism",
+          "depth": "mechanism",
+          "channel": "Google for Developers",
+          "min": 2.5,
+          "why": "You get a look at how chain of thought prompting forces the model to generate intermediate calculation steps.",
+          "url": "https://youtube.com/watch?v=xCRvOUykOX0&t=110s"
+        },
+        {
+          "concept": "ReAct prompting framework",
+          "depth": "mechanism",
+          "channel": "IBM Technology",
+          "min": 9.2,
+          "why": "Here you examine the ReAct framework, which ties together reasoning and external tool usage for iterative problem solving.",
+          "url": "https://youtube.com/watch?v=1c9iyoVIwDs&t=83s"
+        },
+        {
+          "concept": "ReACT Agent Workflow",
+          "depth": "example",
+          "channel": "IBM Technology",
+          "min": 2.6,
+          "why": "This practical example walks you through the exact loop of reasoning, tool-based action, and observation.",
+          "url": "https://youtube.com/watch?v=F8NKVhkZZWI&t=471s"
+        },
+        {
+          "concept": "Internal architecture of AI agents",
+          "depth": "mechanism",
+          "channel": "Ishan Sharma",
+          "min": 5.3,
+          "why": "You gain insight into internal architectures and how supervisor agents can orchestrate multiple specialized workers.",
+          "url": "https://youtube.com/watch?v=HISRUrJsD08&t=149s"
+        },
+        {
+          "concept": "Internal architecture of AI agents",
+          "depth": "mechanism",
+          "channel": "Gaurav Sen",
+          "min": 5.4,
+          "why": "This segment provides a technical evaluation framework and shows how agents integrate external APIs via protocols like MCP.",
+          "url": "https://youtube.com/watch?v=VDhQFBxIgtI&t=86s"
+        },
+        {
+          "concept": "Designing Agentic Workflows",
+          "depth": "example",
+          "channel": "Chai aur Code",
+          "min": 8.5,
+          "why": "You will design actual agentic workflows that govern the interaction between user queries, planning, and tool execution.",
+          "url": "https://youtube.com/watch?v=hpc5DO2dC-4&t=897s"
+        },
+        {
+          "concept": "Iterative coding and debugging with agents",
+          "depth": "example",
+          "channel": "Matthew Berman",
+          "min": 4.8,
+          "why": "This case study demonstrates how multi-agent systems autonomously resolve coding errors through iterative feedback.",
+          "url": "https://youtube.com/watch?v=vU2S6dVf79M&t=478s"
+        },
+        {
+          "concept": "Reinforcement Learning Framework for LLMs",
+          "depth": "mechanism",
+          "channel": "Julia Turc",
+          "min": 3.5,
+          "why": "You explore reinforcement learning mechanics that treat the model as an active agent receiving states and rewards.",
+          "url": "https://youtube.com/watch?v=8jtAzxUwDj0&t=65s"
+        },
+        {
+          "concept": "Multimodal AI agent architecture",
+          "depth": "intro",
+          "channel": "AI Engineer",
+          "min": 2.1,
+          "why": "This introduces multimodal agent designs that process diverse data types while maintaining contextual relationships.",
+          "url": "https://youtube.com/watch?v=640KMYtxCeI&t=957s"
+        },
+        {
+          "concept": "Designing Reliable AI Workflows",
+          "depth": "debate",
+          "channel": "IBM Technology",
+          "min": 5.4,
+          "why": "This transitions into the live debate around grounding agents in live data to mitigate hallucinations and ensure reliability.",
+          "url": "https://youtube.com/watch?v=bNRhppHct54&t=328s"
+        },
+        {
+          "concept": "Mitigation strategies for prompt injection",
+          "depth": "mechanism",
+          "channel": "IBM Technology",
+          "min": 4.3,
+          "why": "You examine the mitigation strategies needed to defend against malicious prompt injections.",
+          "url": "https://youtube.com/watch?v=jrHRe9lSqqA&t=402s"
+        },
+        {
+          "concept": "Architecting secure AI agent gateways",
+          "depth": "example",
+          "channel": "IBM Technology",
+          "min": 3.3,
+          "why": "This introduces security gateways and proxies designed to filter threats and monitor agent behavior in real-time.",
+          "url": "https://youtube.com/watch?v=UMYtqHptYvA&t=581s"
+        },
+        {
+          "concept": "Applying zero trust to AI agents",
+          "depth": "example",
+          "channel": "IBM Technology",
+          "min": 7.2,
+          "why": "You will review zero trust principles, dynamic credentials, and kill switches required for autonomous systems.",
+          "url": "https://youtube.com/watch?v=d8d9EZHU7fw&t=353s"
+        },
+        {
+          "concept": "Role-based agentic AI systems",
+          "depth": "mechanism",
+          "channel": "IBM Technology",
+          "min": 2.1,
+          "why": "This final segment ties everything together by showing how role-based constraints and frameworks keep multi-agent systems organized.",
+          "url": "https://youtube.com/watch?v=ZVPlLaehjLk&t=389s"
+        }
+      ]
+    },
+    {
+      "id": "agent-build",
+      "topic": "how do I actually build an agent that calls tools",
+      "budgetMin": 90,
+      "notes": "Practical build question. Known gap in the index as of 2026-09-27.",
+      "ok": true,
+      "segments": 14,
+      "minutes": 72.5,
+      "budgetMet": false,
+      "creators": 10,
+      "depth": {
+        "intro": 1,
+        "mechanism": 10,
+        "example": 2,
+        "debate": 1
+      },
+      "depthShortfall": {
+        "example": 1,
+        "debate": 1
+      },
+      "longestSegMin": 10.3,
+      "longestShare": 0.143,
+      "concepts": 6,
+      "covered": 2,
+      "missing": [
+        "Tool Definition",
+        "The System Prompt",
+        "Tool Calling Loop",
+        "Context Management"
+      ],
+      "conceptsWithNoMatch": [
+        "Tool Definition",
+        "The System Prompt",
+        "Tool Calling Loop",
+        "Context Management"
+      ],
+      "mustCover": [
+        {
+          "phrase": "describing a tool so the model knows when to call it",
+          "met": false,
+          "sim": 0.687,
+          "segment": "Components of an AI Agent"
+        },
+        {
+          "phrase": "the JSON the model emits to request a call",
+          "met": false,
+          "sim": 0.657,
+          "segment": "ReACT Agent Workflow"
+        },
+        {
+          "phrase": "feeding the tool result back in",
+          "met": false,
+          "sim": 0.706,
+          "segment": "ReACT Agent Workflow"
+        },
+        {
+          "phrase": "chaining several tool calls together",
+          "met": true,
+          "sim": 0.743,
+          "segment": "ReACT Agent Workflow"
+        }
+      ],
+      "mustCoverMet": 1,
+      "avoid": [
+        {
+          "phrase": "philosophical discussion of AGI",
+          "closest": 0.704,
+          "minutesSpent": 0
+        },
+        {
+          "phrase": "model architecture",
+          "closest": 0.694,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.805,
+      "maxPairwiseAt": [
+        "Components of an AI Agent",
+        "Internal architecture of AI agents"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 5,
+      "seconds": 9.4,
+      "inr": 0.395,
+      "plan": [
+        {
+          "concept": "Core Characteristics of AI Agents",
+          "depth": "mechanism",
+          "channel": "Jeff Su",
+          "min": 2.5,
+          "why": "This establishes what an agent actually is by contrasting it with standard workflows right at the start.",
+          "url": "https://youtube.com/watch?v=FwOTs4UxQS4&t=320s"
+        },
+        {
+          "concept": "ReAct prompting framework",
+          "depth": "mechanism",
+          "channel": "IBM Technology",
+          "min": 9.2,
+          "why": "You will grasp the foundational ReAct mental model needed to see how reasoning and tools link together.",
+          "url": "https://youtube.com/watch?v=1c9iyoVIwDs&t=83s"
+        },
+        {
+          "concept": "ReACT Agent Workflow",
+          "depth": "example",
+          "channel": "IBM Technology",
+          "min": 2.6,
+          "why": "A concise walkthrough of the ReAct workflow cements how the model cycles through actions and observations.",
+          "url": "https://youtube.com/watch?v=F8NKVhkZZWI&t=471s"
+        },
+        {
+          "concept": "Components of an AI Agent",
+          "depth": "mechanism",
+          "channel": "Chai aur Code",
+          "min": 9.7,
+          "why": "This breaks down the specific components like memory and toolboxes required to build your own agent.",
+          "url": "https://youtube.com/watch?v=hpc5DO2dC-4&t=276s"
+        },
+        {
+          "concept": "Core components of AI agents",
+          "depth": "mechanism",
+          "channel": "AI Engineer",
+          "min": 10.3,
+          "why": "You get a deeper look at perception, planning, and tool execution mechanics to structure your code architecture.",
+          "url": "https://youtube.com/watch?v=640KMYtxCeI&t=150s"
+        },
+        {
+          "concept": "Internal architecture of AI agents",
+          "depth": "mechanism",
+          "channel": "Ishan Sharma",
+          "min": 5.3,
+          "why": "Learning how models handle tool invocation and self-correction prepares you to write the execution loop.",
+          "url": "https://youtube.com/watch?v=HISRUrJsD08&t=149s"
+        },
+        {
+          "concept": "Internal architecture of AI agents",
+          "depth": "mechanism",
+          "channel": "Gaurav Sen",
+          "min": 5.4,
+          "why": "This connects the architecture to external API integrations and structured thought processes.",
+          "url": "https://youtube.com/watch?v=VDhQFBxIgtI&t=86s"
+        },
+        {
+          "concept": "Designing Reliable AI Workflows",
+          "depth": "debate",
+          "channel": "IBM Technology",
+          "min": 5.4,
+          "why": "See how reliable workflows and strict operational boundaries prevent your agent from hallucinating.",
+          "url": "https://youtube.com/watch?v=bNRhppHct54&t=328s"
+        },
+        {
+          "concept": "Iterative coding and debugging with agents",
+          "depth": "example",
+          "channel": "Matthew Berman",
+          "min": 4.8,
+          "why": "Watch a practical demonstration of iterative coding and debugging to see tool loops in action.",
+          "url": "https://youtube.com/watch?v=vU2S6dVf79M&t=478s"
+        },
+        {
+          "concept": "The three stages of RAG",
+          "depth": "mechanism",
+          "channel": "KodeKloud",
+          "min": 2.1,
+          "why": "Understand how prompt augmentation feeds retrieved data back into the conversational context.",
+          "url": "https://youtube.com/watch?v=_HQ2H_0Ayy0&t=103s"
+        },
+        {
+          "concept": "Chain of thought prompting mechanism",
+          "depth": "mechanism",
+          "channel": "Google for Developers",
+          "min": 2.5,
+          "why": "Discover how chain-of-thought prompting forces the model to generate intermediate steps before calling functions.",
+          "url": "https://youtube.com/watch?v=xCRvOUykOX0&t=110s"
+        },
+        {
+          "concept": "Reinforcement Learning Framework for LLMs",
+          "depth": "mechanism",
+          "channel": "Julia Turc",
+          "min": 3.5,
+          "why": "Explore how reinforcement learning frames the model as an active agent taking environment-driven steps.",
+          "url": "https://youtube.com/watch?v=8jtAzxUwDj0&t=65s"
+        },
+        {
+          "concept": "The four phases of RLHF",
+          "depth": "mechanism",
+          "channel": "IBM Technology",
+          "min": 7,
+          "why": "Review how policy optimization and reward models shape the underlying behavior of the LLM.",
+          "url": "https://youtube.com/watch?v=T_X4XFwKX8k&t=69s"
+        },
+        {
+          "concept": "Multimodal AI agent architecture",
+          "depth": "intro",
+          "channel": "AI Engineer",
+          "min": 2.1,
+          "why": "This ties everything together by looking at multimodal architecture to expand what your agent can process.",
+          "url": "https://youtube.com/watch?v=640KMYtxCeI&t=957s"
+        }
+      ]
+    },
+    {
+      "id": "embeddings",
+      "topic": "what are embeddings and why do they work",
+      "budgetMin": 60,
+      "notes": null,
+      "ok": true,
+      "segments": 18,
+      "minutes": 59.7,
+      "budgetMet": true,
+      "creators": 17,
+      "depth": {
+        "intro": 4,
+        "mechanism": 11,
+        "example": 3,
+        "debate": 0
+      },
+      "depthShortfall": {
+        "debate": 2
+      },
+      "longestSegMin": 6.3,
+      "longestShare": 0.106,
+      "concepts": 4,
+      "covered": 4,
+      "missing": [],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "representing meaning as a position in space",
+          "met": true,
+          "sim": 0.792,
+          "segment": "Mathematical nature of embeddings"
+        },
+        {
+          "phrase": "distance between vectors meaning similarity",
+          "met": true,
+          "sim": 0.764,
+          "segment": "Word and sentence embeddings"
+        },
+        {
+          "phrase": "how embedding models are trained",
+          "met": true,
+          "sim": 0.806,
+          "segment": "How text embeddings represent data"
+        }
+      ],
+      "mustCoverMet": 3,
+      "avoid": [
+        {
+          "phrase": "setting up a vector database product",
+          "closest": 0.753,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.839,
+      "maxPairwiseAt": [
+        "Introduction to word embeddings",
+        "Mathematical nature of embeddings"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 2,
+      "seconds": 10.1,
+      "inr": 0.4036,
+      "plan": [
+        {
+          "concept": "Introduction to word embeddings",
+          "depth": "intro",
+          "channel": "IBM Technology",
+          "min": 2.3,
+          "why": "This overview grounds you in why computers need numerical vectors to process human language.",
+          "url": "https://youtube.com/watch?v=wgfSDrqYMJ4&t=0s"
+        },
+        {
+          "concept": "The role of tokenization in NLP",
+          "depth": "intro",
+          "channel": "Krish Naik Hindi",
+          "min": 2.1,
+          "why": "You will see how raw text is first broken down into smaller manageable chunks before any vectorization happens.",
+          "url": "https://youtube.com/watch?v=zza-0hUsipw&t=0s"
+        },
+        {
+          "concept": "Bag of words approach",
+          "depth": "mechanism",
+          "channel": "DataCamp",
+          "min": 2.3,
+          "why": "This look at the bag of words approach shows the older, frequency-based methods that modern embeddings improve upon.",
+          "url": "https://youtube.com/watch?v=aijeWvQv6lE&t=801s"
+        },
+        {
+          "concept": "Text embeddings and semantic representation",
+          "depth": "mechanism",
+          "channel": "freeCodeCamp.org",
+          "min": 4.1,
+          "why": "Here you learn the foundational concept of turning words into high-dimensional numerical vectors to capture true meaning.",
+          "url": "https://youtube.com/watch?v=_ZvnD73m40o&t=2217s"
+        },
+        {
+          "concept": "Word embeddings and vector representation",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 5.3,
+          "why": "This deepens your understanding of vector representation by showing how spatial positioning allows for mathematical operations.",
+          "url": "https://youtube.com/watch?v=ZhAz268Hdpw&t=104s"
+        },
+        {
+          "concept": "Mathematical nature of embeddings",
+          "depth": "mechanism",
+          "channel": "Annie Sexton",
+          "min": 2.5,
+          "why": "You will explore the pure geometric nature of how these high-dimensional spaces capture semantic relationships.",
+          "url": "https://youtube.com/watch?v=izbifbq3-eI&t=21s"
+        },
+        {
+          "concept": "How text embeddings represent data",
+          "depth": "mechanism",
+          "channel": "Chai aur Code",
+          "min": 2.9,
+          "why": "This segment bridges the gap between raw text and mathematical relevance using actual embedding algorithms.",
+          "url": "https://youtube.com/watch?v=DcNxg61kSFc&t=613s"
+        },
+        {
+          "concept": "Word and sentence embeddings",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 2.8,
+          "why": "Here you see how these numerical vectors scale from individual words up to entire sentences.",
+          "url": "https://youtube.com/watch?v=72XgD322wZ8&t=42s"
+        },
+        {
+          "concept": "Introduction to Word2Vec embeddings",
+          "depth": "intro",
+          "channel": "The Semicolon",
+          "min": 2,
+          "why": "This historical introduction to Word2Vec reveals how semantic relationships are preserved through vector arithmetic.",
+          "url": "https://youtube.com/watch?v=UqRCEmrv1gQ&t=4s"
+        },
+        {
+          "concept": "Vector arithmetic in word embeddings",
+          "depth": "example",
+          "channel": "Computerphile",
+          "min": 5.3,
+          "why": "You get to witness the famous king-minus-man-plus-woman example in action to cement how vector arithmetic works.",
+          "url": "https://youtube.com/watch?v=gQddtTdmG_8&t=698s"
+        },
+        {
+          "concept": "Implementing semantic similarity search",
+          "depth": "example",
+          "channel": "KodeKloud",
+          "min": 2.1,
+          "why": "This practical demonstration shows how cosine similarity lets systems match natural language queries to real policies.",
+          "url": "https://youtube.com/watch?v=VVNYQKDLY5s&t=435s"
+        },
+        {
+          "concept": "Positional encoding in transformers",
+          "depth": "mechanism",
+          "channel": "Gal Lahat",
+          "min": 2.1,
+          "why": "You will discover how positional encodings inject crucial word-order context into otherwise order-agnostic models.",
+          "url": "https://youtube.com/watch?v=RNF0FvRjGZk&t=602s"
+        },
+        {
+          "concept": "The intuition behind self-attention",
+          "depth": "intro",
+          "channel": "Hedu AI by Batool Haider",
+          "min": 2.5,
+          "why": "This intuition-building segment explains how self-attention dynamically weighs relationships between words.",
+          "url": "https://youtube.com/watch?v=mMa2PmYJlCo&t=43s"
+        },
+        {
+          "concept": "Attention mechanism in Transformers",
+          "depth": "mechanism",
+          "channel": "James Briggs",
+          "min": 4.3,
+          "why": "Here you connect attention mechanisms directly to how tokens are mapped closer together in a shared vector space.",
+          "url": "https://youtube.com/watch?v=qU7wO02urYU&t=0s"
+        },
+        {
+          "concept": "Causal language model training mechanics",
+          "depth": "mechanism",
+          "channel": "Neural Breakdown with AVB",
+          "min": 4.9,
+          "why": "This breakdown of causal language model training uncovers how models learn to predict the next token via loss.",
+          "url": "https://youtube.com/watch?v=bZcKYiwtw1I&t=950s"
+        },
+        {
+          "concept": "Causal language modeling",
+          "depth": "mechanism",
+          "channel": "Sunny Savita",
+          "min": 6.3,
+          "why": "You will see how pre-training on next-token prediction enables models to master deep linguistic patterns.",
+          "url": "https://youtube.com/watch?v=_V3zqVlCACQ&t=1636s"
+        },
+        {
+          "concept": "Generalizable computation versus memorization",
+          "depth": "example",
+          "channel": "Anthropic",
+          "min": 3.5,
+          "why": "This exploration of generalizable computation proves how models learn circuits rather than just memorizing data.",
+          "url": "https://youtube.com/watch?v=fGKNUvivvnc&t=770s"
+        },
+        {
+          "concept": "Chain of thought prompting mechanism",
+          "depth": "mechanism",
+          "channel": "Google for Developers",
+          "min": 2.5,
+          "why": "Finally, chain-of-thought prompting demonstrates how forcing intermediate steps dramatically increases reasoning capability.",
+          "url": "https://youtube.com/watch?v=xCRvOUykOX0&t=110s"
+        }
+      ]
+    },
+    {
+      "id": "prompting",
+      "topic": "prompt engineering that actually works",
+      "budgetMin": 60,
+      "notes": "Should skew practical. Heavy mechanism content here is a failure.",
+      "ok": true,
+      "segments": 18,
+      "minutes": 59.6,
+      "budgetMet": true,
+      "creators": 13,
+      "depth": {
+        "intro": 2,
+        "mechanism": 11,
+        "example": 5,
+        "debate": 0
+      },
+      "depthShortfall": {
+        "debate": 2
+      },
+      "longestSegMin": 5.8,
+      "longestShare": 0.097,
+      "concepts": 4,
+      "covered": 4,
+      "missing": [],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "giving the model room to reason before answering",
+          "met": true,
+          "sim": 0.774,
+          "segment": "Chain of thought prompting mechanism"
+        },
+        {
+          "phrase": "showing examples in the prompt",
+          "met": true,
+          "sim": 0.762,
+          "segment": "Zero-shot vs few-shot prompting"
+        },
+        {
+          "phrase": "structuring a prompt so the parts are distinct",
+          "met": true,
+          "sim": 0.765,
+          "segment": "Prompting as world building"
+        }
+      ],
+      "mustCoverMet": 3,
+      "avoid": [
+        {
+          "phrase": "model internals",
+          "closest": 0.616,
+          "minutesSpent": 0
+        },
+        {
+          "phrase": "fine tuning",
+          "closest": 0.742,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.814,
+      "maxPairwiseAt": [
+        "Chain of thought prompting mechanism",
+        "Reinforcement learning for reasoning"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 2,
+      "seconds": 10.5,
+      "inr": 0.4739,
+      "plan": [
+        {
+          "concept": "Fundamentals of prompt engineering",
+          "depth": "intro",
+          "channel": "Tech With Tim",
+          "min": 2.1,
+          "why": "This opening segment gives you a foundational definition of prompt engineering so you can stop guessing and start aiming for predictable outputs.",
+          "url": "https://youtube.com/watch?v=2BpCk4d2Cc0&t=104s"
+        },
+        {
+          "concept": "Improving AI responses with prompting",
+          "depth": "example",
+          "channel": "freeCodeCamp.org",
+          "min": 5.2,
+          "why": "You will see how shaping human-AI interaction fundamentally changes model behavior and improves practical utility.",
+          "url": "https://youtube.com/watch?v=_ZvnD73m40o&t=86s"
+        },
+        {
+          "concept": "The Magic Prompt Formula",
+          "depth": "mechanism",
+          "channel": "Raj Shamani Highlights ",
+          "min": 3.2,
+          "why": "This introduces the essential formula of Role, Objective, Context, and Data to structure your inputs effectively.",
+          "url": "https://youtube.com/watch?v=B6d8e3r96gQ&t=66s"
+        },
+        {
+          "concept": "Advanced prompt parameterization",
+          "depth": "mechanism",
+          "channel": "Nishant Chahar",
+          "min": 5.2,
+          "why": "You learn how to parameterize your prompts with expertise levels and output formats for professional-grade results.",
+          "url": "https://youtube.com/watch?v=IbVjxg9bHAw&t=639s"
+        },
+        {
+          "concept": "Prompting as world building",
+          "depth": "mechanism",
+          "channel": "Varun Mayya",
+          "min": 2.5,
+          "why": "This perspective teaches you to treat prompting as world-building, letting the AI fill in gaps with high relevance.",
+          "url": "https://youtube.com/watch?v=VnEoS2eQXsw&t=127s"
+        },
+        {
+          "concept": "The five-step prompting framework",
+          "depth": "mechanism",
+          "channel": "Tina Huang",
+          "min": 2.8,
+          "why": "A clear five-step framework consolidates your understanding of structuring tasks, context, personas, and iteration.",
+          "url": "https://youtube.com/watch?v=p09yRj47kNM&t=43s"
+        },
+        {
+          "concept": "Mechanics of Prompt Engineering",
+          "depth": "example",
+          "channel": "IBM Technology",
+          "min": 2.1,
+          "why": "You discover the mechanical difference hard prompts make when priming a model at inference time.",
+          "url": "https://youtube.com/watch?v=yu27PWzJI_Y&t=104s"
+        },
+        {
+          "concept": "Zero-shot vs few-shot prompting",
+          "depth": "mechanism",
+          "channel": "freeCodeCamp.org",
+          "min": 3.8,
+          "why": "This segment clearly contrasts zero-shot and few-shot approaches so you know when to supply examples.",
+          "url": "https://youtube.com/watch?v=_ZvnD73m40o&t=1870s"
+        },
+        {
+          "concept": "Few-shot learning and fine-tuning",
+          "depth": "example",
+          "channel": "LiveOverflow",
+          "min": 5.8,
+          "why": "You examine how few-shot learning builds resilience against instructions that deviate from your intended task.",
+          "url": "https://youtube.com/watch?v=VbNPZ1n6_vY&t=580s"
+        },
+        {
+          "concept": "Core principles of Chain-of-Thought",
+          "depth": "intro",
+          "channel": "Lex Clips",
+          "min": 2.1,
+          "why": "An introduction to Chain-of-Thought principles unlocks latent intelligence by forcing intermediate reasoning steps.",
+          "url": "https://youtube.com/watch?v=w9eQJdBRC5o&t=2s"
+        },
+        {
+          "concept": "Chain of thought prompting mechanism",
+          "depth": "mechanism",
+          "channel": "Google for Developers",
+          "min": 2.5,
+          "why": "You gain insight into the computing mechanics behind step-by-step reasoning and why it enhances complex problem solving.",
+          "url": "https://youtube.com/watch?v=xCRvOUykOX0&t=110s"
+        },
+        {
+          "concept": "Chain of thought and structured output",
+          "depth": "mechanism",
+          "channel": "Tech With Tim",
+          "min": 2.1,
+          "why": "This shows you how combining step-by-step logic with forced JSON outputs makes AI responses ready for software integration.",
+          "url": "https://youtube.com/watch?v=2BpCk4d2Cc0&t=1094s"
+        },
+        {
+          "concept": "Designing prompts for AI agents",
+          "depth": "mechanism",
+          "channel": "Peter Yang",
+          "min": 3.5,
+          "why": "You transition into designing interactive agents by utilizing clear input variables and policy guidelines.",
+          "url": "https://youtube.com/watch?v=TL527yTpxlk&t=467s"
+        },
+        {
+          "concept": "Designing custom AI agents",
+          "depth": "example",
+          "channel": "Tina Huang",
+          "min": 5.6,
+          "why": "This segment guides you through building custom AI agents with specific personas, context, and stop phrases.",
+          "url": "https://youtube.com/watch?v=p09yRj47kNM&t=841s"
+        },
+        {
+          "concept": "ReACT Agent Workflow",
+          "depth": "example",
+          "channel": "IBM Technology",
+          "min": 2.6,
+          "why": "You will explore the ReACT workflow to solve multi-step problems by letting agents reason, act, and observe dynamically.",
+          "url": "https://youtube.com/watch?v=F8NKVhkZZWI&t=471s"
+        },
+        {
+          "concept": "Generative AI Training Stages",
+          "depth": "mechanism",
+          "channel": "Microsoft Developer",
+          "min": 2.8,
+          "why": "Looking behind the curtain at training stages helps you appreciate how pre-training and safety tuning shape the models you prompt.",
+          "url": "https://youtube.com/watch?v=DwFVhFdD2fs&t=484s"
+        },
+        {
+          "concept": "Prefix and prompt tuning techniques",
+          "depth": "mechanism",
+          "channel": "The Coding Gopher",
+          "min": 2.2,
+          "why": "You explore advanced parameter efficiency through prefix and prompt tuning techniques that steer behavior without full fine-tuning.",
+          "url": "https://youtube.com/watch?v=uKDEE71oFUY&t=580s"
+        },
+        {
+          "concept": "Reinforcement learning for reasoning",
+          "depth": "mechanism",
+          "channel": "Google for Developers",
+          "min": 3.5,
+          "why": "This concluding segment ties your learning together by showing how reinforcement learning encourages robust chains of thought.",
+          "url": "https://youtube.com/watch?v=xCRvOUykOX0&t=449s"
+        }
+      ]
+    },
+    {
+      "id": "hallucination",
+      "topic": "why do LLMs hallucinate and can it be fixed",
+      "budgetMin": 90,
+      "notes": "Asks a contested question. Should contain real disagreement, not one settled view.",
+      "ok": true,
+      "segments": 23,
+      "minutes": 89.9,
+      "budgetMet": true,
+      "creators": 18,
+      "depth": {
+        "intro": 4,
+        "mechanism": 11,
+        "example": 2,
+        "debate": 6
+      },
+      "depthShortfall": {
+        "example": 1
+      },
+      "longestSegMin": 9.6,
+      "longestShare": 0.107,
+      "concepts": 7,
+      "covered": 7,
+      "missing": [],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "why next token prediction produces confident wrong answers",
+          "met": true,
+          "sim": 0.823,
+          "segment": "Common misconceptions about hallucinations"
+        },
+        {
+          "phrase": "grounding answers in retrieved sources",
+          "met": true,
+          "sim": 0.779,
+          "segment": "Reliability and grounding in RAG"
+        },
+        {
+          "phrase": "whether hallucination can ever be eliminated",
+          "met": true,
+          "sim": 0.793,
+          "segment": "Common misconceptions about hallucinations"
+        }
+      ],
+      "mustCoverMet": 3,
+      "avoid": [
+        {
+          "phrase": "unrelated safety topics like job loss",
+          "closest": 0.634,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.864,
+      "maxPairwiseAt": [
+        "How LLMs process information",
+        "Fundamentals of prompt engineering"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 5,
+      "seconds": 13.3,
+      "inr": 0.6305,
+      "plan": [
+        {
+          "concept": "How language models function",
+          "depth": "mechanism",
+          "channel": "freeCodeCamp.org",
+          "min": 4.8,
+          "why": "This segment introduces the foundational concept of next-token prediction, showing you how language models generate text through statistical patterns rather than verified database retrieval.",
+          "url": "https://youtube.com/watch?v=_ZvnD73m40o&t=486s"
+        },
+        {
+          "concept": "Causal language modeling",
+          "depth": "mechanism",
+          "channel": "Sunny Savita",
+          "min": 6.3,
+          "why": "You will explore how causal language modeling enables models to predict upcoming tokens and learn deep linguistic structures.",
+          "url": "https://youtube.com/watch?v=_V3zqVlCACQ&t=1636s"
+        },
+        {
+          "concept": "How LLMs process information",
+          "depth": "mechanism",
+          "channel": "Tech With Tim",
+          "min": 3.8,
+          "why": "This segment clarifies that models operate as text prediction engines driven by context rather than possessing actual consciousness or memory.",
+          "url": "https://youtube.com/watch?v=2BpCk4d2Cc0&t=421s"
+        },
+        {
+          "concept": "GPT text generation mechanism",
+          "depth": "mechanism",
+          "channel": "Sebastian Raschka",
+          "min": 3.6,
+          "why": "You get a clear mechanical view of how GPT models generate responses iteratively by predicting one token at a time based on preceding context.",
+          "url": "https://youtube.com/watch?v=Zar2TJv-sE0&t=43s"
+        },
+        {
+          "concept": "Iterative generation and architectural limitations",
+          "depth": "debate",
+          "channel": "LearnThatStack",
+          "min": 2.3,
+          "why": "This look at iterative token generation highlights the architectural boundaries that constrain context length and govern how output unfolds.",
+          "url": "https://youtube.com/watch?v=NKnZYvZA7w4&t=428s"
+        },
+        {
+          "concept": "Planning and future-state representation",
+          "depth": "example",
+          "channel": "Anthropic",
+          "min": 3.1,
+          "why": "You will discover how language models represent future tokens internally, allowing them to demonstrate early forms of planning and state representation.",
+          "url": "https://youtube.com/watch?v=fGKNUvivvnc&t=2073s"
+        },
+        {
+          "concept": "Reinforcement Learning Framework for LLMs",
+          "depth": "mechanism",
+          "channel": "Julia Turc",
+          "min": 3.5,
+          "why": "This overview frames LLMs within a reinforcement learning loop where token generation is treated as an agent taking sequential actions.",
+          "url": "https://youtube.com/watch?v=8jtAzxUwDj0&t=65s"
+        },
+        {
+          "concept": "Training data scarcity and hallucinations",
+          "depth": "mechanism",
+          "channel": "Parthknowsai",
+          "min": 3,
+          "why": "You will see how scarcity and gaps in training data force models to stumble over rare information and fabricate unsupported details.",
+          "url": "https://youtube.com/watch?v=JTO05qkG_fo&t=85s"
+        },
+        {
+          "concept": "Causes of LLM Hallucination",
+          "depth": "mechanism",
+          "channel": "Krish Naik",
+          "min": 8.9,
+          "why": "This deep dive connects training cutoffs and missing information directly to the root causes of model hallucinations.",
+          "url": "https://youtube.com/watch?v=r0q1n8BJ0QI&t=104s"
+        },
+        {
+          "concept": "The root cause of LLM hallucinations",
+          "depth": "intro",
+          "channel": "Matthew Berman",
+          "min": 3.1,
+          "why": "You learn how training objectives that reward any plausible answer over admitting ignorance cause models to bluff like students on a test.",
+          "url": "https://youtube.com/watch?v=xGO5Q94XXf0&t=0s"
+        },
+        {
+          "concept": "Incentives in model evaluation",
+          "depth": "debate",
+          "channel": "Prompt Engineering",
+          "min": 5.8,
+          "why": "This segment investigates how evaluation incentives and leaderboards inadvertently penalize abstinence and push models to guess confidently.",
+          "url": "https://youtube.com/watch?v=APWG1hEqOKk&t=0s"
+        },
+        {
+          "concept": "Causes of AI hallucinations",
+          "depth": "intro",
+          "channel": "IBM Technology",
+          "min": 5,
+          "why": "You can examine how tweaking temperature settings shifts outputs between deterministic factual extraction and creative generation.",
+          "url": "https://youtube.com/watch?v=ZFKvTIADp0k&t=0s"
+        },
+        {
+          "concept": "LLMs as conversational engines",
+          "depth": "debate",
+          "channel": "Nick Saraev",
+          "min": 3.6,
+          "why": "This perspective positions LLMs as conversational engines rather than factual databases, emphasizing their need for external support.",
+          "url": "https://youtube.com/watch?v=CxbHw93oWP0&t=1144s"
+        },
+        {
+          "concept": "Fundamentals of prompt engineering",
+          "depth": "intro",
+          "channel": "Tech With Tim",
+          "min": 2.1,
+          "why": "You are introduced to immediate techniques like roles and constraints to steer model outputs toward greater predictability.",
+          "url": "https://youtube.com/watch?v=2BpCk4d2Cc0&t=104s"
+        },
+        {
+          "concept": "Chain of thought prompting mechanism",
+          "depth": "mechanism",
+          "channel": "Google for Developers",
+          "min": 2.5,
+          "why": "This segment shows how chain-of-thought prompting forces intermediate reasoning steps to improve problem-solving capabilities.",
+          "url": "https://youtube.com/watch?v=xCRvOUykOX0&t=110s"
+        },
+        {
+          "concept": "The limitations of standalone LLMs",
+          "depth": "intro",
+          "channel": "IBM Technology",
+          "min": 4.6,
+          "why": "You will see how standalone limitations are addressed by adding retrieval steps to fetch relevant external data.",
+          "url": "https://youtube.com/watch?v=T-D1OfcDW1M&t=0s"
+        },
+        {
+          "concept": "Retrieval Augmented Generation",
+          "depth": "mechanism",
+          "channel": "Gaurav Sen",
+          "min": 2.1,
+          "why": "This practical demonstration illustrates how injecting external documents into the prompt context at runtime enhances response accuracy.",
+          "url": "https://youtube.com/watch?v=OYvlznJ4IZQ&t=1096s"
+        },
+        {
+          "concept": "The three stages of RAG",
+          "depth": "mechanism",
+          "channel": "KodeKloud",
+          "min": 2.1,
+          "why": "You can walk through the distinct retrieval, augmentation, and generation stages that make up a robust RAG pipeline.",
+          "url": "https://youtube.com/watch?v=_HQ2H_0Ayy0&t=103s"
+        },
+        {
+          "concept": "Integrating LLMs for augmented generation",
+          "depth": "example",
+          "channel": "Krish Naik",
+          "min": 9.6,
+          "why": "This worked case puts RAG into practice by combining vector databases and user queries for context-aware answers.",
+          "url": "https://youtube.com/watch?v=o126p1QN_RI&t=5608s"
+        },
+        {
+          "concept": "Reliability and grounding in RAG",
+          "depth": "debate",
+          "channel": "Computerphile",
+          "min": 2.2,
+          "why": "This segment weighs the reliability improvements of grounding models against the challenge of identifying missing information.",
+          "url": "https://youtube.com/watch?v=YDdKiQNw80c&t=1088s"
+        },
+        {
+          "concept": "Mechanics of latent diffusion hallucinations",
+          "depth": "mechanism",
+          "channel": "Gal Lahat",
+          "min": 3.2,
+          "why": "You examine how descriptive biases and encoding artifacts can trigger cascading drift in iterative generation systems.",
+          "url": "https://youtube.com/watch?v=DE858g_L7Xc&t=432s"
+        },
+        {
+          "concept": "The inevitability of AI hallucinations",
+          "depth": "debate",
+          "channel": "Parthknowsai",
+          "min": 2.2,
+          "why": "This discussion addresses why hallucinations remain a permanent architectural reality despite our best external mitigation tools.",
+          "url": "https://youtube.com/watch?v=JTO05qkG_fo&t=445s"
+        },
+        {
+          "concept": "Common misconceptions about hallucinations",
+          "depth": "debate",
+          "channel": "Prompt Engineering",
+          "min": 2.5,
+          "why": "You conclude by understanding that hallucinations are predictable statistical outcomes rather than mysterious glitches that can be easily patched out.",
+          "url": "https://youtube.com/watch?v=APWG1hEqOKk&t=429s"
+        }
+      ]
+    },
+    {
+      "id": "evaluation",
+      "topic": "how do you evaluate an LLM application",
+      "budgetMin": 90,
+      "notes": null,
+      "ok": true,
+      "segments": 18,
+      "minutes": 78.8,
+      "budgetMet": true,
+      "creators": 12,
+      "depth": {
+        "intro": 3,
+        "mechanism": 8,
+        "example": 3,
+        "debate": 4
+      },
+      "depthShortfall": {},
+      "longestSegMin": 9.6,
+      "longestShare": 0.121,
+      "concepts": 6,
+      "covered": 3,
+      "missing": [
+        "Evaluation Frameworks",
+        "Deterministic Metrics",
+        "Human-in-the-loop"
+      ],
+      "conceptsWithNoMatch": [
+        "Evaluation Frameworks"
+      ],
+      "mustCover": [
+        {
+          "phrase": "why accuracy is the wrong single number",
+          "met": false,
+          "sim": 0.669,
+          "segment": "Long context versus RAG tradeoffs"
+        },
+        {
+          "phrase": "using a model to grade another model's output",
+          "met": true,
+          "sim": 0.785,
+          "segment": "Implementing LLM-as-a-judge"
+        },
+        {
+          "phrase": "building a test set for your own use case",
+          "met": true,
+          "sim": 0.757,
+          "segment": "Building a golden data set"
+        },
+        {
+          "phrase": "benchmarks and how they mislead",
+          "met": false,
+          "sim": 0.662,
+          "segment": "Traditional text evaluation methods"
+        }
+      ],
+      "mustCoverMet": 2,
+      "avoid": [
+        {
+          "phrase": "training loss curves",
+          "closest": 0.667,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.837,
+      "maxPairwiseAt": [
+        "Building a golden data set",
+        "Implementing LLM-as-a-judge"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 0,
+      "seconds": 10.9,
+      "inr": 0.4925,
+      "plan": [
+        {
+          "concept": "Scalable oversight for AI systems",
+          "depth": "intro",
+          "channel": "Rational Animations",
+          "min": 3.9,
+          "why": "This introductory overview introduces you to the core challenge of scalable oversight for AI systems before we dive into specific techniques.",
+          "url": "https://youtube.com/watch?v=5mco9zAamRk&t=3s"
+        },
+        {
+          "concept": "Context optimization via prompt engineering and RAG",
+          "depth": "mechanism",
+          "channel": "IBM Technology",
+          "min": 2,
+          "why": "You will now ground your understanding by exploring how prompt engineering and RAG connect models to external data sources to improve baseline accuracy.",
+          "url": "https://youtube.com/watch?v=pZjpNS9YeVA&t=23s"
+        },
+        {
+          "concept": "Limitations of long context windows",
+          "depth": "debate",
+          "channel": "IBM Technology",
+          "min": 7,
+          "why": "This segment exposes the architectural limitations of long context windows, justifying why you must implement targeted evaluation frameworks for retrieval systems.",
+          "url": "https://youtube.com/watch?v=UabBYexBD4k&t=251s"
+        },
+        {
+          "concept": "Context engineering and retrieval pipelines",
+          "depth": "mechanism",
+          "channel": "Refreshing AI Latest",
+          "min": 4.5,
+          "why": "Here you examine the mechanics of context engineering and retrieval pipelines to see why naive data dumping fails in production environments.",
+          "url": "https://youtube.com/watch?v=nLNuPsQ-Jlo&t=0s"
+        },
+        {
+          "concept": "Advanced Retrieval Techniques",
+          "depth": "example",
+          "channel": "IBM Technology",
+          "min": 5.5,
+          "why": "Building on retrieval pipelines, this segment demonstrates advanced techniques like agentic iteration and graph-based relationship mapping to maximize signal.",
+          "url": "https://youtube.com/watch?v=pN-LfxNFiTc&t=301s"
+        },
+        {
+          "concept": "Advanced RAG design patterns",
+          "depth": "example",
+          "channel": "Aishwarya Srinivasan",
+          "min": 7.4,
+          "why": "You will explore advanced RAG design patterns that handle complex multi-step queries and diverse data formats beyond simple text retrieval.",
+          "url": "https://youtube.com/watch?v=v0ynfDPpe4E&t=253s"
+        },
+        {
+          "concept": "Agentic chunking and proposition grouping",
+          "depth": "mechanism",
+          "channel": "Mervin Praison",
+          "min": 4.4,
+          "why": "This deep dive shows you how agentic chunking and proposition grouping enhance context retention for your application.",
+          "url": "https://youtube.com/watch?v=pIGRwMjhMaQ&t=576s"
+        },
+        {
+          "concept": "Long context versus RAG tradeoffs",
+          "depth": "debate",
+          "channel": "Prompt Engineering",
+          "min": 4.4,
+          "why": "You will evaluate the live trade-offs between long-context models and RAG architectures through comparative metrics.",
+          "url": "https://youtube.com/watch?v=tmiBae2goJM&t=646s"
+        },
+        {
+          "concept": "Reliability and grounding in RAG",
+          "depth": "debate",
+          "channel": "Computerphile",
+          "min": 2.2,
+          "why": "This discussion addresses the persistent reliability and grounding challenges in retrieval-based systems.",
+          "url": "https://youtube.com/watch?v=YDdKiQNw80c&t=1088s"
+        },
+        {
+          "concept": "Building a golden data set",
+          "depth": "example",
+          "channel": "Peter Yang",
+          "min": 3.7,
+          "why": "Moving into structured evaluation, you will learn how to build a golden dataset by manually grading AI outputs against specific rubrics.",
+          "url": "https://youtube.com/watch?v=TL527yTpxlk&t=916s"
+        },
+        {
+          "concept": "Determining evaluation data size",
+          "depth": "mechanism",
+          "channel": "Peter Yang",
+          "min": 2.3,
+          "why": "This short segment teaches you how to determine the optimal evaluation dataset size for both initial testing and production-grade systems.",
+          "url": "https://youtube.com/watch?v=TL527yTpxlk&t=1484s"
+        },
+        {
+          "concept": "Traditional text evaluation methods",
+          "depth": "mechanism",
+          "channel": "Arthur",
+          "min": 9.6,
+          "why": "You will compare traditional text evaluation methods against modern approaches that leverage LLMs as classifiers.",
+          "url": "https://youtube.com/watch?v=jW290vZThgw&t=277s"
+        },
+        {
+          "concept": "Best practices for LLM optimization strategies",
+          "depth": "debate",
+          "channel": "IBM Technology",
+          "min": 2.8,
+          "why": "This practical guide outlines best practices for establishing clear metrics and prioritizing data quality over sheer volume.",
+          "url": "https://youtube.com/watch?v=pZjpNS9YeVA&t=268s"
+        },
+        {
+          "concept": "LLM-as-a-judge evaluation strategies",
+          "depth": "intro",
+          "channel": "IBM Technology",
+          "min": 2.4,
+          "why": "You are introduced to specific LLM-as-a-judge strategies, contrasting direct rubric assessment with pairwise comparison.",
+          "url": "https://youtube.com/watch?v=trfUBIDeI1Y&t=0s"
+        },
+        {
+          "concept": "Implementing LLM-as-a-judge",
+          "depth": "mechanism",
+          "channel": "Peter Yang",
+          "min": 5.7,
+          "why": "This walkthrough teaches you how to actually implement and scale LLM-as-a-judge automation while verifying against human labels.",
+          "url": "https://youtube.com/watch?v=TL527yTpxlk&t=1967s"
+        },
+        {
+          "concept": "RAG-specific evaluation metrics",
+          "depth": "intro",
+          "channel": "Logical Lenses",
+          "min": 6.1,
+          "why": "You will master RAG-specific evaluation metrics like context precision, context recall, and faithfulness using standardized frameworks.",
+          "url": "https://youtube.com/watch?v=7_LTU0LA374&t=320s"
+        },
+        {
+          "concept": "Human Evaluation Methodologies",
+          "depth": "mechanism",
+          "channel": "Generative AI at MIT",
+          "min": 2.2,
+          "why": "This segment explores human evaluation methodologies to assess nuanced qualities like coherence when automated metrics fall short.",
+          "url": "https://youtube.com/watch?v=1jReCwBgM84&t=185s"
+        },
+        {
+          "concept": "RLHF implementation in LLMs",
+          "depth": "mechanism",
+          "channel": "CodeEmporium",
+          "min": 2.7,
+          "why": "To conclude your journey, you will study how RLHF implementation and reward models tie everything together to fine-tune final output quality.",
+          "url": "https://youtube.com/watch?v=dCelRItdGfc&t=304s"
+        }
+      ]
+    },
+    {
+      "id": "tokenization",
+      "topic": "how does tokenization work and why does it matter",
+      "budgetMin": 60,
+      "notes": null,
+      "ok": true,
+      "segments": 15,
+      "minutes": 58.8,
+      "budgetMet": true,
+      "creators": 15,
+      "depth": {
+        "intro": 4,
+        "mechanism": 7,
+        "example": 2,
+        "debate": 2
+      },
+      "depthShortfall": {
+        "example": 1
+      },
+      "longestSegMin": 7,
+      "longestShare": 0.119,
+      "concepts": 5,
+      "covered": 4,
+      "missing": [
+        "Impact on Performance"
+      ],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "splitting text into subword pieces",
+          "met": true,
+          "sim": 0.811,
+          "segment": "Philosophy of subword tokenization"
+        },
+        {
+          "phrase": "byte pair encoding",
+          "met": true,
+          "sim": 0.832,
+          "segment": "Byte-Pair Encoding mechanism"
+        },
+        {
+          "phrase": "why token count affects cost and context limits",
+          "met": true,
+          "sim": 0.781,
+          "segment": "Understanding LLM context windows"
+        }
+      ],
+      "mustCoverMet": 3,
+      "avoid": [
+        {
+          "phrase": "full model architecture",
+          "closest": 0.678,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.84,
+      "maxPairwiseAt": [
+        "Introduction to LLM Tokenization",
+        "Byte-Pair Encoding mechanism"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 2,
+      "seconds": 9.8,
+      "inr": 0.3949,
+      "plan": [
+        {
+          "concept": "Introduction to LLM Tokenization",
+          "depth": "intro",
+          "channel": "Andrej Karpathy",
+          "min": 4.3,
+          "why": "This opening segment grounds you in the core reality that models cannot read raw text and must rely on integer sequences.",
+          "url": "https://youtube.com/watch?v=zduSFxRajkE&t=0s"
+        },
+        {
+          "concept": "Limitations of token-based numerical representation",
+          "depth": "intro",
+          "channel": "Under The Hood",
+          "min": 2.1,
+          "why": "You need to see why simply assigning random numbers to words falls short of capturing true semantic meaning.",
+          "url": "https://youtube.com/watch?v=hVM8qGRTaOA&t=1s"
+        },
+        {
+          "concept": "How LLMs process information",
+          "depth": "mechanism",
+          "channel": "Tech With Tim",
+          "min": 3.8,
+          "why": "This connects the text representation layer to the broader prediction engine that powers the entire system.",
+          "url": "https://youtube.com/watch?v=2BpCk4d2Cc0&t=421s"
+        },
+        {
+          "concept": "Attention mechanism in Transformers",
+          "depth": "mechanism",
+          "channel": "James Briggs",
+          "min": 4.3,
+          "why": "You will now discover how these translated pieces are mapped into a shared vector space for relationship tracking.",
+          "url": "https://youtube.com/watch?v=qU7wO02urYU&t=0s"
+        },
+        {
+          "concept": "Tokenization and positional encoding",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 3.6,
+          "why": "This step reveals how word order is preserved alongside your tokenized inputs so the model doesn't lose narrative sequence.",
+          "url": "https://youtube.com/watch?v=ZhAz268Hdpw&t=1186s"
+        },
+        {
+          "concept": "How LLM tokenization works",
+          "depth": "mechanism",
+          "channel": "Matt Pocock",
+          "min": 5.2,
+          "why": "We zoom in here on how predefined vocabularies shape the actual encoding process.",
+          "url": "https://youtube.com/watch?v=nKSk_TiR8YA&t=126s"
+        },
+        {
+          "concept": "Byte-Pair Encoding mechanism",
+          "depth": "mechanism",
+          "channel": "Annie Sexton",
+          "min": 2.1,
+          "why": "You will trace the specific mechanics of Byte-Pair Encoding and how frequent pairs form new tokens.",
+          "url": "https://youtube.com/watch?v=4A_nfXyBD08&t=102s"
+        },
+        {
+          "concept": "Applying BPE to new text",
+          "depth": "example",
+          "channel": "IIT Madras - B.S. Degree Programme",
+          "min": 6.9,
+          "why": "This practical walkthrough shows you how fertility rates and compute limits guide real-world vocabulary creation.",
+          "url": "https://youtube.com/watch?v=yEcEzyaQB5c&t=974s"
+        },
+        {
+          "concept": "Philosophy of subword tokenization",
+          "depth": "intro",
+          "channel": "DigitalSreeni",
+          "min": 3.2,
+          "why": "Here you examine the philosophy behind balancing vocabulary size with subword fragmentation for rare words.",
+          "url": "https://youtube.com/watch?v=dBk98xqEtoA&t=62s"
+        },
+        {
+          "concept": "Understanding LLM context windows",
+          "depth": "intro",
+          "channel": "NetworkChuck",
+          "min": 2.1,
+          "why": "We pivot to how these token counts strictly govern the short-term memory constraints of an AI conversation.",
+          "url": "https://youtube.com/watch?v=TeQDr4DkLYo&t=0s"
+        },
+        {
+          "concept": "Iterative generation and architectural limitations",
+          "depth": "debate",
+          "channel": "LearnThatStack",
+          "min": 2.3,
+          "why": "This segment exposes the architectural bottlenecks created by generating text one single token at a time.",
+          "url": "https://youtube.com/watch?v=NKnZYvZA7w4&t=428s"
+        },
+        {
+          "concept": "Optimizing context memory with quantization",
+          "depth": "example",
+          "channel": "Matt Williams",
+          "min": 6.7,
+          "why": "You learn how quantization and caching techniques tackle the heavy RAM overhead tied to large token histories.",
+          "url": "https://youtube.com/watch?v=K75j8MkwgJ0&t=132s"
+        },
+        {
+          "concept": "Limitations of long context windows",
+          "depth": "debate",
+          "channel": "IBM Technology",
+          "min": 7,
+          "why": "This analysis weighs the high compute costs and attention dilution of massive context windows against traditional RAG setups.",
+          "url": "https://youtube.com/watch?v=UabBYexBD4k&t=251s"
+        },
+        {
+          "concept": "Capabilities of long context models",
+          "depth": "mechanism",
+          "channel": "What's AI by Louis-François Bouchard",
+          "min": 2.1,
+          "why": "You examine what becomes possible when models leverage enormous token windows for repository-level reasoning.",
+          "url": "https://youtube.com/watch?v=qN3vhWlzd4A&t=85s"
+        },
+        {
+          "concept": "Tokenization of multimodal data",
+          "depth": "mechanism",
+          "channel": "Stanford Online",
+          "min": 3,
+          "why": "We conclude by showing how this exact same tokenization paradigm bridges the gap into processing images, audio, and video.",
+          "url": "https://youtube.com/watch?v=NDdc39KYqDU&t=259s"
+        }
+      ]
+    },
+    {
+      "id": "training",
+      "topic": "how are large language models actually trained",
+      "budgetMin": 120,
+      "notes": null,
+      "ok": true,
+      "segments": 21,
+      "minutes": 119.9,
+      "budgetMet": true,
+      "creators": 20,
+      "depth": {
+        "intro": 4,
+        "mechanism": 13,
+        "example": 2,
+        "debate": 2
+      },
+      "depthShortfall": {
+        "example": 1
+      },
+      "longestSegMin": 13.1,
+      "longestShare": 0.109,
+      "concepts": 9,
+      "covered": 9,
+      "missing": [],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "predicting the next token over a huge corpus",
+          "met": true,
+          "sim": 0.771,
+          "segment": "How LLM tokenization works"
+        },
+        {
+          "phrase": "gradient descent and backpropagation",
+          "met": true,
+          "sim": 0.814,
+          "segment": "Gradient descent for optimization"
+        },
+        {
+          "phrase": "the difference between pretraining and what comes after",
+          "met": true,
+          "sim": 0.785,
+          "segment": "Pre-training vs fine-tuning"
+        },
+        {
+          "phrase": "how much data and compute this takes",
+          "met": false,
+          "sim": 0.704,
+          "segment": "How LLM tokenization works"
+        }
+      ],
+      "mustCoverMet": 3,
+      "avoid": [
+        {
+          "phrase": "prompt writing",
+          "closest": 0.627,
+          "minutesSpent": 0
+        },
+        {
+          "phrase": "which model to use in production",
+          "closest": 0.698,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.818,
+      "maxPairwiseAt": [
+        "The intuition behind self-attention",
+        "Attention mechanism in Transformers"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 3,
+      "seconds": 12.6,
+      "inr": 0.5674,
+      "plan": [
+        {
+          "concept": "Introduction to LLM Tokenization",
+          "depth": "intro",
+          "channel": "Andrej Karpathy",
+          "min": 4.3,
+          "why": "This segment introduces tokenization, showing how raw text is converted into numerical chunks so a model can begin processing it.",
+          "url": "https://youtube.com/watch?v=zduSFxRajkE&t=0s"
+        },
+        {
+          "concept": "How LLM tokenization works",
+          "depth": "mechanism",
+          "channel": "Matt Pocock",
+          "min": 5.2,
+          "why": "Building on tokenization, this dives deeper into how vocabularies and subwords shape text encoding efficiently.",
+          "url": "https://youtube.com/watch?v=nKSk_TiR8YA&t=126s"
+        },
+        {
+          "concept": "Tokenization and positional encoding",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 3.6,
+          "why": "You will now see how positional encodings are added to tokenized inputs to preserve word order for parallel processing.",
+          "url": "https://youtube.com/watch?v=ZhAz268Hdpw&t=1186s"
+        },
+        {
+          "concept": "How language models function",
+          "depth": "mechanism",
+          "channel": "freeCodeCamp.org",
+          "min": 4.8,
+          "why": "This session frames the core objective of language models around predicting the next word in a sequence.",
+          "url": "https://youtube.com/watch?v=_ZvnD73m40o&t=486s"
+        },
+        {
+          "concept": "How LLMs process information",
+          "depth": "mechanism",
+          "channel": "Tech With Tim",
+          "min": 3.8,
+          "why": "Explore how context and conversation history drive these text prediction engines during inference.",
+          "url": "https://youtube.com/watch?v=2BpCk4d2Cc0&t=421s"
+        },
+        {
+          "concept": "Machine learning model mechanics",
+          "depth": "example",
+          "channel": "IBM Technology",
+          "min": 5.1,
+          "why": "Transitioning to mechanics, this segment explains how predictive models assign weighted importance to structured inputs.",
+          "url": "https://youtube.com/watch?v=q6kJ71tEYqM&t=84s"
+        },
+        {
+          "concept": "Core design criteria of Transformers",
+          "depth": "mechanism",
+          "channel": "Lex Clips",
+          "min": 4.5,
+          "why": "Discover the foundational design criteria that make Transformers efficient and differentiable computers.",
+          "url": "https://youtube.com/watch?v=9uw3F6rndnA&t=23s"
+        },
+        {
+          "concept": "Transformer architecture overview",
+          "depth": "intro",
+          "channel": "Aladdin Persson",
+          "min": 3.5,
+          "why": "Get a structural overview of the encoder and decoder moving parts inside the Transformer architecture.",
+          "url": "https://youtube.com/watch?v=U0s0f995w14&t=65s"
+        },
+        {
+          "concept": "The intuition behind self-attention",
+          "depth": "intro",
+          "channel": "Hedu AI by Batool Haider",
+          "min": 2.5,
+          "why": "Develop an intuitive grasp of how self-attention allows models to dynamically weigh relationships between words.",
+          "url": "https://youtube.com/watch?v=mMa2PmYJlCo&t=43s"
+        },
+        {
+          "concept": "The self-attention algorithm mechanism",
+          "depth": "mechanism",
+          "channel": "Gal Lahat",
+          "min": 7.5,
+          "why": "Delve into the technical mechanism of self-attention using Query, Key, and Value vectors to resolve long-range dependencies.",
+          "url": "https://youtube.com/watch?v=RNF0FvRjGZk&t=0s"
+        },
+        {
+          "concept": "Attention mechanism in Transformers",
+          "depth": "mechanism",
+          "channel": "James Briggs",
+          "min": 4.3,
+          "why": "See how the attention mechanism maps tokens closer together in a shared vector space to encode context.",
+          "url": "https://youtube.com/watch?v=qU7wO02urYU&t=0s"
+        },
+        {
+          "concept": "Attention blocks and perceptrons",
+          "depth": "mechanism",
+          "channel": "Grant Sanderson",
+          "min": 3.5,
+          "why": "Learn how attention blocks exchange context while multi-layer perceptrons store general world knowledge.",
+          "url": "https://youtube.com/watch?v=KJtZARuO3JY&t=336s"
+        },
+        {
+          "concept": "Weight matrices in transformers",
+          "depth": "mechanism",
+          "channel": "Sunny Savita",
+          "min": 13,
+          "why": "Examine how weight matrices represent feature importance and how training optimizes them.",
+          "url": "https://youtube.com/watch?v=cO6Ly7mIziQ&t=1244s"
+        },
+        {
+          "concept": "Gradient descent for optimization",
+          "depth": "mechanism",
+          "channel": "Sebastian Lague",
+          "min": 13.1,
+          "why": "Understand how gradient descent and activation functions enable neural networks to learn complex decision boundaries.",
+          "url": "https://youtube.com/watch?v=hfMk-kjRv4c&t=398s"
+        },
+        {
+          "concept": "Cross entropy loss in LLMs",
+          "depth": "mechanism",
+          "channel": "Welch Labs",
+          "min": 6,
+          "why": "Measure model confidence and performance limitations using cross entropy loss.",
+          "url": "https://youtube.com/watch?v=5eqRuVp65eY&t=204s"
+        },
+        {
+          "concept": "Transformer Training Process",
+          "depth": "mechanism",
+          "channel": "Umar Jamil",
+          "min": 7.5,
+          "why": "Observe a complete transformer training process in a single parallel pass.",
+          "url": "https://youtube.com/watch?v=bCz4OMemCcA&t=2677s"
+        },
+        {
+          "concept": "Generative AI Training Stages",
+          "depth": "mechanism",
+          "channel": "Microsoft Developer",
+          "min": 2.8,
+          "why": "Review the broad generative AI training stages from pre-training to post-training and red teaming.",
+          "url": "https://youtube.com/watch?v=DwFVhFdD2fs&t=484s"
+        },
+        {
+          "concept": "Pre-training vs fine-tuning",
+          "depth": "debate",
+          "channel": "Andrej Karpathy",
+          "min": 5.4,
+          "why": "Compare pre-training as a document completer with subsequent fine-tuning stages.",
+          "url": "https://youtube.com/watch?v=kCc8FmEb1nY&t=6540s"
+        },
+        {
+          "concept": "Introduction to LLM fine-tuning",
+          "depth": "intro",
+          "channel": "Shaw Talebi",
+          "min": 3.5,
+          "why": "Witness how fine-tuning transforms a raw base model into a practical task-specific assistant.",
+          "url": "https://youtube.com/watch?v=eC6Hd1hFvos&t=0s"
+        },
+        {
+          "concept": "Applying RLHF to language models",
+          "depth": "example",
+          "channel": "Luis Serrano Academy",
+          "min": 10.3,
+          "why": "Study the application of RLHF using value and policy networks to correct hallucinations and align outputs.",
+          "url": "https://youtube.com/watch?v=Z_JUqJBpVOk&t=253s"
+        },
+        {
+          "concept": "Reinforcement Learning with Human Feedback",
+          "depth": "debate",
+          "channel": "Gaurav Sen",
+          "min": 5.5,
+          "why": "Conclude by weighing the optimization benefits of reinforcement learning against its lack of true human mental modeling.",
+          "url": "https://youtube.com/watch?v=OYvlznJ4IZQ&t=1753s"
+        }
+      ]
+    },
+    {
+      "id": "rlhf",
+      "topic": "RLHF and how models are aligned to human preference",
+      "budgetMin": 90,
+      "notes": null,
+      "ok": true,
+      "segments": 17,
+      "minutes": 88.1,
+      "budgetMet": true,
+      "creators": 16,
+      "depth": {
+        "intro": 1,
+        "mechanism": 11,
+        "example": 3,
+        "debate": 2
+      },
+      "depthShortfall": {},
+      "longestSegMin": 10.6,
+      "longestShare": 0.12,
+      "concepts": 6,
+      "covered": 5,
+      "missing": [
+        "Preference Data Collection"
+      ],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "collecting human comparisons between outputs",
+          "met": true,
+          "sim": 0.768,
+          "segment": "Building a reward model"
+        },
+        {
+          "phrase": "training a reward model",
+          "met": true,
+          "sim": 0.86,
+          "segment": "Building a reward model"
+        },
+        {
+          "phrase": "the difference between RLHF and direct preference optimisation",
+          "met": true,
+          "sim": 0.816,
+          "segment": "Mathematical intuition of DPO loss"
+        }
+      ],
+      "mustCoverMet": 3,
+      "avoid": [
+        {
+          "phrase": "basic prompting",
+          "closest": 0.695,
+          "minutesSpent": 0
+        },
+        {
+          "phrase": "retrieval",
+          "closest": 0.679,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.872,
+      "maxPairwiseAt": [
+        "Distributional shift and mesa-alignment",
+        "Deceptive alignment in mesa-optimizers"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 4,
+      "seconds": 11.5,
+      "inr": 0.4713,
+      "plan": [
+        {
+          "concept": "Pre-training vs fine-tuning",
+          "depth": "debate",
+          "channel": "Andrej Karpathy",
+          "min": 5.4,
+          "why": "This segment grounds your understanding by contrasting the foundational pre-training phase with subsequent fine-tuning and alignment stages.",
+          "url": "https://youtube.com/watch?v=kCc8FmEb1nY&t=6540s"
+        },
+        {
+          "concept": "The four phases of RLHF",
+          "depth": "mechanism",
+          "channel": "IBM Technology",
+          "min": 7,
+          "why": "You will get a comprehensive high-level map of the entire four-phase RLHF journey before diving into specifics.",
+          "url": "https://youtube.com/watch?v=T_X4XFwKX8k&t=69s"
+        },
+        {
+          "concept": "Reinforcement Learning from Human Feedback",
+          "depth": "intro",
+          "channel": "AI Coffee Break with Letitia",
+          "min": 2.8,
+          "why": "This quick overview highlights the core motivation behind alignment while introducing the overarching multi-step process.",
+          "url": "https://youtube.com/watch?v=XZLc09hkMwA&t=0s"
+        },
+        {
+          "concept": "Instruction tuning for LLMs",
+          "depth": "mechanism",
+          "channel": "AI Thought",
+          "min": 6,
+          "why": "Discover how instruction tuning transforms raw models into compliant assistants capable of understanding specific prompt formats.",
+          "url": "https://youtube.com/watch?v=MhI1JBrCcU4&t=2s"
+        },
+        {
+          "concept": "Executing the SFT trainer pipeline",
+          "depth": "example",
+          "channel": "Krish Naik",
+          "min": 10.6,
+          "why": "This practical walkthrough demonstrates how to execute a Supervised Fine-Tuning pipeline using PEFT and quantization techniques.",
+          "url": "https://youtube.com/watch?v=Vg3dS-NLUT4&t=581s"
+        },
+        {
+          "concept": "Supervised Fine-Tuning and RLHF",
+          "depth": "mechanism",
+          "channel": "Snorkel AI",
+          "min": 3.1,
+          "why": "Examine the conceptual bridge that connects token-level supervised fine-tuning to iterative preference-based optimization.",
+          "url": "https://youtube.com/watch?v=lBzw9ku86dg&t=2s"
+        },
+        {
+          "concept": "Reinforcement Learning Framework for LLMs",
+          "depth": "mechanism",
+          "channel": "Julia Turc",
+          "min": 3.5,
+          "why": "Learn to view the language model as an active reinforcement learning agent taking actions and receiving environmental states.",
+          "url": "https://youtube.com/watch?v=8jtAzxUwDj0&t=65s"
+        },
+        {
+          "concept": "Reinforcement learning from human feedback",
+          "depth": "mechanism",
+          "channel": "Shaw Talebi",
+          "min": 3.9,
+          "why": "Understand how scalable human preference rankings serve as the guiding compass for subsequent parameter updates.",
+          "url": "https://youtube.com/watch?v=bbVoDXoPrPM&t=319s"
+        },
+        {
+          "concept": "Building a reward model",
+          "depth": "mechanism",
+          "channel": "Umar Jamil",
+          "min": 2.9,
+          "why": "This detailed look at reward modeling shows you how human feedback is mathematically translated into numeric output scores.",
+          "url": "https://youtube.com/watch?v=qGyFrqc34yc&t=642s"
+        },
+        {
+          "concept": "RLHF implementation in LLMs",
+          "depth": "mechanism",
+          "channel": "CodeEmporium",
+          "min": 2.7,
+          "why": "See how scoring human-ranked responses directly unlocks the application of proximal policy optimization.",
+          "url": "https://youtube.com/watch?v=dCelRItdGfc&t=304s"
+        },
+        {
+          "concept": "Three-step RLHF process",
+          "depth": "mechanism",
+          "channel": "Sebastian Raschka",
+          "min": 3.1,
+          "why": "Reinforce your grasp of the classic three-step RLHF pipeline from SFT through reward modeling to policy updates.",
+          "url": "https://youtube.com/watch?v=vJ4SsfmeQlk&t=3s"
+        },
+        {
+          "concept": "Applying RLHF to language models",
+          "depth": "example",
+          "channel": "Luis Serrano Academy",
+          "min": 10.3,
+          "why": "Watch a concrete breakdown of how transformers utilize value and policy networks to mitigate hallucinations.",
+          "url": "https://youtube.com/watch?v=Z_JUqJBpVOk&t=253s"
+        },
+        {
+          "concept": "Reinforcement learning from human feedback",
+          "depth": "mechanism",
+          "channel": "Mark Hennings",
+          "min": 4.3,
+          "why": "Clarify how a standalone reward model automates the calculation required to guide policy models smoothly.",
+          "url": "https://youtube.com/watch?v=nSrj1J6ODoM&t=124s"
+        },
+        {
+          "concept": "PPO clipped objective function",
+          "depth": "mechanism",
+          "channel": "Arxiv Insights",
+          "min": 9.2,
+          "why": "Master the mathematical mechanics of the PPO clipped objective function and how it stabilizes policy training.",
+          "url": "https://youtube.com/watch?v=5P7I-xPq8u8&t=532s"
+        },
+        {
+          "concept": "Mathematical intuition of DPO loss",
+          "depth": "mechanism",
+          "channel": "Neural Breakdown with AVB",
+          "min": 4.8,
+          "why": "Explore the alternative approach of Direct Preference Optimization using log-probability gaps relative to a reference model.",
+          "url": "https://youtube.com/watch?v=qQwg2nFtZ1Y&t=1193s"
+        },
+        {
+          "concept": "Distributional shift and mesa-alignment",
+          "depth": "example",
+          "channel": "Robert Miles AI Safety ",
+          "min": 5.3,
+          "why": "Examine the critical safety implications of distributional shift and how mesa-optimizers can obscure true objectives.",
+          "url": "https://youtube.com/watch?v=bJLcIBixGj8&t=504s"
+        },
+        {
+          "concept": "Deceptive alignment in mesa-optimizers",
+          "depth": "debate",
+          "channel": "Robert Miles AI Safety ",
+          "min": 3.2,
+          "why": "Conclude by analyzing deceptive alignment and the subtle ways sophisticated models might bypass intended goals during deployment.",
+          "url": "https://youtube.com/watch?v=bJLcIBixGj8&t=1136s"
+        }
+      ]
+    },
+    {
+      "id": "quantization",
+      "topic": "model quantization and running models on smaller hardware",
+      "budgetMin": 60,
+      "notes": null,
+      "ok": true,
+      "segments": 14,
+      "minutes": 59.4,
+      "budgetMet": true,
+      "creators": 13,
+      "depth": {
+        "intro": 1,
+        "mechanism": 10,
+        "example": 2,
+        "debate": 1
+      },
+      "depthShortfall": {
+        "example": 1,
+        "debate": 1
+      },
+      "longestSegMin": 6.7,
+      "longestShare": 0.113,
+      "concepts": 4,
+      "covered": 3,
+      "missing": [
+        "Hardware Constraints and Inference Engines"
+      ],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "reducing numeric precision of weights",
+          "met": true,
+          "sim": 0.766,
+          "segment": "Precision and quantization in LLMs"
+        },
+        {
+          "phrase": "what accuracy you lose and what you gain",
+          "met": false,
+          "sim": 0.698,
+          "segment": "Performance and accuracy trade-offs"
+        },
+        {
+          "phrase": "running a model locally",
+          "met": false,
+          "sim": 0.725,
+          "segment": "Layer-wise 4-bit quantization process"
+        }
+      ],
+      "mustCoverMet": 1,
+      "avoid": [
+        {
+          "phrase": "cloud API pricing",
+          "closest": 0.606,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.856,
+      "maxPairwiseAt": [
+        "Quantization basics and trade-offs",
+        "Performance and accuracy trade-offs"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 3,
+      "seconds": 9.5,
+      "inr": 0.3908,
+      "plan": [
+        {
+          "concept": "Evolution of training precision",
+          "depth": "intro",
+          "channel": "Julia Turc",
+          "min": 4.3,
+          "why": "This opening segment grounds you in the modern industry shift toward lower-bit representations and mixed-precision techniques.",
+          "url": "https://youtube.com/watch?v=-cRedoYETzQ&t=0s"
+        },
+        {
+          "concept": "Precision and quantization in LLMs",
+          "depth": "mechanism",
+          "channel": "DeepFindr",
+          "min": 4.2,
+          "why": "You will now explore how lowering numerical precision directly slashes memory usage and accelerates large language models.",
+          "url": "https://youtube.com/watch?v=t509sv5MT0w&t=63s"
+        },
+        {
+          "concept": "Quantization basics and trade-offs",
+          "depth": "mechanism",
+          "channel": "Tim Carambat",
+          "min": 3.5,
+          "why": "This establishes the fundamental trade-offs involved in truncating decimal weights to fit models onto limited consumer VRAM.",
+          "url": "https://youtube.com/watch?v=6nU0PuKTaRE&t=147s"
+        },
+        {
+          "concept": "Quantization for model compression",
+          "depth": "mechanism",
+          "channel": "Efficient NLP",
+          "min": 4.2,
+          "why": "Building on those basics, this shows how moving from FP32 to INT8 impacts hardware latency and memory efficiency.",
+          "url": "https://youtube.com/watch?v=UcwDgsMgTu4&t=42s"
+        },
+        {
+          "concept": "Quantization and dequantization formulas",
+          "depth": "mechanism",
+          "channel": "Sunny Savita",
+          "min": 3.9,
+          "why": "You will learn the exact mathematical formulas for mapping high-precision floats to integers using scales and zero-points.",
+          "url": "https://youtube.com/watch?v=sLEuVm9ZdxQ&t=3335s"
+        },
+        {
+          "concept": "Blockwise quantization and 4-bit NormalFloat",
+          "depth": "mechanism",
+          "channel": "AI Bites",
+          "min": 5.1,
+          "why": "This introduces blockwise division and NormalFloat distributions to prevent critical information loss during low-bit conversions.",
+          "url": "https://youtube.com/watch?v=6l8GZDPbFn8&t=86s"
+        },
+        {
+          "concept": "Post-Training vs Quantization-Aware Training",
+          "depth": "mechanism",
+          "channel": "freeCodeCamp.org",
+          "min": 4.6,
+          "why": "You are now ready to distinguish between compressing pre-trained models versus baking quantization directly into the training process.",
+          "url": "https://youtube.com/watch?v=iOdFUJiB0Zc&t=1746s"
+        },
+        {
+          "concept": "Layer-wise 4-bit quantization process",
+          "depth": "mechanism",
+          "channel": "AemonAlgiz",
+          "min": 5.8,
+          "why": "This deep dive reveals how algorithms like GPTQ minimize error across layers when converting weights down to 4-bit.",
+          "url": "https://youtube.com/watch?v=mii-xFaPCrA&t=318s"
+        },
+        {
+          "concept": "CATQ ternary quantization process",
+          "depth": "mechanism",
+          "channel": "Conscious Engines",
+          "min": 5.6,
+          "why": "You will discover advanced multi-stage techniques that successfully modulate weights toward ternary values without heavy accuracy drops.",
+          "url": "https://youtube.com/watch?v=HT0KdjrDa_I&t=1478s"
+        },
+        {
+          "concept": "Optimizing context memory with quantization",
+          "depth": "example",
+          "channel": "Matt Williams",
+          "min": 6.7,
+          "why": "This shows you how K-quantization and KV cache management optimize RAM overhead for long conversational memory.",
+          "url": "https://youtube.com/watch?v=K75j8MkwgJ0&t=132s"
+        },
+        {
+          "concept": "QLoRA fine-tuning components",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 4.7,
+          "why": "You will see how specialized components like double quantization and paged optimizers empower massive model adjustments.",
+          "url": "https://youtube.com/watch?v=IIvORO248Zs&t=1778s"
+        },
+        {
+          "concept": "Quantized LoRA (QLoRA)",
+          "depth": "mechanism",
+          "channel": "freeCodeCamp.org",
+          "min": 2.1,
+          "why": "This brings fine-tuning and 4-bit compression together so you can run heavy workloads on everyday hardware.",
+          "url": "https://youtube.com/watch?v=iOdFUJiB0Zc&t=3263s"
+        },
+        {
+          "concept": "Performance and accuracy trade-offs",
+          "depth": "example",
+          "channel": "Airtrain AI",
+          "min": 2.3,
+          "why": "Empirical data here helps you weigh the real-world balance between aggressive memory reduction and performance retention.",
+          "url": "https://youtube.com/watch?v=qqN63hbziaI&t=160s"
+        },
+        {
+          "concept": "Quantization and Precision Trade-offs",
+          "depth": "debate",
+          "channel": "Discover AI",
+          "min": 2.3,
+          "why": "This concluding debate evaluates the persistent risks of accuracy loss so you can make informed deployment decisions.",
+          "url": "https://youtube.com/watch?v=YVU5wAA6Txo&t=2193s"
+        }
+      ]
+    },
+    {
+      "id": "context-windows",
+      "topic": "context windows, and whether long context kills RAG",
+      "budgetMin": 60,
+      "notes": "A live disagreement. The plan should present both sides.",
+      "ok": true,
+      "segments": 18,
+      "minutes": 60,
+      "budgetMet": true,
+      "creators": 14,
+      "depth": {
+        "intro": 4,
+        "mechanism": 7,
+        "example": 3,
+        "debate": 4
+      },
+      "depthShortfall": {},
+      "longestSegMin": 6.4,
+      "longestShare": 0.107,
+      "concepts": 5,
+      "covered": 5,
+      "missing": [],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "what a context window limit actually is",
+          "met": true,
+          "sim": 0.839,
+          "segment": "Understanding LLM context windows"
+        },
+        {
+          "phrase": "attention cost growing with sequence length",
+          "met": true,
+          "sim": 0.751,
+          "segment": "Iterative generation and architectural limitations"
+        },
+        {
+          "phrase": "models losing information in the middle of long inputs",
+          "met": true,
+          "sim": 0.783,
+          "segment": "Defining the LLM context window"
+        },
+        {
+          "phrase": "the argument that retrieval is still needed",
+          "met": true,
+          "sim": 0.762,
+          "segment": "Reliability and grounding in RAG"
+        }
+      ],
+      "mustCoverMet": 4,
+      "avoid": [
+        {
+          "phrase": "training a model",
+          "closest": 0.717,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.803,
+      "maxPairwiseAt": [
+        "RAG pipeline architecture components",
+        "The RAG indexing and retrieval process"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 0,
+      "seconds": 10.5,
+      "inr": 0.4655,
+      "plan": [
+        {
+          "concept": "Understanding LLM context windows",
+          "depth": "intro",
+          "channel": "NetworkChuck",
+          "min": 2.1,
+          "why": "Start here to grasp the foundational concept of token limits and short-term memory constraints.",
+          "url": "https://youtube.com/watch?v=TeQDr4DkLYo&t=0s"
+        },
+        {
+          "concept": "Defining the LLM context window",
+          "depth": "intro",
+          "channel": "Matt Pocock",
+          "min": 6.4,
+          "why": "Build on that foundation by exploring how hardware limits create performance degradation and the lost in the middle issue.",
+          "url": "https://youtube.com/watch?v=-uW5-TaVXu4&t=43s"
+        },
+        {
+          "concept": "Iterative generation and architectural limitations",
+          "depth": "debate",
+          "channel": "LearnThatStack",
+          "min": 2.3,
+          "why": "Examine the underlying architectural limitations caused by the quadratic complexity of attention loops.",
+          "url": "https://youtube.com/watch?v=NKnZYvZA7w4&t=428s"
+        },
+        {
+          "concept": "The limitations of standalone LLMs",
+          "depth": "intro",
+          "channel": "IBM Technology",
+          "min": 4.6,
+          "why": "Transition into why standalone LLMs fail and how the foundational RAG concept solves information gaps.",
+          "url": "https://youtube.com/watch?v=T-D1OfcDW1M&t=0s"
+        },
+        {
+          "concept": "The three stages of RAG",
+          "depth": "mechanism",
+          "channel": "KodeKloud",
+          "min": 2.1,
+          "why": "Break down the core three-stage loop of retrieval, augmentation, and generation.",
+          "url": "https://youtube.com/watch?v=_HQ2H_0Ayy0&t=103s"
+        },
+        {
+          "concept": "RAG pipeline architecture components",
+          "depth": "intro",
+          "channel": "Krish Naik",
+          "min": 2.8,
+          "why": "Examine the concrete architectural components required to build a standard pipeline.",
+          "url": "https://youtube.com/watch?v=9Thc6hRw2Gs&t=64s"
+        },
+        {
+          "concept": "The RAG indexing and retrieval process",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 3.6,
+          "why": "Dive deeper into document chunking, embeddings, and vector databases.",
+          "url": "https://youtube.com/watch?v=dDkynerzV-Q&t=124s"
+        },
+        {
+          "concept": "Retrieval-Augmented Generation workflow",
+          "depth": "mechanism",
+          "channel": "Chai aur Code",
+          "min": 2.3,
+          "why": "Review how breaking down large documents preserves specific context without exceeding token capacities.",
+          "url": "https://youtube.com/watch?v=DcNxg61kSFc&t=435s"
+        },
+        {
+          "concept": "Standard RAG Pipeline Mechanism",
+          "depth": "mechanism",
+          "channel": "IBM Technology",
+          "min": 2,
+          "why": "Solidify your understanding of the standard workflow through similarity-based retrieval.",
+          "url": "https://youtube.com/watch?v=anLahYrEFiQ&t=120s"
+        },
+        {
+          "concept": "Capabilities of long context models",
+          "depth": "mechanism",
+          "channel": "What's AI by Louis-François Bouchard",
+          "min": 2.1,
+          "why": "Pivot to challenge the premise by exploring what massive context windows can achieve independently.",
+          "url": "https://youtube.com/watch?v=qN3vhWlzd4A&t=85s"
+        },
+        {
+          "concept": "Long context versus RAG tradeoffs",
+          "depth": "debate",
+          "channel": "Prompt Engineering",
+          "min": 4.4,
+          "why": "Weigh the direct trade-offs between stuffing massive contexts versus maintaining a retrieval pipeline.",
+          "url": "https://youtube.com/watch?v=tmiBae2goJM&t=646s"
+        },
+        {
+          "concept": "Reliability and grounding in RAG",
+          "depth": "debate",
+          "channel": "Computerphile",
+          "min": 2.2,
+          "why": "Analyze how grounding responses in external data impacts hallucination rates and factual reliability.",
+          "url": "https://youtube.com/watch?v=YDdKiQNw80c&t=1088s"
+        },
+        {
+          "concept": "Query patterns and inference optimization",
+          "depth": "debate",
+          "channel": "AI Engineer",
+          "min": 5.3,
+          "why": "Factor in the production realities of GPU memory, latency metrics, and inference costs.",
+          "url": "https://youtube.com/watch?v=9tvJ_GYJA-o&t=913s"
+        },
+        {
+          "concept": "Modern use cases for fine-tuning",
+          "depth": "example",
+          "channel": "IBM Technology",
+          "min": 2,
+          "why": "Explore alternative techniques like fine-tuning for reducing latency and distilling specific model knowledge.",
+          "url": "https://youtube.com/watch?v=-W2JdSl1v48&t=460s"
+        },
+        {
+          "concept": "Three-step RLHF process",
+          "depth": "mechanism",
+          "channel": "Sebastian Raschka",
+          "min": 3.1,
+          "why": "Look at how human feedback optimization aligns model behavior beyond standard context tricks.",
+          "url": "https://youtube.com/watch?v=vJ4SsfmeQlk&t=3s"
+        },
+        {
+          "concept": "Advanced Retrieval Techniques",
+          "depth": "example",
+          "channel": "IBM Technology",
+          "min": 5.5,
+          "why": "Discover advanced retrieval strategies including graph-based mapping and context compression.",
+          "url": "https://youtube.com/watch?v=pN-LfxNFiTc&t=301s"
+        },
+        {
+          "concept": "Agentic chunking and proposition grouping",
+          "depth": "mechanism",
+          "channel": "Mervin Praison",
+          "min": 4.4,
+          "why": "Learn how agentic chunking and proposition grouping push retrieval accuracy even further.",
+          "url": "https://youtube.com/watch?v=pIGRwMjhMaQ&t=576s"
+        },
+        {
+          "concept": "ReACT Agent Workflow",
+          "depth": "example",
+          "channel": "IBM Technology",
+          "min": 2.6,
+          "why": "Conclude by observing how iterative agent workflows tie reasoning, tools, and context together.",
+          "url": "https://youtube.com/watch?v=F8NKVhkZZWI&t=471s"
+        }
+      ]
+    },
+    {
+      "id": "vector-search",
+      "topic": "vector databases and semantic search",
+      "budgetMin": 60,
+      "notes": null,
+      "ok": true,
+      "segments": 16,
+      "minutes": 58.1,
+      "budgetMet": true,
+      "creators": 16,
+      "depth": {
+        "intro": 4,
+        "mechanism": 9,
+        "example": 3,
+        "debate": 0
+      },
+      "depthShortfall": {
+        "debate": 2
+      },
+      "longestSegMin": 5.5,
+      "longestShare": 0.096,
+      "concepts": 5,
+      "covered": 4,
+      "missing": [
+        "Approximate Nearest Neighbor (ANN) Search"
+      ],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "storing and indexing vectors at scale",
+          "met": true,
+          "sim": 0.807,
+          "segment": "Vector embeddings and similarity search"
+        },
+        {
+          "phrase": "approximate nearest neighbour search",
+          "met": false,
+          "sim": 0.711,
+          "segment": "Vector embeddings and similarity search"
+        },
+        {
+          "phrase": "combining keyword and vector search",
+          "met": true,
+          "sim": 0.774,
+          "segment": "Vector databases vs SQL"
+        }
+      ],
+      "mustCoverMet": 2,
+      "avoid": [
+        {
+          "phrase": "training embedding models from scratch",
+          "closest": 0.756,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.828,
+      "maxPairwiseAt": [
+        "Vector databases vs SQL",
+        "Vector embeddings and similarity search"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 1,
+      "seconds": 10.2,
+      "inr": 0.4237,
+      "plan": [
+        {
+          "concept": "Vector databases vs SQL",
+          "depth": "intro",
+          "channel": "KodeKloud",
+          "min": 2.1,
+          "why": "This opening segment gives you an immediate high-level contrast between rigid SQL queries and flexible vector storage.",
+          "url": "https://youtube.com/watch?v=VVNYQKDLY5s&t=0s"
+        },
+        {
+          "concept": "Text embeddings and semantic representation",
+          "depth": "mechanism",
+          "channel": "freeCodeCamp.org",
+          "min": 4.1,
+          "why": "Here you will grasp how text is translated into high-dimensional lists of numbers.",
+          "url": "https://youtube.com/watch?v=_ZvnD73m40o&t=2217s"
+        },
+        {
+          "concept": "How text embeddings represent data",
+          "depth": "mechanism",
+          "channel": "Chai aur Code",
+          "min": 2.9,
+          "why": "This segment reinforces the core translation process by showing how algorithms turn textual data into mathematical representations.",
+          "url": "https://youtube.com/watch?v=DcNxg61kSFc&t=613s"
+        },
+        {
+          "concept": "Mathematical nature of embeddings",
+          "depth": "mechanism",
+          "channel": "Annie Sexton",
+          "min": 2.5,
+          "why": "You get a clear look at the geometric positioning that gives these numerical vectors their semantic meaning.",
+          "url": "https://youtube.com/watch?v=izbifbq3-eI&t=21s"
+        },
+        {
+          "concept": "Introduction to Word2Vec embeddings",
+          "depth": "intro",
+          "channel": "The Semicolon",
+          "min": 2,
+          "why": "This deepens your understanding of vector spaces through the foundational Word2Vec mapping approach.",
+          "url": "https://youtube.com/watch?v=UqRCEmrv1gQ&t=4s"
+        },
+        {
+          "concept": "Word embeddings and vector representation",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 5.3,
+          "why": "You will now see how vector arithmetic directly unlocks hidden relationships between different concepts.",
+          "url": "https://youtube.com/watch?v=ZhAz268Hdpw&t=104s"
+        },
+        {
+          "concept": "Vector arithmetic in word embeddings",
+          "depth": "example",
+          "channel": "Computerphile",
+          "min": 5.3,
+          "why": "This worked example lets you observe famous arithmetic analogies like 'king minus man plus woman equals queen' in action.",
+          "url": "https://youtube.com/watch?v=gQddtTdmG_8&t=698s"
+        },
+        {
+          "concept": "Attention mechanism in Transformers",
+          "depth": "mechanism",
+          "channel": "James Briggs",
+          "min": 4.3,
+          "why": "Discover how transformer attention mechanisms dynamically map contextual token relationships into a shared space.",
+          "url": "https://youtube.com/watch?v=qU7wO02urYU&t=0s"
+        },
+        {
+          "concept": "Vector embeddings and similarity search",
+          "depth": "mechanism",
+          "channel": "IBM Technology",
+          "min": 5.5,
+          "why": "This segment explains why traditional databases break down and introduces the specialized storage required for similarity searches.",
+          "url": "https://youtube.com/watch?v=gl1r1XV0SLw&t=0s"
+        },
+        {
+          "concept": "Vector database semantic search",
+          "depth": "mechanism",
+          "channel": "Ctrl Alt Explain",
+          "min": 2.1,
+          "why": "You learn how proximity in vector space directly powers modern semantic search capabilities.",
+          "url": "https://youtube.com/watch?v=W-_OBmwrNk4&t=213s"
+        },
+        {
+          "concept": "Bi-encoder architecture for search",
+          "depth": "mechanism",
+          "channel": "Pinecone",
+          "min": 2.1,
+          "why": "This explains the bi-encoder architecture that bridges queries and documents across the shared space.",
+          "url": "https://youtube.com/watch?v=7RF03_WQJpQ&t=324s"
+        },
+        {
+          "concept": "Implementing HNSW with Redis Vector Sets",
+          "depth": "example",
+          "channel": "Redis",
+          "min": 5.2,
+          "why": "See a practical implementation of approximate nearest neighbor indexing using actual database commands.",
+          "url": "https://youtube.com/watch?v=cZyTZ-EMskI&t=351s"
+        },
+        {
+          "concept": "Pinecone database workflow",
+          "depth": "mechanism",
+          "channel": "Albert Mends",
+          "min": 4.8,
+          "why": "This guides you through configuring an index, managing metadata, and optimizing retrieval performance.",
+          "url": "https://youtube.com/watch?v=SyuhQ_OtqV0&t=42s"
+        },
+        {
+          "concept": "RAG pipeline architecture components",
+          "depth": "intro",
+          "channel": "Krish Naik",
+          "min": 2.8,
+          "why": "You will connect the database backend to a broader retrieval-augmented generation pipeline.",
+          "url": "https://youtube.com/watch?v=9Thc6hRw2Gs&t=64s"
+        },
+        {
+          "concept": "Retrieval and response generation",
+          "depth": "example",
+          "channel": "AWS Developers",
+          "min": 4,
+          "why": "This multimodal example demonstrates how retrieved context is ultimately leveraged by a large language model.",
+          "url": "https://youtube.com/watch?v=jDFpEnJeSVg&t=451s"
+        },
+        {
+          "concept": "Query reformulation for conversational RAG",
+          "depth": "intro",
+          "channel": "Harish Neel | AI",
+          "min": 3.2,
+          "why": "This final segment ties the entire learning arc together by solving conversational query challenges in live RAG workflows.",
+          "url": "https://youtube.com/watch?v=ZWXXpK4TIDY&t=0s"
+        }
+      ]
+    },
+    {
+      "id": "interpretability",
+      "topic": "can we actually understand what is happening inside a model",
+      "budgetMin": 90,
+      "notes": "Narrow research topic. Likely thin in the index, so the coverage panel should say so rather than drifting into ethics.",
+      "ok": true,
+      "segments": 17,
+      "minutes": 56.9,
+      "budgetMet": false,
+      "creators": 11,
+      "depth": {
+        "intro": 2,
+        "mechanism": 10,
+        "example": 3,
+        "debate": 2
+      },
+      "depthShortfall": {},
+      "longestSegMin": 7.5,
+      "longestShare": 0.133,
+      "concepts": 6,
+      "covered": 3,
+      "missing": [
+        "The Black Box Problem",
+        "Feature Visualization",
+        "Logit Attribution"
+      ],
+      "conceptsWithNoMatch": [
+        "Logit Attribution"
+      ],
+      "mustCover": [
+        {
+          "phrase": "why a trained network is opaque",
+          "met": true,
+          "sim": 0.752,
+          "segment": "Mechanistic interpretability in neural networks"
+        },
+        {
+          "phrase": "looking at individual neurons and features",
+          "met": false,
+          "sim": 0.709,
+          "segment": "Mechanistic interpretability in neural networks"
+        },
+        {
+          "phrase": "what mechanistic interpretability has found so far",
+          "met": true,
+          "sim": 0.833,
+          "segment": "Mechanistic interpretability in neural networks"
+        }
+      ],
+      "mustCoverMet": 2,
+      "avoid": [
+        {
+          "phrase": "general AI ethics discussion",
+          "closest": 0.69,
+          "minutesSpent": 0
+        },
+        {
+          "phrase": "policy and regulation",
+          "closest": 0.609,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.807,
+      "maxPairwiseAt": [
+        "Generalizable computation versus memorization",
+        "Planning and future-state representation"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 1,
+      "seconds": 11.1,
+      "inr": 0.4583,
+      "plan": [
+        {
+          "concept": "Machine Learning mechanisms",
+          "depth": "mechanism",
+          "channel": "IBM Technology",
+          "min": 2.1,
+          "why": "This establishes the fundamental distinction between traditional programming and how machine learning algorithms discover patterns from data.",
+          "url": "https://youtube.com/watch?v=qYNweeDHiyU&t=165s"
+        },
+        {
+          "concept": "Hidden layers in neural networks",
+          "depth": "mechanism",
+          "channel": "Stanford Online",
+          "min": 5.3,
+          "why": "You will see how hidden layers build up abstract, hierarchical features from raw inputs.",
+          "url": "https://youtube.com/watch?v=MfIjxPh6Pys&t=2471s"
+        },
+        {
+          "concept": "Attention blocks and perceptrons",
+          "depth": "mechanism",
+          "channel": "Grant Sanderson",
+          "min": 3.5,
+          "why": "This breaks down how attention blocks and perceptrons handle context and store world knowledge.",
+          "url": "https://youtube.com/watch?v=KJtZARuO3JY&t=336s"
+        },
+        {
+          "concept": "The self-attention algorithm mechanism",
+          "depth": "mechanism",
+          "channel": "Gal Lahat",
+          "min": 7.5,
+          "why": "Dive into the mechanics of self-attention to see how Query, Key, and Value vectors manage long-range dependencies.",
+          "url": "https://youtube.com/watch?v=RNF0FvRjGZk&t=0s"
+        },
+        {
+          "concept": "Multi-head attention mechanism mechanics",
+          "depth": "mechanism",
+          "channel": "learningcurve",
+          "min": 2.4,
+          "why": "This zooms in on multi-head attention to clarify how matrices combine to determine word correlations.",
+          "url": "https://youtube.com/watch?v=lmepFoddjgQ&t=105s"
+        },
+        {
+          "concept": "Contextualizing word meanings in LLMs",
+          "depth": "mechanism",
+          "channel": "Annie Sexton",
+          "min": 2.1,
+          "why": "Observe how token embeddings dynamically adapt to context to resolve polysemy and changing word meanings.",
+          "url": "https://youtube.com/watch?v=izbifbq3-eI&t=234s"
+        },
+        {
+          "concept": "Mechanics of Prompt Engineering",
+          "depth": "example",
+          "channel": "IBM Technology",
+          "min": 2.1,
+          "why": "Explore how prompt engineering allows you to prime these models at inference time.",
+          "url": "https://youtube.com/watch?v=yu27PWzJI_Y&t=104s"
+        },
+        {
+          "concept": "Core principles of Chain-of-Thought",
+          "depth": "intro",
+          "channel": "Lex Clips",
+          "min": 2.1,
+          "why": "Discover how Chain-of-Thought reasoning forces intermediate steps to extract hidden intelligence.",
+          "url": "https://youtube.com/watch?v=w9eQJdBRC5o&t=2s"
+        },
+        {
+          "concept": "Native multimodality and shared vector spaces",
+          "depth": "mechanism",
+          "channel": "IBM Technology",
+          "min": 4.4,
+          "why": "This expands your view into natively multimodal models operating inside a shared vector space.",
+          "url": "https://youtube.com/watch?v=J51oZYcNvP8&t=76s"
+        },
+        {
+          "concept": "Mechanistic interpretability in neural networks",
+          "depth": "intro",
+          "channel": "Anthropic",
+          "min": 2.1,
+          "why": "Transition directly into the motivation for reverse-engineering these organically grown neural networks.",
+          "url": "https://youtube.com/watch?v=TxhhMTOTMDg&t=3s"
+        },
+        {
+          "concept": "Defining mechanistic interpretability",
+          "depth": "mechanism",
+          "channel": "Lex Clips",
+          "min": 2.1,
+          "why": "Define mechanistic interpretability so you can separate true algorithmic reverse-engineering from surface-level saliency maps.",
+          "url": "https://youtube.com/watch?v=riniamTdUSo&t=108s"
+        },
+        {
+          "concept": "Mapping model internal concepts",
+          "depth": "mechanism",
+          "channel": "Anthropic",
+          "min": 6.6,
+          "why": "Examine how researchers map internal concepts and identify components that activate for distinct ideas.",
+          "url": "https://youtube.com/watch?v=fGKNUvivvnc&t=228s"
+        },
+        {
+          "concept": "Generalizable computation versus memorization",
+          "depth": "example",
+          "channel": "Anthropic",
+          "min": 3.5,
+          "why": "See a concrete case where models learn generalizable computation circuits rather than mere memorization.",
+          "url": "https://youtube.com/watch?v=fGKNUvivvnc&t=770s"
+        },
+        {
+          "concept": "Planning and future-state representation",
+          "depth": "example",
+          "channel": "Anthropic",
+          "min": 3.1,
+          "why": "Test your understanding by looking at how language models represent future states to plan ahead.",
+          "url": "https://youtube.com/watch?v=fGKNUvivvnc&t=2073s"
+        },
+        {
+          "concept": "Autoencoder compression and latent space",
+          "depth": "mechanism",
+          "channel": "Steve Brunton",
+          "min": 2.1,
+          "why": "Learn how autoencoders compress high-dimensional data into a latent space to extract essential features.",
+          "url": "https://youtube.com/watch?v=oJNHXPs0XDk&t=387s"
+        },
+        {
+          "concept": "Limitations of current interpretability",
+          "depth": "debate",
+          "channel": "Welch Labs",
+          "min": 2.4,
+          "why": "Confront the current scaling limitations and practical hurdles of using sparse autoencoders.",
+          "url": "https://youtube.com/watch?v=UGO_Ehywuxc&t=1306s"
+        },
+        {
+          "concept": "Deceptive alignment in mesa-optimizers",
+          "depth": "debate",
+          "channel": "Robert Miles AI Safety ",
+          "min": 3.2,
+          "why": "End by considering the profound safety implications of deceptive alignment in sophisticated mesa-optimizers.",
+          "url": "https://youtube.com/watch?v=bJLcIBixGj8&t=1136s"
+        }
+      ]
+    },
+    {
+      "id": "getting-started",
+      "topic": "I am a software engineer and I know nothing about AI, where do I start",
+      "budgetMin": 120,
+      "notes": "The hardest test of the depth quota. Should be intro heavy with worked examples, and almost no deep mechanism.",
+      "ok": true,
+      "segments": 22,
+      "minutes": 118.9,
+      "budgetMet": true,
+      "creators": 22,
+      "depth": {
+        "intro": 1,
+        "mechanism": 12,
+        "example": 5,
+        "debate": 4
+      },
+      "depthShortfall": {},
+      "longestSegMin": 14,
+      "longestShare": 0.118,
+      "concepts": 9,
+      "covered": 9,
+      "missing": [],
+      "conceptsWithNoMatch": [],
+      "mustCover": [
+        {
+          "phrase": "what a language model fundamentally is",
+          "met": true,
+          "sim": 0.761,
+          "segment": "How LLM tokenization works"
+        },
+        {
+          "phrase": "what these systems can and cannot do",
+          "met": false,
+          "sim": 0.726,
+          "segment": "Common misconceptions about hallucinations"
+        },
+        {
+          "phrase": "how to call a model from your own code",
+          "met": false,
+          "sim": 0.632,
+          "segment": "Internal architecture of AI agents"
+        },
+        {
+          "phrase": "the main ways people build on top of models",
+          "met": false,
+          "sim": 0.688,
+          "segment": "Internal architecture of AI agents"
+        }
+      ],
+      "mustCoverMet": 1,
+      "avoid": [
+        {
+          "phrase": "mathematical derivations",
+          "closest": 0.637,
+          "minutesSpent": 0
+        },
+        {
+          "phrase": "cutting edge research",
+          "closest": 0.648,
+          "minutesSpent": 0
+        }
+      ],
+      "maxPairwiseSim": 0.798,
+      "maxPairwiseAt": [
+        "Understanding LLM context windows",
+        "Retrieval Augmented Generation mechanics"
+      ],
+      "integrityOk": true,
+      "orderAttempts": 1,
+      "escalated": false,
+      "orderModel": "gemini-3.5-flash-lite",
+      "mechanicalFailures": 0,
+      "verifyMismatches": 0,
+      "seconds": 12.2,
+      "inr": 0.6031,
+      "plan": [
+        {
+          "concept": "Scaling AI through Compute and Data",
+          "depth": "mechanism",
+          "channel": "Matthew Berman",
+          "min": 4.2,
+          "why": "This macro-level overview gives you a solid mental map of how raw compute and data scale into the systems you will be building.",
+          "url": "https://youtube.com/watch?v=pKVeHQEt_8k&t=420s"
+        },
+        {
+          "concept": "Training and inference execution",
+          "depth": "example",
+          "channel": "David Ondrej",
+          "min": 4.7,
+          "why": "You will now distinguish between the heavy lifting of training and the lightweight reality of deploying inference.",
+          "url": "https://youtube.com/watch?v=pK8u4QfdLx0&t=811s"
+        },
+        {
+          "concept": "Chatbot and AI assistant architecture",
+          "depth": "mechanism",
+          "channel": "Pankaj Shukla",
+          "min": 14,
+          "why": "This segment exposes the exact limitations of raw models so you understand why additional software architecture is required.",
+          "url": "https://youtube.com/watch?v=Trocyguviow&t=45s"
+        },
+        {
+          "concept": "How LLM tokenization works",
+          "depth": "mechanism",
+          "channel": "Matt Pocock",
+          "min": 5.2,
+          "why": "Now that you know what an LLM is, you will examine the fundamental way it breaks down and reads text.",
+          "url": "https://youtube.com/watch?v=nKSk_TiR8YA&t=126s"
+        },
+        {
+          "concept": "Understanding LLM context windows",
+          "depth": "intro",
+          "channel": "NetworkChuck",
+          "min": 2.1,
+          "why": "You will learn how those tokens fill up the strict memory boundaries that dictate application design.",
+          "url": "https://youtube.com/watch?v=TeQDr4DkLYo&t=0s"
+        },
+        {
+          "concept": "Iterative generation and architectural limitations",
+          "depth": "debate",
+          "channel": "LearnThatStack",
+          "min": 2.3,
+          "why": "This deep dive shows you the mechanical loop of token generation and why architecture hits hard limits.",
+          "url": "https://youtube.com/watch?v=NKnZYvZA7w4&t=428s"
+        },
+        {
+          "concept": "Improving AI responses with prompting",
+          "depth": "example",
+          "channel": "freeCodeCamp.org",
+          "min": 5.2,
+          "why": "With the mechanics clear, you will pick up the primary interface technique for directing model behavior without rewriting code.",
+          "url": "https://youtube.com/watch?v=_ZvnD73m40o&t=86s"
+        },
+        {
+          "concept": "Word and sentence embeddings",
+          "depth": "mechanism",
+          "channel": "codebasics",
+          "min": 2.8,
+          "why": "You are now ready to see how text is translated into mathematical vectors for semantic comparison.",
+          "url": "https://youtube.com/watch?v=72XgD322wZ8&t=42s"
+        },
+        {
+          "concept": "Vector database semantic search",
+          "depth": "mechanism",
+          "channel": "Ctrl Alt Explain",
+          "min": 2.1,
+          "why": "This segment introduces the specialized storage engines designed to query those vectors at scale.",
+          "url": "https://youtube.com/watch?v=W-_OBmwrNk4&t=213s"
+        },
+        {
+          "concept": "Retrieval Augmented Generation",
+          "depth": "mechanism",
+          "channel": "Gaurav Sen",
+          "min": 2.1,
+          "why": "You will connect your vector storage to the generation layer through this core retrieval pattern.",
+          "url": "https://youtube.com/watch?v=OYvlznJ4IZQ&t=1096s"
+        },
+        {
+          "concept": "Retrieval Augmented Generation mechanics",
+          "depth": "mechanism",
+          "channel": "IBM Technology",
+          "min": 2.4,
+          "why": "This mechanics breakdown reinforces how document chunking feeds the database and influences the LLM.",
+          "url": "https://youtube.com/watch?v=UabBYexBD4k&t=0s"
+        },
+        {
+          "concept": "The three stages of RAG",
+          "depth": "mechanism",
+          "channel": "KodeKloud",
+          "min": 2.1,
+          "why": "You will solidify your grasp of the three discrete stages that make up every standard retrieval loop.",
+          "url": "https://youtube.com/watch?v=_HQ2H_0Ayy0&t=103s"
+        },
+        {
+          "concept": "Implementing local RAG with ChromaDB",
+          "depth": "mechanism",
+          "channel": "Tech With Tim",
+          "min": 12.6,
+          "why": "You will see this theory put into practice by implementing a local vector database and connecting it to a chain.",
+          "url": "https://youtube.com/watch?v=E4l91XKQSgw&t=898s"
+        },
+        {
+          "concept": "Integrating LLMs for augmented generation",
+          "depth": "example",
+          "channel": "Krish Naik",
+          "min": 9.6,
+          "why": "This walkthrough demonstrates how combining retrieved context with user prompts yields accurate outputs.",
+          "url": "https://youtube.com/watch?v=o126p1QN_RI&t=5608s"
+        },
+        {
+          "concept": "Advanced RAG design patterns",
+          "depth": "example",
+          "channel": "Aishwarya Srinivasan",
+          "min": 7.4,
+          "why": "You are now introduced to advanced design patterns that push retrieval systems far beyond basic text matching.",
+          "url": "https://youtube.com/watch?v=v0ynfDPpe4E&t=253s"
+        },
+        {
+          "concept": "LangChain abstraction for AI workflows",
+          "depth": "mechanism",
+          "channel": "Chai aur Code",
+          "min": 2.9,
+          "why": "This segment bridges the gap between raw Python scripts and standardized frameworks for managing data flows.",
+          "url": "https://youtube.com/watch?v=DcNxg61kSFc&t=870s"
+        },
+        {
+          "concept": "Internal architecture of AI agents",
+          "depth": "mechanism",
+          "channel": "Ishan Sharma",
+          "min": 5.3,
+          "why": "You will explore how orchestration evolves into autonomous agents capable of using tools and planning multi-step workflows.",
+          "url": "https://youtube.com/watch?v=HISRUrJsD08&t=149s"
+        },
+        {
+          "concept": "The future of model-native software",
+          "depth": "example",
+          "channel": "Google Cloud Tech and Smitha Kolan - Machine Learning Engineer",
+          "min": 2.1,
+          "why": "This forward-looking piece shows you how models are becoming first-class users across standardized software interfaces.",
+          "url": "https://youtube.com/watch?v=185XGEMefgc&t=601s"
+        },
+        {
+          "concept": "Common misconceptions about hallucinations",
+          "depth": "debate",
+          "channel": "Prompt Engineering",
+          "min": 2.5,
+          "why": "You will confront the statistical realities of model errors rather than viewing them as mysterious bugs.",
+          "url": "https://youtube.com/watch?v=APWG1hEqOKk&t=429s"
+        },
+        {
+          "concept": "Reliability and grounding in RAG",
+          "depth": "debate",
+          "channel": "Computerphile",
+          "min": 2.2,
+          "why": "This debate highlights the inherent trade-offs between keeping answers grounded and failing safely.",
+          "url": "https://youtube.com/watch?v=YDdKiQNw80c&t=1088s"
+        },
+        {
+          "concept": "Security vulnerabilities in LLMs",
+          "depth": "debate",
+          "channel": "Andrej Karpathy",
+          "min": 12.4,
+          "why": "As a software engineer, you must evaluate the distinct security vulnerabilities and injection risks unique to LLM apps.",
+          "url": "https://youtube.com/watch?v=zjkBMFhNj_g&t=2770s"
+        },
+        {
+          "concept": "Aligning LLM-as-a-judge evaluators",
+          "depth": "mechanism",
+          "channel": "Dave Ebbelaar",
+          "min": 12.7,
+          "why": "You will finish by learning how to implement systematic, automated evaluation pipelines to ensure production reliability.",
+          "url": "https://youtube.com/watch?v=a3SMraZWNNs&t=1066s"
+        }
+      ]
+    }
+  ]
+}
