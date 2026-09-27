@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/compile.mjs": {
+      "maxDuration": 60,
+      "includeFiles": "data/index-bundle/**"
+    },
+    "api/status.mjs": {
+      "maxDuration": 15,
+      "includeFiles": "data/index-bundle/**"
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/compile",
+      "headers": [{ "key": "Cache-Control", "value": "no-store" }]
+    }
+  ]
+}

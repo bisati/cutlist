@@ -14,7 +14,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { open } from '../src/lib/store.mjs';
-import { conceptMap, loadIndex, retrieve, dedupe, score, pack, order, verify, SIM_FLOOR } from '../src/query/pipeline.mjs';
+import { conceptMap, retrieve, dedupe, score, pack, order, verify, SIM_FLOOR } from '../src/query/pipeline.mjs';
+import { loadIndex } from '../src/lib/load-index.mjs';
 import { embed, cosine } from '../src/lib/gemini.mjs';
 import { spentInr, BUDGET_INR } from '../src/lib/spend.mjs';
 

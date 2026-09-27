@@ -1,0 +1,10 @@
+node_modules
+.git
+data/index.db
+data/index.db-wal
+data/index.db-shm
+data/spend.jsonl
+eval/results
+experiments
+docs
+*.log

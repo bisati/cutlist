@@ -7,7 +7,18 @@ import os from 'node:os';
 import path from 'node:path';
 import { assertBudget, record, warnIfClose } from './spend.mjs';
 
-const KEY = fs.readFileSync(path.join(os.homedir(), '.config/gemini/api_key'), 'utf8').trim();
+// Environment variable first, so the deployed function has a key without a file
+// on disk, and so the key it uses can be a different one from the laptop's.
+// Falls back to the local file for the indexer and the CLI tools.
+function readKey() {
+  if (process.env.GEMINI_API_KEY) return process.env.GEMINI_API_KEY.trim();
+  try {
+    return fs.readFileSync(path.join(os.homedir(), '.config/gemini/api_key'), 'utf8').trim();
+  } catch {
+    throw new Error('No Gemini key. Set GEMINI_API_KEY, or put one at ~/.config/gemini/api_key.');
+  }
+}
+const KEY = readKey();
 const BASE = 'https://generativelanguage.googleapis.com/v1beta/models';
 
 const redact = (s) => String(s).replaceAll(KEY, '[KEY]');

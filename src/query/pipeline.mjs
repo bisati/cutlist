@@ -15,7 +15,6 @@
 //   8  render                  code
 
 import { gen, embed, cosine } from '../lib/gemini.mjs';
-import { allSegments } from '../lib/store.mjs';
 
 const CHEAP = 'gemini-3.1-flash-lite';
 const ORDER_MODEL = 'gemini-3.5-flash-lite';
@@ -81,11 +80,6 @@ For each: a short name, and one sentence on why it earns a place for this partic
 }
 
 // -------------------------------------------------------------- 2. retrieve
-
-/** Load the index once. Small enough to hold in memory and brute force. */
-export function loadIndex(db) {
-  return allSegments(db).filter((s) => s.vec && s.vecLabel);
-}
 
 // A match below this is not a match, it is the bottom of the barrel. Gemini
 // embeddings sit on a high floor (two unrelated sentences score about 0.67), so

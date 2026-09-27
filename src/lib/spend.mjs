@@ -45,11 +45,18 @@ export function usdFor(model, { promptTokenCount = 0, candidatesTokenCount = 0, 
   return (promptTokenCount / 1e6) * r.in + ((candidatesTokenCount + thoughtsTokenCount) / 1e6) * r.out;
 }
 
+// Serverless has no writable disk and no shared state between instances, so the
+// ledger degrades to memory there. That is weaker on purpose and honestly so:
+// a per-instance counter is not a global cap. The real ceiling for the deployed
+// app is a budget cap set on the Google Cloud project itself, plus the per-IP
+// limiter and the plan cache in api/lib/guard.mjs.
+export const EPHEMERAL = !!process.env.VERCEL || process.env.LC_EPHEMERAL_LEDGER === '1';
+
 let cached = null;
 
 function readAll() {
   if (cached) return cached;
-  if (!fs.existsSync(LEDGER)) return (cached = []);
+  if (EPHEMERAL || !fs.existsSync(LEDGER)) return (cached = []);
   cached = fs.readFileSync(LEDGER, 'utf8')
     .split('\n').filter(Boolean)
     .map((l) => { try { return JSON.parse(l); } catch { return null; } })
@@ -78,8 +85,12 @@ export function record({ model, label, usage, ms = 0, note = '' }) {
     inr: +(usd * USD_INR).toFixed(4),
     ...(note ? { note } : {}),
   };
-  fs.mkdirSync(path.dirname(LEDGER), { recursive: true });
-  fs.appendFileSync(LEDGER, JSON.stringify(entry) + '\n');
+  if (!EPHEMERAL) {
+    try {
+      fs.mkdirSync(path.dirname(LEDGER), { recursive: true });
+      fs.appendFileSync(LEDGER, JSON.stringify(entry) + '\n');
+    } catch { /* read-only filesystem: the in-memory total below still holds */ }
+  }
   readAll().push(entry);
   return entry;
 }

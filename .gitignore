@@ -14,3 +14,6 @@ experiments/*/node_modules/
 data/index.db
 data/index.db-wal
 data/index.db-shm
+
+# Deployable index bundle: regenerate with `npm run index:export` before deploying
+data/index-bundle/

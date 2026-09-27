@@ -8,7 +8,8 @@
 
 import fs from 'node:fs';
 import { open } from '../lib/store.mjs';
-import { conceptMap, loadIndex, retrieve, dedupe, score, pack, order, verify } from './pipeline.mjs';
+import { conceptMap, retrieve, dedupe, score, pack, order, verify } from './pipeline.mjs';
+import { loadIndex } from '../lib/load-index.mjs';
 import { spentInr, BUDGET_INR } from '../lib/spend.mjs';
 
 const argv = process.argv.slice(2);
