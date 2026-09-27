@@ -38,12 +38,44 @@ const CONCEPT_SCHEMA = {
   required: ['concepts'],
 };
 
-export async function conceptMap(topic) {
-  const { data } = await gen(CHEAP, `A learner says: "${topic}".
+/**
+ * Turn the request into the concepts a plan should cover.
+ *
+ * The first version asked only "what must someone understand to get this", and
+ * it built a university syllabus every time. Asked "I am a software engineer
+ * who knows nothing about AI, where do I start", with two hours, it returned
+ * linear algebra, function composition and hidden layers. Technically upstream
+ * of the topic. Useless to the person who asked.
+ *
+ * Two things were being thrown away: what the learner said about themselves and
+ * why they were asking, and how long they have. Both are in the request, and
+ * both change what a good answer looks like.
+ */
+export async function conceptMap(topic, budgetMin = 120) {
+  // Roughly one concept per 10 minutes. A 30 minute plan covering 14 concepts
+  // gives each one two minutes, which teaches nobody anything.
+  const lo = Math.max(3, Math.round(budgetMin / 14));
+  const hi = Math.max(lo + 2, Math.round(budgetMin / 8));
 
-List the 8 to 15 things someone must understand to genuinely get this, not a summary and not trivia. Order them by dependency: nothing may appear before the thing it depends on.
+  const { data } = await gen(CHEAP, `A learner said, in their own words:
 
-For each give a short name and one sentence on why it is load bearing.`,
+  "${topic}"
+
+They have ${budgetMin} minutes.
+
+First read what they actually asked for. The wording tells you who they are and what they want, and it changes the answer:
+
+- Someone asking where to start, or saying they are new, needs orientation and a working picture of the thing. They do not need the foundations underneath it. Do not send a beginner to linear algebra because it is technically upstream.
+- Someone asking to really understand a mechanism, or saying "not just the analogy", wants the actual moving parts and will be short changed by overviews.
+- Someone choosing between two options wants the comparison and the tradeoffs, not a full course on both.
+- Someone with a deadline or a meeting wants the shape of the idea, not implementation detail.
+- Someone asking how to build a thing wants the practical steps, not the theory behind them.
+
+Now list the ${lo} to ${hi} things THIS person needs to understand, in the order they should meet them, so that nothing arrives before what it depends on.
+
+Fit the list to the ${budgetMin} minutes they have. Fewer concepts covered properly beats more covered in passing.
+
+For each: a short name, and one sentence on why it earns a place for this particular person.`,
     { label: 'query: understand the ask', schema: CONCEPT_SCHEMA });
   return data.concepts.map((c, i) => ({ ...c, idx: i }));
 }
@@ -70,9 +102,23 @@ export const SIM_FLOOR = 0.78;
  * "Reranking" and nothing better existed. With it, the concept simply comes
  * back uncovered and the coverage panel says so, which is the honest answer.
  */
-export async function retrieve(segments, concepts, { perConcept = 12, floor = SIM_FLOOR } = {}) {
+export async function retrieve(segments, concepts, { perConcept = null, floor = SIM_FLOOR } = {}) {
+  // Scale the pool to the number of concepts, not a flat number per concept.
+  // A comparison question like "fine tune or RAG" yields only four concepts,
+  // and four times twelve was too small a pool to fill an hour: that plan came
+  // out at 40 minutes of 60. Aim for a working pool of ~80 before dedupe and
+  // the depth quotas cut it down.
+  perConcept ??= Math.min(30, Math.max(12, Math.ceil(80 / Math.max(1, concepts.length))));
   const vecs = await embed(concepts.map((c) => `${c.name}. ${c.why}`), { label: 'query: embed concepts' });
   concepts.forEach((c, i) => { c.vec = vecs[i]; });
+
+  // Clear any assignment left by a previous query. The index is loaded once and
+  // its segment objects are shared, so without this a segment keeps the `best`
+  // concept it matched on an earlier topic, and because the assignment only
+  // updates on a HIGHER similarity, a stale high-scoring match from another
+  // topic survives. That silently corrupts concept coverage: the eval harness
+  // reported 103% coverage, counting concept indices from previous topics.
+  for (const s of segments) s.best = null;
 
   const picked = new Set();
   for (const c of concepts) {
@@ -172,13 +218,21 @@ const SHAPE = {
   debate:    { min: 2, maxFrac: 0.20 },
 };
 
-export function pack(clusters, concepts, budgetMin, { maxSegments = 28, slackMin = 12, shape = SHAPE } = {}) {
+export function pack(clusters, concepts, budgetMin,
+                     { maxSegments = 28, slackMin = 12, shape = SHAPE, maxShare = 0.12, minLongSec = 360 } = {}) {
   const reps = clusters.map((c) => c.slice().sort((a, b) => b.quality - a.quality)[0]);
   const budget = budgetMin * 60;
   const floor = (budgetMin - slackMin) * 60;
   const cap = Object.fromEntries(
     Object.entries(shape).map(([d, v]) => [d, Math.max(v.min, Math.round(v.maxFrac * maxSegments))])
   );
+
+  // No single segment may eat too much of the plan. An 18 minute block and a
+  // 17 minute block together took 35 of 119 minutes in the first RAG plan,
+  // which is a third of someone's evening on two videos. The absolute floor
+  // keeps short budgets workable: at 30 minutes, 12% would be 3.6 min and would
+  // exclude almost every segment in the index.
+  const maxSegSec = Math.max(minLongSec, Math.round(maxShare * budget));
 
   const chosen = new Set();
   const covered = new Set();
@@ -187,7 +241,7 @@ export function pack(clusters, concepts, budgetMin, { maxSegments = 28, slackMin
   let used = 0;
 
   const admissible = (s) =>
-    !chosen.has(s) && used + s.durationSec <= budget &&
+    !chosen.has(s) && used + s.durationSec <= budget && s.durationSec <= maxSegSec &&
     chosen.size < maxSegments && depthCount[s.depth] < (cap[s.depth] ?? maxSegments);
   const diversity = (s) => 1 / (1 + (creators.get(s.channel) || 0));
   const take = (s) => {
@@ -229,14 +283,23 @@ export function pack(clusters, concepts, budgetMin, { maxSegments = 28, slackMin
     take(pick);
   }
 
+  const out = [...chosen];
+  // Coverage above 100% is not a number, it is a bug. It happened once, when
+  // stale concept assignments leaked between queries through the shared index.
+  if (covered.size > concepts.length) {
+    throw new Error(`pack: covered ${covered.size} of ${concepts.length} concepts, which is impossible. ` +
+                    `Stale segment.best from a previous query is the usual cause.`);
+  }
   return {
-    chosen: [...chosen],
+    chosen: out,
     usedSec: used,
     covered: [...covered],
     missing: concepts.filter((c) => !covered.has(c.idx)),
     depthCount,
     depthShortfall: shortfall,
     budgetMet: used >= floor && used <= budget,
+    maxSegSec,
+    longestShare: out.length ? Math.max(...out.map((s) => s.durationSec)) / Math.max(1, used) : 0,
   };
 }
 

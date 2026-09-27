@@ -38,7 +38,7 @@ if (!index.length) {
 say(`index: ${index.length} segments\n`);
 
 // 1
-const concepts = await conceptMap(topic);
+const concepts = await conceptMap(topic, budgetMin);
 say(`concepts (${concepts.length}):`);
 concepts.forEach((c, i) => say(`  ${String(i + 1).padStart(2)}. ${c.name}`));
 

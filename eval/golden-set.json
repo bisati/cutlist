@@ -1,0 +1,248 @@
+{
+  "note": "Twenty queries a real person might type, with what a good plan for each must contain. Written by hand on 2026-09-27 before any of them were run, so the expectations are not reverse engineered from what the system happens to produce. Budgets vary on purpose: a 30 minute plan and a 120 minute plan are different packing problems, and the short ones are where the budget constraint actually bites.",
+  "mustCoverNote": "mustCover is checked by embedding each phrase and requiring some segment in the plan to match it above a floor. Phrases are written as a learner would describe the idea, not as an index label, so the check is not circular.",
+  "avoidNote": "avoid lists things that are adjacent to the topic but are not it. A plan that spends real time here has drifted.",
+  "topics": [
+    {
+      "id": "rag-basics",
+      "topic": "how RAG works",
+      "budgetMin": 120,
+      "mustCover": [
+        "why a language model needs external documents at all",
+        "turning text into vectors that capture meaning",
+        "splitting documents into chunks before storing them",
+        "searching by meaning rather than keywords",
+        "putting retrieved text into the prompt"
+      ],
+      "avoid": ["training a model from scratch", "reinforcement learning", "image and video models"]
+    },
+    {
+      "id": "rag-short",
+      "topic": "I need to understand RAG before a meeting",
+      "budgetMin": 30,
+      "mustCover": [
+        "what retrieval augmented generation is for",
+        "the retrieve then generate loop"
+      ],
+      "avoid": ["mathematical derivations", "coding a system from scratch"],
+      "notes": "Short budget. Should be orientation heavy and skip implementation detail entirely."
+    },
+    {
+      "id": "transformers",
+      "topic": "how transformers work",
+      "budgetMin": 120,
+      "mustCover": [
+        "what attention is doing conceptually",
+        "queries keys and values",
+        "why several attention heads instead of one",
+        "how word order is represented",
+        "stacking blocks into a full architecture"
+      ],
+      "avoid": ["prompt engineering tips", "which chatbot is best"]
+    },
+    {
+      "id": "attention-deep",
+      "topic": "I want to really understand self attention, not just the analogy",
+      "budgetMin": 90,
+      "mustCover": [
+        "the dot product between query and key vectors",
+        "why the result is scaled before softmax",
+        "softmax turning scores into weights",
+        "masking so a token cannot see the future"
+      ],
+      "avoid": ["high level overviews with no mathematics"],
+      "notes": "Explicitly asks past the analogy. A plan of introductory overviews fails this."
+    },
+    {
+      "id": "finetuning",
+      "topic": "fine tuning an LLM",
+      "budgetMin": 120,
+      "mustCover": [
+        "what changes inside the model when you fine tune",
+        "preparing a training dataset",
+        "LoRA and adapters instead of full retraining",
+        "when fine tuning is the wrong choice"
+      ],
+      "avoid": ["basic prompt writing"]
+    },
+    {
+      "id": "finetune-vs-rag",
+      "topic": "should I fine tune or use RAG",
+      "budgetMin": 60,
+      "mustCover": [
+        "what each approach actually changes",
+        "cost and effort of each",
+        "the cases where retrieval wins",
+        "the cases where fine tuning wins"
+      ],
+      "avoid": ["deep architecture internals"],
+      "notes": "A comparison question. The plan should be weighted toward tradeoffs and debate, not mechanism."
+    },
+    {
+      "id": "agents",
+      "topic": "AI agents and tool use",
+      "budgetMin": 120,
+      "mustCover": [
+        "what makes something an agent rather than a chatbot",
+        "how a model is given tools it can call",
+        "the loop of thinking then acting then observing",
+        "what goes wrong when an agent fails partway"
+      ],
+      "avoid": ["training language models", "image generation"]
+    },
+    {
+      "id": "agent-build",
+      "topic": "how do I actually build an agent that calls tools",
+      "budgetMin": 90,
+      "mustCover": [
+        "describing a tool so the model knows when to call it",
+        "the JSON the model emits to request a call",
+        "feeding the tool result back in",
+        "chaining several tool calls together"
+      ],
+      "avoid": ["philosophical discussion of AGI", "model architecture"],
+      "notes": "Practical build question. Known gap in the index as of 2026-09-27."
+    },
+    {
+      "id": "embeddings",
+      "topic": "what are embeddings and why do they work",
+      "budgetMin": 60,
+      "mustCover": [
+        "representing meaning as a position in space",
+        "distance between vectors meaning similarity",
+        "how embedding models are trained"
+      ],
+      "avoid": ["setting up a vector database product"]
+    },
+    {
+      "id": "prompting",
+      "topic": "prompt engineering that actually works",
+      "budgetMin": 60,
+      "mustCover": [
+        "giving the model room to reason before answering",
+        "showing examples in the prompt",
+        "structuring a prompt so the parts are distinct"
+      ],
+      "avoid": ["model internals", "fine tuning"],
+      "notes": "Should skew practical. Heavy mechanism content here is a failure."
+    },
+    {
+      "id": "hallucination",
+      "topic": "why do LLMs hallucinate and can it be fixed",
+      "budgetMin": 90,
+      "mustCover": [
+        "why next token prediction produces confident wrong answers",
+        "grounding answers in retrieved sources",
+        "whether hallucination can ever be eliminated"
+      ],
+      "avoid": ["unrelated safety topics like job loss"],
+      "notes": "Asks a contested question. Should contain real disagreement, not one settled view."
+    },
+    {
+      "id": "evaluation",
+      "topic": "how do you evaluate an LLM application",
+      "budgetMin": 90,
+      "mustCover": [
+        "why accuracy is the wrong single number",
+        "using a model to grade another model's output",
+        "building a test set for your own use case",
+        "benchmarks and how they mislead"
+      ],
+      "avoid": ["training loss curves"]
+    },
+    {
+      "id": "tokenization",
+      "topic": "how does tokenization work and why does it matter",
+      "budgetMin": 60,
+      "mustCover": [
+        "splitting text into subword pieces",
+        "byte pair encoding",
+        "why token count affects cost and context limits"
+      ],
+      "avoid": ["full model architecture"]
+    },
+    {
+      "id": "training",
+      "topic": "how are large language models actually trained",
+      "budgetMin": 120,
+      "mustCover": [
+        "predicting the next token over a huge corpus",
+        "gradient descent and backpropagation",
+        "the difference between pretraining and what comes after",
+        "how much data and compute this takes"
+      ],
+      "avoid": ["prompt writing", "which model to use in production"]
+    },
+    {
+      "id": "rlhf",
+      "topic": "RLHF and how models are aligned to human preference",
+      "budgetMin": 90,
+      "mustCover": [
+        "collecting human comparisons between outputs",
+        "training a reward model",
+        "the difference between RLHF and direct preference optimisation"
+      ],
+      "avoid": ["basic prompting", "retrieval"]
+    },
+    {
+      "id": "quantization",
+      "topic": "model quantization and running models on smaller hardware",
+      "budgetMin": 60,
+      "mustCover": [
+        "reducing numeric precision of weights",
+        "what accuracy you lose and what you gain",
+        "running a model locally"
+      ],
+      "avoid": ["cloud API pricing"]
+    },
+    {
+      "id": "context-windows",
+      "topic": "context windows, and whether long context kills RAG",
+      "budgetMin": 60,
+      "mustCover": [
+        "what a context window limit actually is",
+        "attention cost growing with sequence length",
+        "models losing information in the middle of long inputs",
+        "the argument that retrieval is still needed"
+      ],
+      "avoid": ["training a model"],
+      "notes": "A live disagreement. The plan should present both sides."
+    },
+    {
+      "id": "vector-search",
+      "topic": "vector databases and semantic search",
+      "budgetMin": 60,
+      "mustCover": [
+        "storing and indexing vectors at scale",
+        "approximate nearest neighbour search",
+        "combining keyword and vector search"
+      ],
+      "avoid": ["training embedding models from scratch"]
+    },
+    {
+      "id": "interpretability",
+      "topic": "can we actually understand what is happening inside a model",
+      "budgetMin": 90,
+      "mustCover": [
+        "why a trained network is opaque",
+        "looking at individual neurons and features",
+        "what mechanistic interpretability has found so far"
+      ],
+      "avoid": ["general AI ethics discussion", "policy and regulation"],
+      "notes": "Narrow research topic. Likely thin in the index, so the coverage panel should say so rather than drifting into ethics."
+    },
+    {
+      "id": "getting-started",
+      "topic": "I am a software engineer and I know nothing about AI, where do I start",
+      "budgetMin": 120,
+      "mustCover": [
+        "what a language model fundamentally is",
+        "what these systems can and cannot do",
+        "how to call a model from your own code",
+        "the main ways people build on top of models"
+      ],
+      "avoid": ["mathematical derivations", "cutting edge research"],
+      "notes": "The hardest test of the depth quota. Should be intro heavy with worked examples, and almost no deep mechanism."
+    }
+  ]
+}
