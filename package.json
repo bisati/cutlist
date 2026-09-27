@@ -1,0 +1,16 @@
+{
+  "name": "learning-compiler",
+  "private": true,
+  "type": "module",
+  "description": "Say what you want to learn and how long you have. Get back the segments worth watching, in order.",
+  "scripts": {
+    "spend": "node src/spend-report.mjs",
+    "index:candidates": "node src/indexer/candidates.mjs",
+    "index:run": "node src/indexer/run.mjs",
+    "index:stats": "node src/indexer/stats.mjs"
+  },
+  "dependencies": {
+    "youtube-transcript": "1.3.1",
+    "youtubei.js": "18.1.0"
+  }
+}

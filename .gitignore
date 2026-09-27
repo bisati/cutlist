@@ -9,3 +9,8 @@ data/transcripts/
 # Experiment caches: transcripts and embedding vectors, regenerable and large
 experiments/*/out/cache/
 experiments/*/node_modules/
+
+# The index is regenerable from candidates + the API, and is large
+data/index.db
+data/index.db-wal
+data/index.db-shm
