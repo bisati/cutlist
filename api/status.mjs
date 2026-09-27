@@ -1,6 +1,7 @@
 // What the page shows in its header and footer. Cheap, cacheable, no models.
 
 import { loadBundle } from './lib/bundle.mjs';
+import { hasKey } from '../src/lib/gemini.mjs';
 import { spentTodayInr, CONFIG, cacheSize } from './lib/guard.mjs';
 
 export default function handler(req, res) {
@@ -17,7 +18,11 @@ export default function handler(req, res) {
     // Surfaced so the page can say the budget is gone before someone waits
     // twelve seconds to be told the same thing.
     budgetLeft: Math.max(0, +(CONFIG.dailyCapInr - spentTodayInr()).toFixed(2)),
-    open: CONFIG.enabled && spentTodayInr() < CONFIG.dailyCapInr,
+    open: CONFIG.enabled && hasKey() && spentTodayInr() < CONFIG.dailyCapInr,
+    // Distinguishes "no key configured" from "budget used up", so the page can
+    // say which, instead of both looking like the same failure.
+    reason: !hasKey() ? 'no-key' : !CONFIG.enabled ? 'disabled'
+          : spentTodayInr() >= CONFIG.dailyCapInr ? 'budget' : null,
     cached: cacheSize(),
   }));
 }

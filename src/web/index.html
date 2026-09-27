@@ -293,9 +293,12 @@ fetch('/api/status').then((r) => r.json()).then((s) => {
   // seconds to be told the same thing.
   if (s.open === false) {
     $('#go').disabled = true;
-    $('#err').textContent =
-      'This has used up its API budget for today, so it cannot compile anything new. ' +
-      'It resets at midnight UTC. It is a personal project running on a capped key, not a service.';
+    $('#err').textContent = {
+      'no-key': 'This deployment has no API key configured yet, so it cannot compile anything.',
+      disabled: 'This is switched off right now.',
+      budget: 'This has used up its API budget for today and cannot compile anything new. ' +
+              'It resets at midnight UTC. It is a personal project on a capped key, not a service.',
+    }[s.reason] || 'This cannot compile anything right now.';
     $('#err').classList.add('on');
   }
 }).catch(() => {});

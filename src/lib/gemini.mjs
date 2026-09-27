@@ -10,18 +10,26 @@ import { assertBudget, record, warnIfClose } from './spend.mjs';
 // Environment variable first, so the deployed function has a key without a file
 // on disk, and so the key it uses can be a different one from the laptop's.
 // Falls back to the local file for the indexer and the CLI tools.
-function readKey() {
-  if (process.env.GEMINI_API_KEY) return process.env.GEMINI_API_KEY.trim();
+//
+// Resolved lazily, not at import. Reading it at module scope meant a deployment
+// with no key configured died with FUNCTION_INVOCATION_FAILED before any of our
+// code ran, which tells the user nothing. Now the first call fails with a
+// sentence that says what is wrong.
+let _key = null;
+function key() {
+  if (_key) return _key;
+  if (process.env.GEMINI_API_KEY) return (_key = process.env.GEMINI_API_KEY.trim());
   try {
-    return fs.readFileSync(path.join(os.homedir(), '.config/gemini/api_key'), 'utf8').trim();
+    return (_key = fs.readFileSync(path.join(os.homedir(), '.config/gemini/api_key'), 'utf8').trim());
   } catch {
-    throw new Error('No Gemini key. Set GEMINI_API_KEY, or put one at ~/.config/gemini/api_key.');
+    throw new Error('No Gemini API key is configured for this deployment.');
   }
 }
-const KEY = readKey();
+export const hasKey = () => !!process.env.GEMINI_API_KEY || fs.existsSync(path.join(os.homedir(), '.config/gemini/api_key'));
+
 const BASE = 'https://generativelanguage.googleapis.com/v1beta/models';
 
-const redact = (s) => String(s).replaceAll(KEY, '[KEY]');
+const redact = (s) => (_key ? String(s).replaceAll(_key, '[KEY]') : String(s));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function post(url, body, { tries = 4, timeoutMs = 180000 } = {}) {
@@ -71,7 +79,7 @@ export async function gen(model, prompt, { label, schema = null, temperature = 0
   }
 
   const t0 = Date.now();
-  const json = await post(`${BASE}/${model}:generateContent?key=${KEY}`, {
+  const json = await post(`${BASE}/${model}:generateContent?key=${key()}`, {
     contents: [{ role: 'user', parts: [{ text: prompt }] }],
     generationConfig,
   });
@@ -98,7 +106,7 @@ export async function embed(texts, { label, taskType = 'SEMANTIC_SIMILARITY' } =
     const chunk = texts.slice(i, i + EMBED_BATCH);
     assertBudget(label);
     const t0 = Date.now();
-    const json = await post(`${BASE}/${EMBED_MODEL}:batchEmbedContents?key=${KEY}`, {
+    const json = await post(`${BASE}/${EMBED_MODEL}:batchEmbedContents?key=${key()}`, {
       requests: chunk.map((t) => ({
         model: `models/${EMBED_MODEL}`,
         content: { parts: [{ text: t.slice(0, 8000) }] },

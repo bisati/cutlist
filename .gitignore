@@ -17,3 +17,4 @@ data/index.db-shm
 
 # Deployable index bundle: regenerate with `npm run index:export` before deploying
 data/index-bundle/
+.vercel
