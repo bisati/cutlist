@@ -35,9 +35,25 @@ That honesty is the feature. A thin index should say so rather than quietly fill
 
 ---
 
+## Taking it with you
+
+A plan you cannot keep is a plan you close the tab on, so there are two ways out of the page and **neither of them stores anything**.
+
+**Download PDF** prints through a purpose-built stylesheet: A4 page boxes, no segment split across a page break, a cover block, the real typefaces, live links, and the bare `youtu.be/ID?t=920` beside every timestamp so it still works on paper. Four pages for a two-hour plan. It ships no bytes, because the browser already contains a typesetter and a PDF writer.
+
+**Copy link** puts the whole plan inside the URL fragment: compacted to positional arrays, deflated, base64url encoded. Median 2,740 characters.
+
+A fragment is never sent to the server. So a shared plan needs no database, no row to expire and no bill, and what the recipient opens is byte-identical to what the sender saw. A server-side permalink would have been worse on every count: the plan cache is per serverless instance, so a miss would either recompile at about ₹0.51, letting anyone drain the budget by sharing a link widely, or hand the recipient a *different* plan than the one that was shared.
+
+The cost is honest and stated on the 404 page: the links are long, and anything that truncates URLs will break them.
+
+---
+
 ## How it works
 
 Eight stages. **Three call a model. Five are plain code.**
+
+The page shows this live. The same eight-segment strip is the architecture diagram when idle and the progress indicator while compiling, with each stage badged `code` or `model`, so you learn how it works by watching it work. The badges are driven by the same stage list the server runs, which makes the claim below checkable rather than asserted.
 
 | | stage | |
 |---|---|---|
@@ -118,11 +134,14 @@ Index: 1,906 segments from 514 creators, 202 hours of source video.
 
 ```bash
 npm install
-npm run web          # localhost:4321
+npm run web          # localhost:4321, real compiles, spends money
+npm run web:demo     # replays one captured plan, no index, no API calls, free
 
 npm run eval         # the golden set
 npm run spend        # every API call this project has made, and what it cost
 ```
+
+`web:demo` exists because the interface needed working on far more often than the pipeline did, and iterating on a page should not cost ₹0.51 a refresh. It times the stages the way a real run does so the pipeline strip behaves honestly.
 
 Rebuilding the index needs a residential IP, because YouTube refuses transcript fetches from datacenter addresses (58 of 60 succeeded from a laptop, 0 of 3 from a server):
 
@@ -134,6 +153,16 @@ npm run index:export       # build the deployable bundle
 ```
 
 ---
+## The interface
+
+Dark, editorial, image-led. One serif for display, one grotesk for everything functional, one warm red accent. The page opens with the search, then a worked example that types a real question and deals in three real rows, so a visitor understands the product without reading this file.
+
+Every row shows the actual video frame, pulled from the segment's own id. That single addition did more than any typographic choice: the page stopped looking austere, and the link finally looked like a link. The cost is stated on the page itself, since thumbnails come from YouTube's servers and that is the only third party involved.
+
+The four depth categories are colour **and** a glyph, never colour alone. The hues were measured under simulated protanopia, deuteranopia and tritanopia rather than chosen by eye, which caught a first attempt where two categories were indistinguishable to a deuteranope. Spreading lightness, not hue, is what fixes it. Every text token passes WCAG AA in both themes.
+
+Animation is written in plain DOM, not pulled from a component library: there is no build step here, and a framework for four effects would cost more than it returns. All of it is `transform` and `opacity`, all of it disabled under `prefers-reduced-motion`.
+
 ## Built with
 
 Node, no framework. Gemini for the three model calls and for embeddings. `youtubei.js` and `youtube-transcript` for source material. SQLite via `node:sqlite` for indexing. Vercel for hosting.
