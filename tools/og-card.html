@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>og card</title>
+<!--
+  Source for public/og.png, the link preview card. Rendered at 1200x630 with
+  headless Chrome:
+
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+      --headless=new --disable-gpu --hide-scrollbars \
+      --window-size=1200,630 --virtual-time-budget=5000 \
+      --screenshot=public/og.png tools/og-card.html
+
+  Kept in the repo so it can be rebuilt when the figures change. Same system
+  as the page: dark, Instrument Serif display, one warm accent.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+  *{box-sizing:border-box; margin:0}
+  :root{
+    --canvas:#0a0a0c; --card:#17171c; --line:#2a2a33;
+    --ink:#f7f7f8; --ink-2:#b4b4bf; --ink-3:#8e8e9b;
+    --accent:#f2564d;
+    --intro:#dd9b3f; --mechanism:#cfe0fa; --example:#2f9f86; --debate:#a884dd;
+  }
+  body{
+    width:1200px; height:630px; overflow:hidden; background:var(--canvas); color:var(--ink);
+    font:400 16px/1.55 "Instrument Sans", sans-serif; font-variant-numeric:tabular-nums;
+    padding:52px 64px; position:relative; display:flex; flex-direction:column;
+  }
+  .bloom{position:absolute; inset:0 0 auto 0; height:520px;
+    background:radial-gradient(760px 340px at 22% -110px, rgba(242,86,77,.16), transparent 70%)}
+  .grain{position:absolute; inset:0; opacity:.04; pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .inner{position:relative; z-index:1; display:flex; flex-direction:column; height:100%}
+  .top{display:flex; align-items:center; gap:11px}
+  .top svg{width:24px; height:24px}
+  .top b{font-weight:600; font-size:18px; letter-spacing:-.015em}
+  .top .rt{margin-left:auto; font-size:12px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+  .mid{display:grid; grid-template-columns:1fr 436px; gap:52px; align-items:center; flex:1}
+  h1{font-family:"Instrument Serif",Georgia,serif; font-weight:400; font-size:64px;
+     line-height:1.0; letter-spacing:-.025em; max-width:12ch}
+  h1 em{font-style:italic; color:var(--accent)}
+  .lede{margin-top:20px; font-size:18px; line-height:1.5; color:var(--ink-2); max-width:33ch}
+  .rows{display:flex; flex-direction:column; gap:10px}
+  .row{display:grid; grid-template-columns:30px 1fr auto; gap:0 14px; align-items:center;
+       background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 14px}
+  .row .n{font-family:"Instrument Serif",Georgia,serif; font-size:19px; color:var(--ink-3)}
+  .row .t{font-size:14.5px; color:var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .row .t .gl{width:8px; height:8px; border:1.5px solid currentColor; display:inline-block; margin-right:8px; vertical-align:middle}
+  .row .l{font-size:12.5px; color:var(--ink-3)}
+  .intro{color:var(--intro)} .mech{color:var(--mechanism)} .exa{color:var(--example)} .deb{color:var(--debate)}
+  .mech .gl{background:currentColor}
+  .exa .gl{background:linear-gradient(135deg,currentColor 50%,transparent 50%)}
+  .deb .gl{background:linear-gradient(currentColor 0 34%,transparent 34% 66%,currentColor 66%)}
+  .foot{display:flex; justify-content:space-between; align-items:baseline;
+        padding-top:18px; border-top:1px solid var(--line); font-size:13.5px; color:var(--ink-3)}
+  .foot b{font-weight:600; color:var(--ink-2)}
+</style>
+</head>
+<body>
+<div class="bloom"></div><div class="grain"></div>
+<div class="inner">
+  <div class="top">
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <rect width="32" height="32" rx="7" fill="#17171c"/>
+      <rect x="6.5" y="8" width="19" height="3" rx="1.5" fill="#F7F7F8"/>
+      <rect x="6.5" y="14.5" width="12" height="3" rx="1.5" fill="#F7F7F8" opacity=".55"/>
+      <rect x="6.5" y="21" width="15" height="3" rx="1.5" fill="#F2564D"/>
+    </svg>
+    <b>Learning Compiler</b>
+    <span class="rt">learning-compiler.vercel.app</span>
+  </div>
+
+  <div class="mid">
+    <div>
+      <h1>Learn the thing, <em>not the video.</em></h1>
+      <p class="lede">Tell it what you want to understand and how long you have. It returns the exact segments worth watching, in teaching order.</p>
+    </div>
+    <div class="rows">
+      <div class="row"><span class="n">01</span><span class="t intro"><span class="gl"></span>The limits of standalone LLMs</span><span class="l">5 min</span></div>
+      <div class="row"><span class="n">02</span><span class="t mech"><span class="gl"></span>Word and sentence embeddings</span><span class="l">3 min</span></div>
+      <div class="row"><span class="n">03</span><span class="t deb"><span class="gl"></span>Vector vs traditional databases</span><span class="l">13 min</span></div>
+      <div class="row"><span class="n">04</span><span class="t exa"><span class="gl"></span>Semantic similarity in practice</span><span class="l">2 min</span></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span><b>1,906</b> segments &nbsp;·&nbsp; <b>514</b> creators &nbsp;·&nbsp; <b>202</b> hours indexed</span>
+    <span>Eight stages. Three call a model.</span>
+  </div>
+</div>
+</body>
+</html>

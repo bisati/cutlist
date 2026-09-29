@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Learning Compiler">
+  <rect width="32" height="32" rx="7" fill="#0A0A0C"/>
+  <rect x="6.5" y="8" width="19" height="3" rx="1.5" fill="#F7F7F8"/>
+  <rect x="6.5" y="14.5" width="12" height="3" rx="1.5" fill="#F7F7F8" opacity=".55"/>
+  <rect x="6.5" y="21" width="15" height="3" rx="1.5" fill="#F2564D"/>
+</svg>

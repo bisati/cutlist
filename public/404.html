@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nothing at this address</title>
+<meta name="description" content="That page does not exist on Learning Compiler.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0a0c">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+:root, :root[data-theme="dark"]{
+  --u:8px;
+  --paper:#0a0a0c; --sunk:#17171c;
+  --ink:#f7f7f8; --ink-2:#b4b4bf; --ink-3:#8e8e9b;
+  --rule:#2a2a33; --rule-hard:#f7f7f8;
+  --accent:#f2564d; --grain:.035;
+}
+:root[data-theme="light"]{
+  --paper:#fbfbfa; --sunk:#ffffff;
+  --ink:#131316; --ink-2:#55555f; --ink-3:#6e6e78;
+  --rule:#e3e3e0; --rule-hard:#131316;
+  --accent:#d1372f; --grain:.028;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0; min-height:100dvh; background:var(--paper); color:var(--ink);
+  font:400 16px/1.55 "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  font-variant-numeric:tabular-nums; -webkit-font-smoothing:antialiased;
+  display:flex; flex-direction:column;
+}
+a,button{touch-action:manipulation}
+:where(a):focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+.grain{
+  position:fixed; inset:0; z-index:60; pointer-events:none; opacity:var(--grain);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.shell{max-width:1180px; margin:0 auto; padding:0 calc(var(--u)*4); width:100%}
+.masthead{border-bottom:1px solid var(--rule)}
+.masthead .shell{height:calc(var(--u)*8); display:flex; align-items:center; gap:calc(var(--u)*1.5)}
+.sig{width:10px; height:10px; background:var(--accent); flex:none}
+.masthead b{font-weight:600; font-size:15px; letter-spacing:-.01em}
+main{flex:1; display:flex; align-items:center; padding:calc(var(--u)*8) 0}
+.code{
+  border-radius:0;
+  font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-3); display:block; padding-bottom:calc(var(--u)*1.5);
+  border-bottom:1px solid var(--rule-hard);
+}
+h1{
+  margin:calc(var(--u)*3) 0 0; font-family:"Instrument Serif",Georgia,serif; font-weight:400;
+  font-size:clamp(36px,5.8vw,62px); line-height:1.03; letter-spacing:-.025em;
+  max-width:16ch; text-wrap:balance;
+}
+p{margin:calc(var(--u)*3) 0 0; max-width:56ch; color:var(--ink-2); line-height:1.6; text-wrap:pretty}
+.row{display:flex; gap:0; margin-top:calc(var(--u)*5); flex-wrap:wrap}
+.btn{
+  border-radius:8px;
+  padding:calc(var(--u)*1.75) calc(var(--u)*3.5); font-weight:500; font-size:15px;
+  text-decoration:none; background:var(--ink); color:var(--paper);
+  transition:background .3s cubic-bezier(.32,.72,0,1), color .3s cubic-bezier(.32,.72,0,1);
+}
+.btn:hover{background:var(--accent); color:#fff}
+.btn.ghost{background:none; color:var(--ink-2); border:1px solid var(--rule); border-radius:8px}
+.btn.ghost:hover{background:none; border-color:var(--ink); color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="shell">
+    <span class="sig" aria-hidden="true"></span>
+    <b translate="no">Learning Compiler</b>
+  </div>
+</header>
+
+<main>
+  <div class="shell">
+    <span class="code">Error 404</span>
+    <h1>There is nothing at this address.</h1>
+    <p>
+      If you followed a shared plan link, the part after the <code>#</code>
+      carries the whole plan and is easy to cut short when pasting. Ask whoever
+      sent it for the full link.
+    </p>
+    <div class="row">
+      <a class="btn" href="/">Compile a plan</a>
+      <a class="btn ghost" href="https://github.com/bisati/learning-compiler">Read the source</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>

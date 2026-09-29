@@ -4,7 +4,7 @@
 // silent seconds reads as broken.
 
 import { loadBundle } from './lib/bundle.mjs';
-import { compilePlan } from '../src/query/plan.mjs';
+import { compilePlan, STAGE_COUNT } from '../src/query/plan.mjs';
 import { spentInr, BudgetExceeded } from '../src/lib/spend.mjs';
 import { check, noteSpend, cacheKey, cacheGet, cachePut, spentTodayInr, CONFIG } from './lib/guard.mjs';
 
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
   const key = cacheKey(topic, budgetMin);
   const cached = cacheGet(key);
   if (cached) {
-    send('stage', { step: 5, of: 5, text: 'Found this one already compiled' });
+    send('stage', { step: STAGE_COUNT, of: STAGE_COUNT, text: 'Found this one already compiled', kind: 'cache' });
     send('done', { ...cached, cached: true, costInr: 0 });
     return res.end();
   }
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
   try {
     const { index } = loadBundle();
     const result = await compilePlan(index, topic, budgetMin,
-      (step, text) => send('stage', { step, of: 5, text }));
+      (step, text, kind) => send('stage', { step, of: STAGE_COUNT, text, kind }));
 
     const cost = +(spentInr() - before).toFixed(3);
     noteSpend(cost);

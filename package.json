@@ -11,7 +11,8 @@
     "web": "node src/web/server.mjs",
     "eval": "node eval/run.mjs",
     "index:topup": "node src/indexer/topup.mjs",
-    "index:export": "node src/indexer/export-bundle.mjs"
+    "index:export": "node src/indexer/export-bundle.mjs",
+    "web:demo": "node src/web/server.mjs --demo"
   },
   "dependencies": {
     "youtube-transcript": "1.3.1",

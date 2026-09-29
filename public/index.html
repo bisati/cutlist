@@ -1,436 +1,1532 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Learning Compiler</title>
+<meta name="description" content="Say what you want to understand and how long you have. Get back the YouTube segments worth watching, in the order that teaches best, with exact timestamps.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0a0c">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Learning Compiler">
+<meta property="og:title" content="Learning Compiler">
+<meta property="og:description" content="Say what you want to understand and how long you have. Get back the YouTube segments worth watching, in the order that teaches best, with exact timestamps.">
+<meta property="og:url" content="https://learning-compiler.vercel.app">
+<meta property="og:image" content="https://learning-compiler.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Learning Compiler">
+<meta name="twitter:description" content="Tell it what you want to understand and how long you have. It returns the segments worth watching, in teaching order.">
+<meta name="twitter:image" content="https://learning-compiler.vercel.app/og.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="preconnect" href="https://i.ytimg.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
 <style>
-/* Light is the base. Dark redefines tokens only, so no colour is ever
-   defined solely inside a media query. */
+/* ===========================================================================
+   LEARNING COMPILER
+
+   Dark first. Editorial rather than minimal: a high-contrast serif carries the
+   display type, a neo-grotesk carries everything functional, and the richness
+   comes from real video thumbnails rather than from decoration.
+
+   1. DARK IS THE DEFAULT, not a preference. Light exists on the toggle.
+   2. TWO TYPEFACES, each with one job. Instrument Serif for display moments,
+      Instrument Sans for every piece of interface and data.
+   3. IMAGERY CARRIES THE WEIGHT. Every segment shows the actual video, which
+      is what makes a link look like a link.
+   4. ONE ACCENT, a warm red, on the search, the watch controls and anything
+      that needs attention.
+   5. DEPTH IS COLOUR *AND* A GLYPH, never colour alone, so it survives
+      greyscale printing and colour blindness.
+   ========================================================================= */
+
+:root, :root[data-theme="dark"]{
+  --canvas:#0a0a0c;
+  --raise:#131317;
+  --card:#17171c;
+  --card-hi:#1f1f26;
+  --line:#2a2a33;
+  --line-2:#3b3b47;
+  --ink:#f7f7f8;
+  --ink-2:#b4b4bf;
+  --ink-3:#8e8e9b;
+  --accent:#f2564d;
+  --accent-hi:#ff6f66;
+  --accent-ink:#1a0503;
+  --accent-wash:rgba(242,86,77,.12);
+  --intro:#dd9b3f;
+  --mechanism:#cfe0fa;
+  --example:#2f9f86;
+  --debate:#a884dd;
+  --glow:rgba(242,86,77,.10);
+  --shade:rgba(0,0,0,.55);
+}
+
 :root{
-  --ground:#f4f5f7; --surface:#fff; --sunk:#eceef1;
-  --ink:#14161b; --ink-2:#4a515c; --ink-3:#7b838f;
-  --rule:#e1e4e9; --rule-2:#cdd2d9;
-  --accent:#0b5d5d; --accent-ink:#fff; --accent-soft:#e2efee;
-  --intro:#a8620a; --mechanism:#1d5fb0; --example:#256b3d; --debate:#a12f57;
-  --warn-bg:#fdf3e7; --warn-ink:#8a5312; --warn-rule:#eccfa6;
-  --shadow:0 1px 2px rgba(20,22,27,.05), 0 8px 24px -12px rgba(20,22,27,.16);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --ground:#0f1116; --surface:#161920; --sunk:#1c2029;
-    --ink:#e8eaef; --ink-2:#a2aab6; --ink-3:#727b88;
-    --rule:#252a33; --rule-2:#333a45;
-    --accent:#49bdb2; --accent-ink:#06211f; --accent-soft:#132b2a;
-    --intro:#dda451; --mechanism:#74a9ea; --example:#6cbe88; --debate:#e07fa1;
-    --warn-bg:#2a2013; --warn-ink:#e0b271; --warn-rule:#4a3a1f;
-    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
-  }
-}
-:root[data-theme="dark"]{
-  --ground:#0f1116; --surface:#161920; --sunk:#1c2029;
-  --ink:#e8eaef; --ink-2:#a2aab6; --ink-3:#727b88;
-  --rule:#252a33; --rule-2:#333a45;
-  --accent:#49bdb2; --accent-ink:#06211f; --accent-soft:#132b2a;
-  --intro:#dda451; --mechanism:#74a9ea; --example:#6cbe88; --debate:#e07fa1;
-  --warn-bg:#2a2013; --warn-ink:#e0b271; --warn-rule:#4a3a1f;
-  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  --u:8px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --ease-firm:cubic-bezier(.32,.72,0,1);
+  --r:12px;
+  --r-sm:8px;
 }
 
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{
-  margin:0; background:var(--ground); color:var(--ink);
-  font:400 16px/1.55 Archivo, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-synthesis-weight:none;
+  margin:0; min-height:100dvh; background:var(--canvas); color:var(--ink);
+  font:400 16px/1.55 "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  font-variant-numeric:tabular-nums; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
-.wrap{max-width:820px; margin:0 auto; padding:0 20px}
+h1,h2,h3{margin:0; font-weight:400}
+p{margin:0}
+a{color:inherit}
+button{font:inherit; color:inherit; cursor:pointer; background:none; border:0; touch-action:manipulation}
+a,input,label{touch-action:manipulation}
+ol,ul{margin:0; padding:0; list-style:none}
+img{display:block; max-width:100%}
+:where(a,button,input,summary):focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
 
-/* ---------------------------------------------------------------- header */
-header{padding:56px 0 8px}
-.brand{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
-h1{
-  font:600 clamp(30px,5.2vw,44px)/1.05 Literata, Georgia, serif;
-  letter-spacing:-.02em; margin:0; text-wrap:balance;
+.serif{font-family:"Instrument Serif", Georgia, serif; font-weight:400; letter-spacing:-.015em}
+.lbl{
+  font-size:11px; font-weight:600; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--ink-3); line-height:1;
 }
-.tag{
-  font:500 11px/1 JetBrains Mono, ui-monospace, monospace; letter-spacing:.1em;
-  text-transform:uppercase; color:var(--ink-3); padding-bottom:4px;
-}
-.lede{
-  margin:14px 0 0; max-width:60ch; color:var(--ink-2);
-  font-size:17px; text-wrap:pretty;
-}
+.shell{max-width:1200px; margin:0 auto; padding:0 calc(var(--u)*4)}
 
-/* ------------------------------------------------------------------ form */
-form{margin:32px 0 0}
-.field{
-  display:flex; align-items:center; gap:10px; background:var(--surface);
-  border:1px solid var(--rule-2); border-radius:12px; padding:4px 4px 4px 16px;
-  box-shadow:var(--shadow); transition:border-color .15s, box-shadow .15s;
+/* A single warm bloom behind the top of the page. Not a mesh, not a purple
+   gradient: one light source, low opacity, fixed so it never repaints. */
+.bloom{
+  position:fixed; inset:0 0 auto 0; height:900px; z-index:0; pointer-events:none;
+  background:radial-gradient(1100px 520px at 50% -180px, var(--glow), transparent 70%);
 }
-.field:focus-within{border-color:var(--accent); box-shadow:var(--shadow), 0 0 0 3px var(--accent-soft)}
+.grain{
+  position:fixed; inset:0; z-index:60; pointer-events:none; opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.page{position:relative; z-index:1}
+
+.skip{
+  position:absolute; left:-9999px; top:0; z-index:80; background:var(--accent);
+  color:var(--accent-ink); padding:12px 20px; font-weight:600; text-decoration:none;
+}
+.skip:focus{left:0}
+
+/* ---------------------------------------------------------------- masthead */
+.masthead{
+  position:sticky; top:0; z-index:40;
+  background:color-mix(in srgb, var(--canvas) 82%, transparent);
+  backdrop-filter:blur(14px) saturate(1.3);
+  border-bottom:1px solid var(--line);
+}
+.masthead .shell{height:64px; display:flex; align-items:center; gap:calc(var(--u)*2)}
+/* A plan is its own view with its own history entry, so it needs a way out
+   that does not rely on people finding the browser's back button. */
+.back{
+  display:none; margin-left:auto; align-items:center; gap:8px; flex:none;
+  border:1px solid var(--line); border-radius:999px; padding:8px 16px 8px 13px;
+  font-size:13.5px; font-weight:500; color:var(--ink-2);
+  transition:border-color .3s var(--ease), color .3s var(--ease), background .3s var(--ease);
+}
+.back svg{width:14px; height:14px; flex:none}
+.back:hover{border-color:var(--line-2); color:var(--ink); background:var(--card)}
+body.is-done .back{display:flex}
+.wordmark{display:flex; align-items:center; gap:10px; min-width:0; text-decoration:none}
+.wordmark svg{width:22px; height:22px; flex:none}
+.wordmark b{font-weight:600; font-size:16px; letter-spacing:-.015em; white-space:nowrap}
+
+/* -------------------------------------------------------------------- hero */
+.hero{padding:calc(var(--u)*11) 0 calc(var(--u)*5); text-align:center}
+.hero h1{
+  font-family:"Instrument Serif", Georgia, serif;
+  font-size:clamp(46px,7.2vw,84px); line-height:1.02; letter-spacing:-.025em;
+  max-width:17ch; margin:0 auto; text-wrap:balance;
+}
+.hero h1 em{font-style:italic; color:var(--accent)}
+.hero .lede{
+  margin:calc(var(--u)*3) auto 0; max-width:60ch; font-size:18px; line-height:1.6;
+  color:var(--ink-2); text-wrap:pretty;
+}
+/* Staggered word reveal, the one entrance flourish on the page. */
+.hero h1 .w, .hero .lede{opacity:0; transform:translateY(14px)}
+.reveal .hero h1 .w{animation:rise .8s var(--ease) forwards; animation-delay:calc(var(--i)*55ms)}
+.reveal .hero .lede{animation:rise .8s var(--ease) .38s forwards}
+@keyframes rise{to{opacity:1; transform:none}}
+body.is-done .hero{display:none}
+
+/* ------------------------------------------------------------------ search
+   The search bar is the product, so it gets the size and the light. */
+.query{margin:calc(var(--u)*5) auto 0; max-width:860px; position:relative}
+.query .cap{
+  display:block; text-align:center; margin-bottom:calc(var(--u)*2);
+}
+.q-shell{
+  display:flex; align-items:center; gap:calc(var(--u)*1.5); padding:calc(var(--u)*1);
+  background:var(--card); border:1px solid var(--line-2); border-radius:var(--r);
+  box-shadow:0 18px 50px -24px var(--shade);
+  transition:border-color .3s var(--ease), box-shadow .3s var(--ease);
+}
+.q-shell:focus-within{
+  border-color:var(--accent);
+  box-shadow:0 0 0 4px var(--accent-wash), 0 18px 50px -24px var(--shade);
+}
 #topic{
-  flex:1; min-width:0; border:0; background:none; color:var(--ink);
-  font:400 17px/1.4 inherit; padding:13px 0; outline:none;
+  flex:1; min-width:0; border:0; background:none; color:var(--ink); outline:none;
+  font:400 clamp(17px,2vw,21px)/1.4 inherit; letter-spacing:-.01em;
+  padding:calc(var(--u)*2.25) calc(var(--u)*2);
 }
 #topic::placeholder{color:var(--ink-3)}
-button{font:inherit; cursor:pointer}
 #go{
-  border:0; border-radius:9px; background:var(--accent); color:var(--accent-ink);
-  font:600 15px/1 Archivo, sans-serif; padding:13px 20px; white-space:nowrap;
-  transition:opacity .15s;
+  flex:none; background:var(--accent); color:var(--accent-ink); border-radius:var(--r-sm);
+  font-weight:600; font-size:16px; padding:calc(var(--u)*2.25) calc(var(--u)*3.5);
+  display:flex; align-items:center; gap:10px;
+  transition:background .3s var(--ease-firm), transform .18s var(--ease), opacity .2s var(--ease);
 }
-#go:hover{opacity:.88}
-#go:disabled{opacity:.45; cursor:default}
-#go:focus-visible, .chip:focus-visible, .seg a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+#go:hover:not(:disabled){background:var(--accent-hi); transform:translateY(-1px)}
+#go:active:not(:disabled){transform:translateY(0)}
+#go:disabled{opacity:.5; cursor:default}
+#go .spin{
+  width:14px; height:14px; border:2px solid currentColor; border-right-color:transparent;
+  border-radius:50%; display:none; animation:spin .8s linear infinite;
+}
+body.is-running #go .spin{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-.budget{display:flex; align-items:center; gap:8px; margin:16px 0 0; flex-wrap:wrap}
-.budget-label{
-  font:500 11px/1 JetBrains Mono, monospace; letter-spacing:.09em;
-  text-transform:uppercase; color:var(--ink-3); margin-right:2px;
+.budget{
+  display:flex; align-items:center; justify-content:center; gap:calc(var(--u)*1);
+  margin-top:calc(var(--u)*2.5); flex-wrap:wrap;
 }
 .chip{
-  border:1px solid var(--rule-2); background:var(--surface); color:var(--ink-2);
-  border-radius:999px; padding:7px 14px; font:500 14px/1 Archivo, sans-serif;
-  transition:all .12s;
+  border:1px solid var(--line); border-radius:999px; padding:9px 18px; font-size:14px;
+  font-weight:500; color:var(--ink-2); background:var(--card);
+  transition:border-color .25s var(--ease), color .25s var(--ease), background .25s var(--ease), transform .18s var(--ease);
 }
-.chip:hover{border-color:var(--ink-3); color:var(--ink)}
-.chip[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:var(--ground)}
+.chip:hover{border-color:var(--line-2); color:var(--ink); transform:translateY(-1px)}
+.chip[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:var(--canvas)}
+#validate{display:none; margin-top:calc(var(--u)*1.5); text-align:center; font-size:14px; color:var(--accent)}
+body.is-invalid #validate{display:block}
+body.is-invalid .q-shell{border-color:var(--accent)}
 
-.examples{margin:18px 0 0; font-size:14px; color:var(--ink-3)}
-.examples button{
-  border:0; background:none; color:var(--ink-2); padding:0; font:inherit;
-  text-decoration:underline; text-decoration-color:var(--rule-2);
-  text-underline-offset:3px;
+/* ----------------------------------------------------------- run progress */
+.running{display:none; margin-top:calc(var(--u)*3)}
+body.is-running .running{display:block}
+.running .track{height:3px; background:var(--line); border-radius:2px; overflow:hidden}
+.running .track span{
+  display:block; height:100%; width:0%; background:var(--accent); border-radius:2px;
+  transition:width .5s var(--ease-firm);
 }
-.examples button:hover{color:var(--accent); text-decoration-color:var(--accent)}
+.rline{
+  display:flex; align-items:baseline; gap:calc(var(--u)*1.5);
+  margin-top:calc(var(--u)*1.5); font-size:14px; color:var(--ink-2);
+}
+.rline .rstep{margin-left:auto; font-size:12.5px; color:var(--ink-3); white-space:nowrap}
 
-/* -------------------------------------------------------------- progress */
-#progress{margin:36px 0 0; display:none}
-#progress.on{display:block}
-.stage{
-  display:flex; gap:12px; align-items:flex-start; padding:9px 0;
-  color:var(--ink-3); font-size:15px;
-}
-.stage .dot{
-  flex:none; width:16px; height:16px; margin-top:4px; border-radius:50%;
-  border:2px solid var(--rule-2); position:relative;
-}
-.stage.active{color:var(--ink)}
-.stage.active .dot{border-color:var(--accent)}
-.stage.active .dot::after{
-  content:""; position:absolute; inset:2px; border-radius:50%; background:var(--accent);
-  animation:pulse 1.1s ease-in-out infinite;
-}
-.stage.done .dot{border-color:var(--accent); background:var(--accent)}
-.stage.done{color:var(--ink-2)}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-@media (prefers-reduced-motion:reduce){.stage.active .dot::after{animation:none}}
+/* ------------------------------------------------------------- explainer
+   The second fold. Shows the product rather than describing it. */
+.explain{margin-top:calc(var(--u)*12)}
+body.is-done .explain{display:none}
+.ex-head{max-width:70ch}
+.ex-head h2{font-size:clamp(32px,4.6vw,52px); line-height:1.05; letter-spacing:-.025em}
+.ex-head p{margin-top:calc(var(--u)*2.5); max-width:58ch; font-size:17px; line-height:1.65; color:var(--ink-2); text-wrap:pretty}
+.ex-grid{display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:calc(var(--u)*7); margin-top:calc(var(--u)*7); align-items:start}
 
-/* ---------------------------------------------------------------- result */
-#result{margin:40px 0 0; display:none}
-#result.on{display:block}
-
-.summary{
-  display:flex; gap:28px; flex-wrap:wrap; align-items:baseline;
-  padding:0 0 18px; border-bottom:2px solid var(--ink);
+.ex-steps{display:flex; flex-direction:column; gap:calc(var(--u)*4)}
+.ex-steps li{
+  display:grid; grid-template-columns:auto 1fr; gap:0 calc(var(--u)*2.5);
+  opacity:.34; transition:opacity .5s var(--ease);
 }
-.summary h2{
-  font:600 26px/1.2 Literata, Georgia, serif; margin:0; flex:1 1 280px;
-  letter-spacing:-.01em; text-wrap:balance;
+.ex-steps li.on{opacity:1}
+.ex-steps b{
+  font-family:"Instrument Serif",Georgia,serif; font-weight:400; font-size:26px;
+  line-height:1; color:var(--ink-3); transition:color .5s var(--ease);
 }
-.stat{font:500 13px/1.3 JetBrains Mono, monospace; color:var(--ink-2); white-space:nowrap}
-.stat b{display:block; font:600 22px/1.1 Archivo, sans-serif; color:var(--ink); font-variant-numeric:tabular-nums}
+.ex-steps li.on b{color:var(--accent)}
+.ex-steps h3{font-size:17px; font-weight:600; letter-spacing:-.015em}
+.ex-steps p{margin-top:6px; font-size:14.5px; line-height:1.6; color:var(--ink-2); grid-column:2; text-wrap:pretty}
 
-/* Each row is a block of the learner's time. The bar under it is scaled to
-   the longest segment, and the clock on the left says when in the two hours
-   this arrives, so the page shows where the time actually goes. */
-.plan{list-style:none; margin:0; padding:0}
-.seg{display:grid; grid-template-columns:62px 1fr; gap:0 18px; padding:22px 0; border-bottom:1px solid var(--rule)}
-.clock{
-  font:500 13px/1.4 JetBrains Mono, monospace; color:var(--ink-3);
-  font-variant-numeric:tabular-nums; padding-top:3px; text-align:right;
+.ex-stage{
+  position:relative;
+  background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+  padding:calc(var(--u)*3); box-shadow:0 30px 70px -40px #000;
 }
-.clock b{display:block; font-weight:500; color:var(--ink-2)}
-.clock .dur{color:var(--ink-3); font-size:12px}
-
-.seg-head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin:0 0 4px}
-.seg h3{font:600 18px/1.35 Literata, Georgia, serif; margin:0; letter-spacing:-.005em}
-.depth{
-  font:500 10px/1 JetBrains Mono, monospace; letter-spacing:.1em; text-transform:uppercase;
-  padding:4px 7px; border-radius:4px; border:1px solid currentColor; white-space:nowrap;
+/* A loop that runs indefinitely beside other content has to be stoppable. */
+.st-pause{
+  position:absolute; top:calc(var(--u)*1.5); right:calc(var(--u)*1.5); z-index:2;
+  border:1px solid var(--line); border-radius:999px; padding:4px 11px;
+  font-size:11px; font-weight:600; letter-spacing:.06em; color:var(--ink-3);
+  opacity:0; transition:opacity .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
 }
-.depth.intro{color:var(--intro)} .depth.mechanism{color:var(--mechanism)}
-.depth.example{color:var(--example)} .depth.debate{color:var(--debate)}
+.ex-stage:hover .st-pause, .st-pause:focus-visible{opacity:1}
+.st-pause:hover{color:var(--ink); border-color:var(--line-2)}
+.st-cap{display:block; font-size:11px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+.st-bar{
+  display:flex; align-items:center; gap:calc(var(--u)*1.5); margin-top:calc(var(--u)*1.5);
+  background:var(--raise); border:1px solid var(--line-2); border-radius:var(--r-sm);
+  padding:calc(var(--u)*1.25) calc(var(--u)*1.25) calc(var(--u)*1.25) calc(var(--u)*2);
+}
+.st-type{font-size:16px; color:var(--ink); white-space:nowrap; overflow:hidden}
+.st-caret{width:1.5px; height:18px; background:var(--accent); animation:blink 1s steps(2,end) infinite; flex:none}
+@keyframes blink{50%{opacity:0}}
+.st-go{
+  margin-left:auto; flex:none; background:var(--accent); color:var(--accent-ink);
+  border-radius:6px; padding:8px 15px; font-size:13.5px; font-weight:600;
+}
+.st-chips{display:flex; gap:7px; margin-top:calc(var(--u)*1.5); flex-wrap:wrap}
+.st-chips span{
+  border:1px solid var(--line); border-radius:999px; padding:5px 12px;
+  font-size:12.5px; color:var(--ink-3); transition:background .4s var(--ease), color .4s var(--ease), border-color .4s var(--ease);
+}
+.st-chips span.picked{background:var(--ink); border-color:var(--ink); color:var(--canvas)}
 
-.why{margin:6px 0 0; color:var(--ink-2); font-size:15px; text-wrap:pretty}
-.meta{margin:10px 0 0; font:400 13px/1.4 JetBrains Mono, monospace; color:var(--ink-3)}
-.meta a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-soft)}
-.meta a:hover{border-bottom-color:var(--accent)}
-.bar{margin:12px 0 0; height:3px; background:var(--sunk); border-radius:2px; overflow:hidden}
-.bar span{display:block; height:100%; border-radius:2px; background:var(--rule-2)}
-.seg.intro .bar span{background:var(--intro)} .seg.mechanism .bar span{background:var(--mechanism)}
-.seg.example .bar span{background:var(--example)} .seg.debate .bar span{background:var(--debate)}
+.st-out{margin-top:calc(var(--u)*3); padding-top:calc(var(--u)*2.5); border-top:1px solid var(--line)}
+.st-outhead{
+  display:flex; align-items:baseline; justify-content:space-between; gap:calc(var(--u)*2);
+  font-size:11px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3);
+}
+.st-figs{letter-spacing:.02em; text-transform:none; font-size:12.5px; font-weight:400}
+.st-figs b{font-weight:600; color:var(--ink-2)}
+.st-rows{margin-top:calc(var(--u)*2); display:flex; flex-direction:column; gap:calc(var(--u)*1.25)}
+.st-rows li{
+  display:grid; grid-template-columns:24px 76px 1fr auto; gap:calc(var(--u)*1.5);
+  align-items:center; opacity:0; transform:translateY(10px);
+}
+.st-rows li.more{
+  grid-template-columns:1fr; font-size:12.5px; color:var(--ink-3); padding-top:calc(var(--u)*.5);
+}
+.stage-go .st-rows li{animation:rise .55s var(--ease) forwards; animation-delay:calc(var(--i)*130ms + 1900ms)}
+/* Pausing part-way through must not leave the rows mid-animation at zero
+   opacity, so the settled state is painted directly rather than waited for. */
+.stage-settled .st-rows li{opacity:1; transform:none; animation:none}
+.st-rows .n{font-family:"Instrument Serif",Georgia,serif; font-size:17px; color:var(--ink-3)}
+.st-rows .th{border-radius:5px; overflow:hidden; aspect-ratio:16/9; background:var(--raise)}
+.st-rows .th img{width:100%; height:100%; object-fit:cover}
+.st-rows .tx{min-width:0}
+.st-rows .tx b{display:block; font-size:13.5px; font-weight:600; line-height:1.3; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.st-rows .tx i{display:block; margin-top:3px; font-style:normal; font-size:12px; color:var(--ink-3)}
+.st-rows .tm{font-size:12.5px; color:var(--ink-3); white-space:nowrap}
+
+.ex-why{margin-top:calc(var(--u)*8); padding-top:calc(var(--u)*4); border-top:1px solid var(--line)}
+.ex-why h3{font-size:19px; font-weight:600; letter-spacing:-.018em}
+.ex-points{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:calc(var(--u)*4);
+  margin-top:calc(var(--u)*4);
+}
+.ex-points li{font-size:14.5px; line-height:1.65; color:var(--ink-2); text-wrap:pretty}
+.ex-points b{display:block; margin-bottom:6px; color:var(--ink); font-weight:600; font-size:15.5px; letter-spacing:-.01em}
+
+@media (prefers-reduced-motion:reduce){
+  .st-caret{animation:none}
+  .stage-go .st-rows li, .st-rows li{opacity:1; transform:none; animation:none}
+  .ex-steps li{opacity:1}
+}
+
+/* ---------------------------------------------------------------- sections */
+.sec{margin-top:calc(var(--u)*9)}
+.sec.starters{margin-top:calc(var(--u)*12)}
+.sec-head{
+  display:flex; align-items:baseline; gap:calc(var(--u)*2); flex-wrap:wrap;
+  padding-bottom:calc(var(--u)*2); border-bottom:1px solid var(--line);
+}
+.sec-head h2{font-size:19px; font-weight:600; letter-spacing:-.018em}
+.sec-head .side{margin-left:auto; font-size:14px; color:var(--ink-3)}
+
+/* ---------------------------------------------------------------- pipeline */
+.stages{display:grid; grid-template-columns:repeat(8,1fr); gap:calc(var(--u)*1); margin-top:calc(var(--u)*3)}
+.stage{position:relative; padding-top:calc(var(--u)*1.5)}
+.stage::before, .stage::after{content:""; position:absolute; top:0; left:0; right:0; height:2px; border-radius:2px}
+.stage::before{background:var(--line)}
+.stage::after{background:var(--ink); transform:scaleX(0); transform-origin:left; transition:transform .55s var(--ease-firm)}
+.stage.done::after{transform:scaleX(1)}
+.stage.active::after{transform:scaleX(1); background:var(--accent); animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+.stage .n{display:block; font-size:11px; font-weight:600; color:var(--ink-3)}
+.stage .nm{display:block; margin-top:6px; min-height:2.7em; font-size:12.5px; line-height:1.35; color:var(--ink-3); text-wrap:pretty}
+.stage.done .nm{color:var(--ink-2)}
+.stage.active .nm{color:var(--ink)}
+.stage .by{display:block; margin-top:4px; font-size:10.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
+.stage .by[data-by="model"]{color:var(--accent)}
+.pipe-note{margin-top:calc(var(--u)*4); max-width:66ch; font-size:14.5px; line-height:1.65; color:var(--ink-3)}
+/* The pipeline is now an explainer at the foot of the page, not the progress
+   indicator, so it keeps its heading whether or not a plan is on screen. */
+@media (prefers-reduced-motion:reduce){
+  .stage.active::after, #go .spin{animation:none}
+  .hero h1 .w, .hero .lede{opacity:1; transform:none; animation:none}
+}
+
+/* ---------------------------------------------------------------- starters */
+.starts{display:grid; grid-template-columns:repeat(3,1fr); gap:calc(var(--u)*2); margin-top:calc(var(--u)*3)}
+.starter{
+  text-align:left; background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+  padding:calc(var(--u)*3); display:flex; flex-direction:column; gap:calc(var(--u)*1.5);
+  transition:border-color .3s var(--ease), transform .3s var(--ease), background .3s var(--ease);
+}
+.starter:hover{border-color:var(--line-2); background:var(--card-hi); transform:translateY(-3px)}
+.starter .q{font-size:18px; line-height:1.35; letter-spacing:-.015em; color:var(--ink)}
+.starter .m{font-size:13px; color:var(--ink-3); margin-top:auto; display:flex; align-items:center; gap:8px}
+.starter .m::after{
+  content:"\2192"; margin-left:auto; font-size:16px; color:var(--ink-3);
+  transition:transform .35s var(--ease), color .35s var(--ease);
+}
+.starter:hover .m::after{transform:translateX(4px); color:var(--accent)}
+body.is-done .sec.starters{display:none}
+
+/* ------------------------------------------------------------------ result */
+#result{display:none}
+body.is-done #result{display:block}
+
+.shared{
+  display:flex; align-items:center; gap:calc(var(--u)*2); margin-top:calc(var(--u)*4);
+  background:var(--accent-wash); border:1px solid var(--accent); border-radius:var(--r);
+  padding:calc(var(--u)*2) calc(var(--u)*2.5); font-size:14.5px; color:var(--ink-2);
+}
+.shared b{color:var(--ink)}
+.shared button{
+  margin-left:auto; flex:none; border:1px solid var(--line-2); border-radius:var(--r-sm);
+  padding:8px 14px; font-size:13px; font-weight:500; color:var(--ink-2);
+  transition:border-color .25s var(--ease), color .25s var(--ease);
+}
+.shared button:hover{border-color:var(--ink); color:var(--ink)}
+
+.summary{margin-top:calc(var(--u)*5)}
+.sum-top{display:flex; align-items:flex-end; gap:calc(var(--u)*3); flex-wrap:wrap}
+.sum-top h2{
+  flex:1 1 340px; font-family:"Instrument Serif", Georgia, serif; font-weight:400;
+  font-size:clamp(32px,5vw,58px); line-height:1.03; letter-spacing:-.025em; text-wrap:balance;
+}
+.acts{display:flex; gap:calc(var(--u)*1); flex:none}
+.act{
+  display:flex; align-items:center; gap:9px; border:1px solid var(--line-2); border-radius:var(--r-sm);
+  background:var(--card); padding:11px 17px; font-size:14px; font-weight:500; color:var(--ink-2);
+  transition:border-color .25s var(--ease), color .25s var(--ease), background .25s var(--ease), transform .18s var(--ease);
+}
+.act:hover{border-color:var(--ink); color:var(--ink); background:var(--card-hi); transform:translateY(-1px)}
+.act svg{width:15px; height:15px; flex:none; stroke:currentColor; fill:none; stroke-width:1.5}
+.act.ok{border-color:var(--accent); color:var(--accent)}
+
+.figures{
+  display:grid; grid-template-columns:repeat(3,auto); justify-content:start;
+  gap:0 calc(var(--u)*8); margin-top:calc(var(--u)*4);
+  padding:calc(var(--u)*3) 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+.fig b{
+  display:block; font-family:"Instrument Serif", Georgia, serif; font-weight:400;
+  font-size:clamp(40px,6vw,64px); line-height:.95; letter-spacing:-.03em;
+}
+.fig .lbl{display:block; margin-top:calc(var(--u)*1.5)}
+.fig .sub{display:block; margin-top:5px; font-size:12.5px; color:var(--ink-3)}
+
+/* -------------------------------------------------------- things to cover */
+.cover-note{margin-top:calc(var(--u)*2.5); max-width:76ch; font-size:15px; line-height:1.65; color:var(--ink-2)}
+.concepts{display:flex; flex-wrap:wrap; gap:calc(var(--u)*1.25); margin-top:calc(var(--u)*3)}
+.concepts li{
+  display:flex; align-items:center; gap:9px; padding:9px 15px; border-radius:999px;
+  border:1px solid var(--line); background:var(--card); font-size:14px; color:var(--ink-2);
+}
+.concepts li .mk{font-size:12px; color:var(--example); flex:none}
+.concepts li.no{border-style:dashed; color:var(--ink-3); background:none}
+.concepts li.no .mk{color:var(--accent)}
+.concepts li.no .nm{text-decoration:line-through; text-decoration-color:var(--accent)}
+.gap-note{margin-top:calc(var(--u)*3); max-width:76ch; font-size:14.5px; line-height:1.65; color:var(--ink-3)}
+
+/* --------------------------------------------------------------- the plan
+   A list of real videos. The thumbnail is the link, which is what makes the
+   link look like a link. */
+.plan{margin-top:calc(var(--u)*3); display:flex; flex-direction:column; gap:calc(var(--u)*1.5)}
+.step{
+  position:relative; display:grid; grid-template-columns:56px 208px 1fr 150px;
+  gap:calc(var(--u)*3); align-items:start;
+  background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+  padding:calc(var(--u)*2.5);
+  transition:border-color .35s var(--ease), background .35s var(--ease), transform .35s var(--ease);
+}
+.step:hover{border-color:var(--line-2); background:var(--card-hi); transform:translateY(-2px)}
+/* Cursor-tracked highlight, set from JS as --mx/--my. */
+.step::before{
+  content:""; position:absolute; inset:0; border-radius:var(--r); pointer-events:none;
+  background:radial-gradient(440px circle at var(--mx,50%) var(--my,50%), var(--accent-wash), transparent 62%);
+  opacity:0; transition:opacity .4s var(--ease);
+}
+.step:hover::before{opacity:1}
+body.is-done .step{opacity:0; transform:translateY(14px); animation:rise .55s var(--ease) forwards; animation-delay:calc(var(--i)*45ms + 120ms)}
+@media (prefers-reduced-motion:reduce){body.is-done .step{opacity:1; transform:none; animation:none}}
+
+.s-ord{position:relative; z-index:1}
+.s-ord .num{
+  font-family:"Instrument Serif", Georgia, serif; font-size:34px; line-height:1;
+  color:var(--ink-3); letter-spacing:-.02em;
+}
+.step:hover .s-ord .num{color:var(--accent)}
+
+/* thumbnail */
+.s-thumb{position:relative; z-index:1; display:block; border-radius:var(--r-sm); overflow:hidden; background:var(--raise); aspect-ratio:16/9}
+.s-thumb img{width:100%; height:100%; object-fit:cover; transition:transform .5s var(--ease), opacity .3s var(--ease)}
+.s-thumb:hover img{transform:scale(1.05)}
+.s-thumb .play{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,.1));
+  opacity:1; transition:background .3s var(--ease);
+}
+.s-thumb:hover .play{background:linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,.25))}
+.s-thumb .play span{
+  width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,.94);
+  display:flex; align-items:center; justify-content:center;
+  transition:transform .35s var(--ease), background .3s var(--ease);
+}
+.s-thumb:hover .play span{transform:scale(1.1); background:var(--accent)}
+.s-thumb .play svg{width:13px; height:13px; margin-left:2px; fill:#0a0a0c; transition:fill .3s var(--ease)}
+.s-thumb:hover .play svg{fill:#fff}
+.s-thumb .tag{
+  position:absolute; right:7px; bottom:7px; background:rgba(0,0,0,.82); color:#fff;
+  font-size:11.5px; font-weight:600; padding:3px 7px; border-radius:5px; letter-spacing:.01em;
+}
+
+.s-body{position:relative; z-index:1; min-width:0}
+.s-body h3{font-size:19px; font-weight:600; line-height:1.3; letter-spacing:-.018em; text-wrap:pretty}
+.s-body .why{margin-top:calc(var(--u)*1.25); font-size:14.5px; line-height:1.6; color:var(--ink-2); max-width:64ch; text-wrap:pretty}
+.s-meta{display:flex; align-items:center; gap:calc(var(--u)*1.5); flex-wrap:wrap; margin-top:calc(var(--u)*2)}
+.s-meta .who{font-size:13.5px; color:var(--ink-3)}
+.s-meta .dot{width:3px; height:3px; border-radius:50%; background:var(--line-2); flex:none}
+.s-meta .when{font-size:13.5px; color:var(--ink-3)}
+
+/* Depth: a tinted chip, a glyph and the word. Never colour on its own. */
+.kind{
+  display:inline-flex; align-items:center; gap:7px; padding:5px 11px; border-radius:999px;
+  font-size:11.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  border:1px solid currentColor;
+}
+.kind .gl{width:8px; height:8px; border:1.5px solid currentColor; flex:none}
+.kind.mechanism .gl{background:currentColor}
+.kind.example .gl{background:linear-gradient(135deg, currentColor 50%, transparent 50%)}
+.kind.debate .gl{background:linear-gradient(currentColor 0 34%, transparent 34% 66%, currentColor 66%)}
+.kind.intro{color:var(--intro)} .kind.mechanism{color:var(--mechanism)}
+.kind.example{color:var(--example)} .kind.debate{color:var(--debate)}
+
+.s-side{position:relative; z-index:1; display:flex; flex-direction:column; align-items:flex-end; gap:calc(var(--u)*1.5); text-align:right}
+.s-side .len{font-size:22px; font-weight:600; letter-spacing:-.02em}
+.s-side .len i{display:block; font-style:normal; font-size:11.5px; font-weight:600; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); margin-top:3px}
+/* An unmistakable control, not an underlined string. */
+.watch{
+  display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+  background:var(--accent); color:var(--accent-ink); border-radius:999px;
+  padding:9px 15px; font-size:13px; font-weight:600; white-space:nowrap;
+  transition:background .28s var(--ease-firm), transform .2s var(--ease);
+}
+.watch:hover{background:var(--accent-hi); transform:translateY(-1px)}
+.watch svg{width:10px; height:10px; fill:currentColor; flex:none}
 
 .flag{
-  margin:10px 0 0; padding:9px 12px; border-radius:7px; font-size:13.5px;
-  background:var(--warn-bg); color:var(--warn-ink); border:1px solid var(--warn-rule);
+  grid-column:3 / -1; margin-top:calc(var(--u)*2); position:relative; z-index:1;
+  border-left:2px solid var(--accent); background:var(--accent-wash);
+  padding:calc(var(--u)*1.5) calc(var(--u)*2); border-radius:0 var(--r-sm) var(--r-sm) 0;
+  font-size:13.5px; line-height:1.6; color:var(--ink-2);
 }
+.flag b{color:var(--ink)}
 
-/* -------------------------------------------------------------- coverage */
-.coverage{margin:36px 0 0; padding:22px; background:var(--surface); border:1px solid var(--rule); border-radius:12px}
-.coverage h3{font:600 17px/1.3 Literata, Georgia, serif; margin:0 0 4px}
-.coverage p{margin:0 0 14px; color:var(--ink-2); font-size:14.5px}
-.concepts{display:flex; flex-wrap:wrap; gap:7px; list-style:none; margin:0; padding:0}
-.concepts li{
-  font-size:13.5px; padding:5px 11px; border-radius:999px;
-  border:1px solid var(--rule-2); color:var(--ink-2); background:var(--ground);
+/* ------------------------------------------------------------------ closer */
+.closer{
+  margin-top:calc(var(--u)*12); padding:calc(var(--u)*9) calc(var(--u)*4);
+  border:1px solid var(--line); border-radius:var(--r); text-align:center;
+  background:radial-gradient(760px 300px at 50% 120%, var(--accent-wash), transparent 70%), var(--card);
 }
-.concepts li.no{
-  border-style:dashed; color:var(--ink-3);
-  text-decoration:line-through; text-decoration-color:var(--rule-2);
+body.is-done .closer{display:none}
+.closer h2{font-size:clamp(30px,4.4vw,48px); line-height:1.05; letter-spacing:-.025em}
+.closer p{margin:calc(var(--u)*2.5) auto 0; max-width:50ch; font-size:16.5px; line-height:1.65; color:var(--ink-2); text-wrap:pretty}
+.closer-go{
+  margin-top:calc(var(--u)*4); background:var(--accent); color:var(--accent-ink);
+  border-radius:999px; padding:15px 34px; font-size:16px; font-weight:600;
+  transition:background .3s var(--ease-firm), transform .2s var(--ease);
 }
-.missing-note{margin:14px 0 0; font-size:14px; color:var(--ink-2)}
+.closer-go:hover{background:var(--accent-hi); transform:translateY(-2px)}
+.closer-go:active{transform:translateY(0)}
 
-footer{margin:48px 0 64px; padding-top:20px; border-top:1px solid var(--rule); font-size:13px; color:var(--ink-3)}
-footer code{font:400 12.5px/1 JetBrains Mono, monospace; color:var(--ink-2)}
+/* ----------------------------------------------------------------- notices */
 #err{
-  display:none; margin:28px 0 0; padding:16px 18px; border-radius:10px;
-  background:var(--warn-bg); color:var(--warn-ink); border:1px solid var(--warn-rule);
+  display:none; margin-top:calc(var(--u)*4); border:1px solid var(--accent);
+  background:var(--accent-wash); border-radius:var(--r);
+  padding:calc(var(--u)*2.25) calc(var(--u)*3); font-size:15px; color:var(--ink-2);
 }
 #err.on{display:block}
+.demo{
+  display:none; margin-top:calc(var(--u)*3); text-align:center; font-size:13.5px; color:var(--ink-3);
+}
+body.is-demo .demo{display:block}
 
-@media (max-width:560px){
-  header{padding-top:36px}
-  .seg{grid-template-columns:1fr; gap:8px}
-  .clock{text-align:left; display:flex; gap:10px; padding-top:0}
-  .summary{gap:18px}
+.foot{margin-top:calc(var(--u)*14); border-top:1px solid var(--line); background:var(--raise)}
+.foot .shell{padding-top:calc(var(--u)*7); padding-bottom:calc(var(--u)*7)}
+.foot-grid{display:grid; grid-template-columns:1fr 1fr; gap:calc(var(--u)*6)}
+.foot p{margin-bottom:calc(var(--u)*1.5); font-size:13.5px; line-height:1.7; color:var(--ink-3); max-width:64ch}
+.foot .lbl{display:block; margin-bottom:calc(var(--u)*2)}
+.foot a{color:var(--ink-2); text-decoration:none; border-bottom:1px solid var(--line-2)}
+.foot a:hover{color:var(--ink); border-color:var(--ink)}
+.foot strong{color:var(--ink-2); font-weight:600}
+
+.print-cover, .plain-url, .print-only{display:none}
+
+/* ----------------------------------------------------------------- narrow */
+@media (max-width:1040px){
+  .step{grid-template-columns:44px 170px 1fr; gap:calc(var(--u)*2.5)}
+  .s-side{grid-column:2 / -1; flex-direction:row; align-items:center; justify-content:flex-start; text-align:left; margin-top:calc(var(--u)*1)}
+  .s-side .len i{display:inline; margin:0 0 0 5px}
+  .flag{grid-column:1 / -1}
+}
+@media (max-width:860px){
+  /* The explainer is the second fold, so it must not stay multi-column and
+     cramped on a phone. */
+  .ex-grid{grid-template-columns:1fr; gap:calc(var(--u)*5)}
+  .ex-points{grid-template-columns:1fr; gap:calc(var(--u)*3.5)}
+  .starts{grid-template-columns:1fr}
+  .stage .nm, .stage .by, .stage .n{display:none}
+  .stage{padding-top:calc(var(--u)*.5)}
+  .foot-grid{grid-template-columns:1fr; gap:calc(var(--u)*4)}
+}
+@media (max-width:680px){
+  .shell{padding:0 calc(var(--u)*2.5)}
+  .hero{padding:calc(var(--u)*7) 0 calc(var(--u)*3)}
+  .q-shell{flex-wrap:wrap; padding:calc(var(--u)*1.5)}
+  #topic{flex:1 1 100%; padding:calc(var(--u)*1.5)}
+  #go{width:100%; justify-content:center}
+  .chip{padding:8px 14px; font-size:13.5px}
+  /* The row wraps here, which left a separator dangling at the end of a line. */
+  .s-meta{gap:calc(var(--u)*1.25) calc(var(--u)*1.5)}
+  .s-meta .dot{display:none}
+  .s-meta .when{flex:1 0 100%}
+  .step{grid-template-columns:44px 1fr; gap:calc(var(--u)*2); padding:calc(var(--u)*2)}
+  .s-thumb{grid-column:1 / -1; max-width:none}
+  .s-body{grid-column:1 / -1}
+  .s-side{grid-column:1 / -1}
+  .acts{width:100%}
+  .act{flex:1; justify-content:center}
+  .figures{grid-template-columns:repeat(3,1fr); gap:0 calc(var(--u)*2)}
+  .sum-top h2{flex-basis:100%}
+}
+
+/* =========================================================================
+   PRINT. Forced light, thumbnails dropped, addresses printed. The dark
+   selectors are named explicitly because [data-theme] outranks a bare :root,
+   and this document is always data-theme="dark" by default.
+   ========================================================================= */
+@media print{
+  :root, :root[data-theme="dark"], :root[data-theme="light"]{
+    --canvas:#fff; --raise:#fff; --card:#fff; --card-hi:#fff;
+    --line:#cfcfcc; --line-2:#a8a8a4;
+    --ink:#000; --ink-2:#38383d; --ink-3:#66666d;
+    --accent:#9c2b24; --accent-wash:transparent; --accent-ink:#fff;
+    --intro:#7d4f0f; --mechanism:#1d4e8c; --example:#1a5634; --debate:#8a2f51;
+    --glow:transparent; --shade:transparent;
+  }
+  @page{size:A4; margin:14mm 13mm 15mm}
+  html,body{background:#fff !important}
+  body{font-size:9.4pt; line-height:1.42; print-color-adjust:exact; -webkit-print-color-adjust:exact}
+  .shell{max-width:none; padding:0}
+  .bloom,.grain,.skip,.masthead,.hero,.query,.sec.pipeline,.sec.starters,.sec.explain,.closer,.acts,.shared,.demo,#err,#validate,.running{display:none !important}
+  #result{display:block !important}
+  .summary{margin:0}
+  .sum-top h2,.figures{display:none}
+
+  .print-cover{display:block; border-bottom:1.5pt solid #000; padding-bottom:7pt; margin-bottom:13pt}
+  .print-cover .pc-top{display:flex; justify-content:space-between; font-size:7.5pt; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:#66666d; margin-bottom:9pt}
+  .print-cover h1{font-family:"Instrument Serif",Georgia,serif; font-size:24pt; font-weight:400; letter-spacing:-.02em; margin-bottom:6pt}
+  .print-cover .pc-figs{font-size:9pt; color:#38383d}
+
+  .sec{margin-top:0 !important}
+  .sec-head{padding-bottom:3pt; border-bottom:.6pt solid #000}
+  .sec-head h2{font-size:9pt} .sec-head .side{font-size:8pt}
+  .cover-note{font-size:8.6pt; margin-top:5pt}
+  .concepts{gap:4pt; margin-top:6pt}
+  .concepts li{font-size:8pt; padding:2pt 6pt; border:.4pt solid #cfcfcc; background:none}
+  .gap-note{font-size:8.2pt; margin-top:6pt}
+
+  .plan{gap:0; margin-top:8pt}
+  .step{
+    grid-template-columns:34pt 1fr 78pt; gap:0 10pt; padding:7pt 0;
+    border:0; border-bottom:.4pt solid #cfcfcc; border-radius:0; background:none;
+    break-inside:avoid; opacity:1 !important; transform:none !important; animation:none !important;
+  }
+  .step::before{display:none}
+  .s-thumb{display:none}                 /* ink, and they would not add anything on paper */
+  /* An A4 page is about 794 CSS px, so the 1040px and 860px breakpoints above
+     are live during print. They reflow .s-side onto its own grid row, which
+     opened a gap under every segment and added two pages. Place it here. */
+  .s-ord{grid-column:1; grid-row:1}
+  .s-body{grid-column:2; grid-row:1}
+  .s-side{grid-column:3; grid-row:1}
+  .s-ord .num{font-size:15pt; color:#66666d}
+  .s-body h3{font-size:11pt}
+  .s-body .why{font-size:8.6pt; margin-top:2pt}
+  .s-meta{margin-top:3pt; gap:6pt}
+  .s-meta .who,.s-meta .when{font-size:8pt}
+  .kind{padding:1pt 4pt; font-size:6.6pt; border-width:.4pt}
+  .s-side{flex-direction:column; align-items:flex-end; text-align:right; margin:0; gap:2pt}
+  .s-side .len{font-size:10pt}
+  .s-side .len i{display:block; font-size:6.6pt; margin:1pt 0 0}
+  .watch{background:none; color:#000; padding:0; font-size:8pt; border-radius:0}
+  .watch svg{display:none}
+  /* A printed hyperlink is not clickable, so the address prints too. */
+  .plain-url{display:block; margin-top:3pt; font-size:7pt; color:#66666d}
+  .flag{margin-top:3pt; padding:3pt 5pt; font-size:7.8pt; background:none; border-left-width:2pt; grid-column:2 / -1}
+
+  .foot{margin-top:11pt; border-top:.6pt solid #cfcfcc; background:none}
+  .foot .shell{padding:6pt 0 0}
+  .foot-grid{grid-template-columns:1fr}
+  .foot p{font-size:7.4pt; margin-bottom:2pt}
+  .foot .lbl, .foot .no-print{display:none}
+  .foot a{border:0}
+  .print-only{display:block}
 }
 </style>
 </head>
-<body>
-<div class="wrap">
+<body class="is-idle">
 
-<header>
-  <div class="brand">
-    <h1>Learning Compiler</h1>
-    <span class="tag" id="idxtag">loading index</span>
+<div class="bloom" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="page">
+
+<header class="masthead">
+  <div class="shell">
+    <a class="wordmark" href="/">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="#0A0A0C"/>
+        <rect x="6.5" y="8" width="19" height="3" rx="1.5" fill="#F7F7F8"/>
+        <rect x="6.5" y="14.5" width="12" height="3" rx="1.5" fill="#F7F7F8" opacity=".55"/>
+        <rect x="6.5" y="21" width="15" height="3" rx="1.5" fill="#F2564D"/>
+      </svg>
+      <b translate="no">Learning Compiler</b>
+    </a>
+    <button class="back" id="back" type="button">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 3.5 5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>New search</span>
+    </button>
   </div>
-  <p class="lede">
-    Say what you want to understand and how long you have. You get back the
-    segments worth watching, in the order that teaches best, with exact
-    timestamps. Everything is on YouTube; the plan is the thing being made here.
-  </p>
 </header>
 
-<form id="f">
-  <div class="field">
-    <input id="topic" autocomplete="off" spellcheck="false"
-           placeholder="how RAG works, or: I know nothing about AI, where do I start">
-    <button id="go" type="submit">Compile</button>
-  </div>
-  <div class="budget" role="group" aria-label="Time available">
-    <span class="budget-label">I have</span>
-    <button class="chip" type="button" data-min="30">30 min</button>
-    <button class="chip" type="button" data-min="60">1 hour</button>
-    <button class="chip" type="button" data-min="90">90 min</button>
-    <button class="chip" type="button" data-min="120" aria-pressed="true">2 hours</button>
-  </div>
-  <p class="examples">
-    Try:
-    <button type="button" data-ex="how transformers work" data-min="120">how transformers work</button> ·
-    <button type="button" data-ex="should I fine tune or use RAG" data-min="60">should I fine tune or use RAG</button> ·
-    <button type="button" data-ex="I need to understand RAG before a meeting" data-min="30">before a meeting</button>
-  </p>
-</form>
+<div class="shell">
 
-<div id="progress" aria-live="polite"></div>
-<div id="err" role="alert"></div>
-<main id="result"></main>
+  <section class="hero">
+    <h1 id="headline">Learn the thing, <em>not the video.</em></h1>
+    <p class="lede">
+      YouTube has the explanation you need. It is buried in minute 34 of an
+      hour-long video you have not found yet. Say what you want to understand
+      and how long you have, and this returns the exact minutes worth watching,
+      in the order that teaches them.
+    </p>
+  </section>
 
-<footer>
-  <span id="footidx">Built from an index of YouTube transcripts.</span>
-  Nothing is hosted here and no video is re-uploaded: every link goes to the
-  creator's own video, at the right moment in it.
-  <br><br>
-  <code id="cost"></code>
+  <form class="query" id="f" novalidate>
+    <span class="lbl cap">What do you want to understand?</span>
+    <div class="q-shell">
+      <input id="topic" autocomplete="off" spellcheck="false" enterkeyhint="go"
+             aria-label="What do you want to understand?"
+             placeholder="how RAG works…">
+      <button id="go" type="submit"><span class="spin" aria-hidden="true"></span><span id="golabel">Compile</span></button>
+    </div>
+    <div class="budget" role="group" aria-label="Time available">
+      <button class="chip" type="button" data-min="30">30 min</button>
+      <button class="chip" type="button" data-min="60">1 hour</button>
+      <button class="chip" type="button" data-min="90">90 min</button>
+      <button class="chip" type="button" data-min="120" aria-pressed="true">2 hours</button>
+    </div>
+    <p id="validate">Say what you want to understand first.</p>
+
+    <!-- The stage strip now lives at the foot of the page, so progress needs
+         its own indicator here, where the person is actually looking. -->
+    <div class="running" id="running" aria-live="polite">
+      <div class="track"><span id="trackfill"></span></div>
+      <p class="rline"><span id="livetext"></span><span class="rstep" id="rstep"></span></p>
+    </div>
+  </form>
+
+  <p class="demo" id="demotag">Demo mode. Stages are timed like a real run, but the plan is one captured earlier and no model is being called.</p>
+
+  <div id="err" role="alert"></div>
+
+  <main id="main">
+
+    <section class="sec starters">
+      <div class="sec-head">
+        <h2>Nothing in mind? Take one of these.</h2>
+        <span class="side">Each one compiles a full plan</span>
+      </div>
+      <div class="starts">
+        <button class="starter" type="button" data-ex="I know nothing about AI, where do I start" data-min="120">
+          <span class="q">I know nothing about AI, where do I start</span>
+          <span class="m">2 hours · reads the intent, not the keywords</span>
+        </button>
+        <button class="starter" type="button" data-ex="how transformers work" data-min="120">
+          <span class="q">how transformers work</span>
+          <span class="m">2 hours · roughly 20 segments</span>
+        </button>
+        <button class="starter" type="button" data-ex="should I fine tune or use RAG" data-min="60">
+          <span class="q">should I fine tune or use RAG</span>
+          <span class="m">1 hour · a comparison, so it leans on debate</span>
+        </button>
+      </div>
+    </section>
+    <!-- What this is, shown rather than described, with a real slice of real
+         output. Someone who lands here should not have to read a repository
+         to understand the product. -->
+    <section class="sec explain" id="explain" aria-label="What this does">
+      <div class="ex-head">
+        <h2 class="serif">You bring a question<br>and a deadline.</h2>
+        <p>
+          A search box gives you ten hour-long videos and wishes you luck. The
+          unit of YouTube is the video; the unit of learning is the idea, and
+          they do not line up. So you pay a search-and-skip tax on every video,
+          and pay it again on the next one. Two free hours can lose thirty
+          minutes before you learn anything.
+        </p>
+      </div>
+
+      <div class="ex-grid">
+        <ol class="ex-steps">
+          <li data-step="1">
+            <b>01</b>
+            <h3>Ask in plain language</h3>
+            <p>A topic, a question, or the thing you are stuck on. "I know nothing about AI, where do I start" works as well as a keyword does.</p>
+          </li>
+          <li data-step="2">
+            <b>02</b>
+            <h3>Say how long you have</h3>
+            <p>Thirty minutes before a meeting, or a free Sunday. Your time is the constraint the plan is built around, so it fills the hour without running past it.</p>
+          </li>
+          <li data-step="3">
+            <b>03</b>
+            <h3>Get a plan, not a results page</h3>
+            <p>Every entry opens the creator's own video at the second it starts being useful. Nothing repeats, and nothing is filler.</p>
+          </li>
+        </ol>
+
+        <!-- Plays once when scrolled into view: types the question, picks the
+             budget, then deals in three real rows from a real plan. -->
+        <div class="ex-stage" id="stage">
+          <button class="st-pause" id="stpause" type="button" aria-label="Pause the demonstration">Pause</button>
+          <div class="st-top" aria-hidden="true">
+            <span class="st-cap">What do you want to understand?</span>
+            <div class="st-bar">
+              <span class="st-type" id="sttype"></span><span class="st-caret"></span>
+              <span class="st-go">Compile</span>
+            </div>
+            <div class="st-chips">
+              <span>30 min</span><span>1 hour</span><span>90 min</span><span data-pick>2 hours</span>
+            </div>
+          </div>
+
+          <div class="st-out" aria-hidden="true">
+            <div class="st-outhead">
+              <span>Your plan</span>
+              <span class="st-figs"><b id="stmin">0</b> min · <b id="stseg">0</b> segments · <b id="stcre">0</b> creators</span>
+            </div>
+            <ol class="st-rows">
+              <li style="--i:0">
+                <span class="n">01</span>
+                <span class="th"><img src="https://i.ytimg.com/vi/T-D1OfcDW1M/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" referrerpolicy="no-referrer"></span>
+                <span class="tx"><b>The limitations of standalone LLMs</b><i>IBM Technology · starts 0:00</i></span>
+                <span class="tm">5 min</span>
+              </li>
+              <li style="--i:1">
+                <span class="n">02</span>
+                <span class="th"><img src="https://i.ytimg.com/vi/izbifbq3-eI/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" referrerpolicy="no-referrer"></span>
+                <span class="tx"><b>Mathematical nature of embeddings</b><i>Annie Sexton · starts 0:05</i></span>
+                <span class="tm">3 min</span>
+              </li>
+              <li style="--i:2">
+                <span class="n">03</span>
+                <span class="th"><img src="https://i.ytimg.com/vi/72XgD322wZ8/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" referrerpolicy="no-referrer"></span>
+                <span class="tx"><b>Word and sentence embeddings</b><i>codebasics · starts 0:07</i></span>
+                <span class="tm">3 min</span>
+              </li>
+              <li class="more" style="--i:3">and 23 more, to the minute you asked for</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="ex-why">
+        <h3>What a plan does that a search box cannot</h3>
+        <ul class="ex-points">
+          <li>
+            <b>You watch minutes, not videos.</b>
+            A search result is a 52-minute video with the right words in the
+            title. Finding the four minutes that actually answer you is still
+            your job, and you do it again on the next video. Here that work is
+            already done: every entry opens at the second the answer starts.
+          </li>
+          <li>
+            <b>You never sit through the same idea twice.</b>
+            Ten creators explain embeddings, and nine of them explain it much
+            the same way. Watching all ten is not ten times the understanding,
+            it is nine repeats. Overlap is caught by meaning rather than by
+            title, so each idea earns its place once and the rest of your hour
+            goes somewhere new.
+          </li>
+          <li>
+            <b>You are told what is missing.</b>
+            When part of your topic has nothing good enough behind it, that
+            part is named on the page and struck through. Your time is never
+            quietly filled with a loosely related video, so you finish knowing
+            exactly what you still have to go and find elsewhere.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+    <div id="result"></div>
+
+    <!-- Moved below the result on purpose: this answers "how does it work
+         inside", which is a second question. The bar under the search is what
+         you watch while it runs. -->
+    <section class="sec pipeline" aria-label="How a plan is compiled">
+      <div class="sec-head">
+        <h2>How it is built</h2>
+        <span class="side">Eight stages. Three call a model. Five are plain code.</span>
+      </div>
+      <ol class="stages" id="stages"></ol>
+      <p class="pipe-note">
+        Most of this is not a model. Deduplication is a similarity problem, so
+        embeddings do it. Filling a time budget is a constraint problem, so an
+        algorithm does it. Handing both to a model was the first thing tried,
+        and it returned a plan with the same explanation in it seven times.
+      </p>
+    </section>
+
+    <section class="closer" id="closer">
+      <h2 class="serif">How much time have you got?</h2>
+      <p>One domain so far, AI and language models. Ask it something in that
+         world and it will tell you honestly what it can and cannot cover.</p>
+      <button class="closer-go" type="button" id="closergo">Compile a plan</button>
+    </section>
+
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="shell">
+    <div class="foot-grid">
+      <div>
+        <span class="lbl">The index</span>
+        <p id="footidx">Built from an index of YouTube transcripts.</p>
+        <p>Nothing is hosted here and no video is re-uploaded. Every link goes to the creator's own video, at the right moment in it.</p>
+        <p class="print-only" id="printfoot"></p>
+      </div>
+      <div class="no-print">
+        <span class="lbl">What this does with your data</span>
+        <p>No accounts, no cookies, no analytics. Your question is compiled on the server and held in memory so asking it again costs nothing; that cache dies with the server process. Your time budget is kept in your own browser. <strong>Shared links carry the whole plan inside the link</strong>, so sharing one stores nothing anywhere.</p>
+        <p>Video thumbnails are loaded from YouTube's own servers, which means YouTube can see that your browser requested them. That is the one third party this page talks to.</p>
+        <p>A personal project on a capped API key, not a service. <a href="https://github.com/bisati/learning-compiler">Source, decisions and costs on GitHub</a>.</p>
+      </div>
+    </div>
+  </div>
 </footer>
 
 </div>
 
 <script>
+'use strict';
 const $ = (s, r = document) => r.querySelector(s);
 const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
-const clock = (sec) => { const m = Math.round(sec / 60); return m < 60 ? m + ' min' : Math.floor(m / 60) + 'h ' + String(m % 60).padStart(2, '0'); };
+const reduced = () => matchMedia('(prefers-reduced-motion:reduce)').matches;
+const body = document.body;
+const state = (s) => { body.classList.remove('is-idle', 'is-running', 'is-done'); body.classList.add(s); };
 
+/* ------------------------------------------------------------------- views
+   A compiled plan is its own view with its own history entry, so the browser
+   back button returns to the landing page instead of leaving the site. The
+   plan stays in memory, so going back and forward again costs nothing and
+   never recompiles. The query is written into the URL so the address says
+   what was asked, but landing on it does NOT auto-compile: that would let a
+   shared link spend the API budget without anyone choosing to. */
+const BASE = () => location.pathname;
+function showLanding() {
+  state('is-idle');
+  scrollTo({ top: 0, behavior: reduced() ? 'auto' : 'smooth' });
+}
+function showPlan() {
+  state('is-done');
+  scrollTo({ top: 0, behavior: 'auto' });
+}
+addEventListener('popstate', (e) => {
+  if (e.state && e.state.v === 'plan' && current) showPlan();
+  else showLanding();
+});
+
+const ICON = {
+  play: '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 .7 9 5 1 9.3Z"/></svg>',
+  pdf: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 1.5h6l3 3v10h-9z" stroke-linejoin="round"/><path d="M9.5 1.5v3h3"/><path d="M5.9 8.6h4.2M5.9 11h4.2" stroke-linecap="round"/></svg>',
+  link: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.6 9.4 9.4 6.6" stroke-linecap="round"/><path d="M8.7 4.5 10 3.2a2.7 2.7 0 0 1 3.8 3.8l-1.3 1.3" stroke-linecap="round"/><path d="M7.3 11.5 6 12.8A2.7 2.7 0 0 1 2.2 9l1.3-1.3" stroke-linecap="round"/></svg>',
+  tick: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.4 6.4 11.8 13 4.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+};
+
+
+/* Word-by-word entrance on the headline. Done in plain DOM rather than pulling
+   in a React animation library for one effect on a page with no build step. */
+(function splitHeadline() {
+  const h = $('#headline');
+  const walk = (node, out) => {
+    for (const child of [...node.childNodes]) {
+      if (child.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        child.textContent.split(/(\s+)/).forEach((tok) => {
+          if (!tok.trim()) return frag.append(tok);
+          const s = el('span', 'w', tok);
+          s.style.display = 'inline-block';
+          s.style.setProperty('--i', String(out.n++));
+          frag.append(s);
+        });
+        child.replaceWith(frag);
+      } else if (child.nodeType === 1) walk(child, out);
+    }
+  };
+  walk(h, { n: 0 });
+  requestAnimationFrame(() => document.documentElement.classList.add('reveal'));
+})();
+
+/* ------------------------------------------------------------ stage strip
+   Mirrors STAGES in src/query/plan.mjs, the source of truth. */
+const STAGES = [
+  ['Understand the request', 'model'],
+  ['Retrieve candidates', 'code'],
+  ['Score', 'code'],
+  ['Remove duplicates', 'code'],
+  ['Pack the time budget', 'code'],
+  ['Order pedagogically', 'model'],
+  ['Verify', 'both'],
+  ['Render', 'code'],       // stage 8 happens here, in the browser
+];
+(function buildStrip() {
+  const ol = $('#stages');
+  STAGES.forEach(([name, by], i) => {
+    const li = el('li', 'stage');
+    li.append(el('span', 'n', String(i + 1).padStart(2, '0')));
+    li.append(el('span', 'nm', name));
+    const b = el('span', 'by', by === 'both' ? 'Code + model' : by === 'model' ? 'Model' : 'Code');
+    b.dataset.by = by === 'code' ? 'code' : 'model';
+    li.append(b);
+    ol.append(li);
+  });
+})();
+function markStage(step) {
+  const rows = $('#stages').children;
+  for (let i = 0; i < rows.length; i++) {
+    rows[i].classList.toggle('done', i + 1 < step);
+    rows[i].classList.toggle('active', i + 1 === step);
+  }
+}
+const clearStages = () => { for (const r of $('#stages').children) r.classList.remove('done', 'active'); };
+
+/* --------------------------------------------------------- explainer stage
+   Types the question, picks a budget, deals in three real rows, waits three
+   seconds, and does it again.
+
+   A loop that runs indefinitely next to other content needs a way to stop it,
+   so there is a pause control on the card, it halts whenever the section is
+   scrolled out of view, and under prefers-reduced-motion it never animates at
+   all: the finished state is simply painted once.
+
+   These are the reactbits effects (typewriter, animated list, count up) done
+   in plain DOM. The library is React and this page has no build step, so
+   pulling it in for three effects would cost far more than it returns. */
+(function explainerStage() {
+  const stage = $('#stage');
+  if (!stage) return;
+  const type = $('#sttype');
+  const pauseBtn = $('#stpause');
+  const pick = stage.querySelector('[data-pick]');
+  const steps = [...document.querySelectorAll('.ex-steps li')];
+  const QUESTION = 'how RAG works';
+  const GAP = 3000;                       // rest before the loop restarts
+
+  let timers = [];
+  let visible = false, paused = false, running = false;
+  const after = (ms, fn) => timers.push(setTimeout(fn, ms));
+  const clear = () => { timers.forEach(clearTimeout); timers = []; };
+
+  const settle = () => {
+    type.textContent = QUESTION;
+    pick.classList.add('picked');
+    stage.classList.add('stage-go', 'stage-settled');
+    $('#stmin').textContent = '119'; $('#stseg').textContent = '26'; $('#stcre').textContent = '25';
+    steps.forEach((s) => s.classList.add('on'));
+  };
+
+  const reset = () => {
+    clear();
+    type.textContent = '';
+    pick.classList.remove('picked');
+    stage.classList.remove('stage-go', 'stage-settled');
+    $('#stmin').textContent = '0'; $('#stseg').textContent = '0'; $('#stcre').textContent = '0';
+    steps.forEach((s) => s.classList.remove('on'));
+  };
+
+  const lite = (n) => steps.forEach((s, i) => s.classList.toggle('on', i === n));
+
+  function run() {
+    if (!visible || paused || running || reduced()) return;
+    running = true;
+    reset();
+    lite(0);
+    let i = 0;
+    const typeOn = () => {
+      type.textContent = QUESTION.slice(0, ++i);
+      if (i < QUESTION.length) return after(55, typeOn);
+      after(380, () => { lite(1); pick.classList.add('picked'); });
+      after(1500, () => {
+        lite(2);
+        stage.classList.add('stage-go');
+        countUp($('#stmin'), 119); countUp($('#stseg'), 26); countUp($('#stcre'), 25);
+      });
+      after(3600, () => steps.forEach((s) => s.classList.add('on')));
+      after(3600 + GAP, () => { running = false; run(); });
+    };
+    after(260, typeOn);
+  }
+
+  pauseBtn.onclick = () => {
+    paused = !paused;
+    pauseBtn.textContent = paused ? 'Play' : 'Pause';
+    pauseBtn.setAttribute('aria-label', paused ? 'Play the demonstration' : 'Pause the demonstration');
+    pauseBtn.style.opacity = paused ? '1' : '';
+    if (paused) { clear(); running = false; settle(); } else run();
+  };
+
+  if (reduced()) { settle(); pauseBtn.hidden = true; return; }
+
+  // Off-screen it stops entirely: no timers, no repaints, nothing competing
+  // for attention in a part of the page nobody is looking at.
+  new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      visible = e.isIntersecting;
+      if (visible) run();
+      else { clear(); running = false; }
+    }
+  }, { threshold: .3 }).observe(stage);
+})();
+
+/* ------------------------------------------------------------------ budget */
 let minutes = 120;
-
-// Remembering the last budget is a per-viewer convenience and nothing more,
-// so a browser that refuses storage must not break the page.
-try { const v = localStorage.getItem('lc.minutes'); if (v) minutes = +v; } catch {}
-
+try { const v = localStorage.getItem('lc.minutes'); if (v && +v) minutes = +v; } catch {}
 function setBudget(m) {
   minutes = m;
   for (const c of document.querySelectorAll('.chip')) c.setAttribute('aria-pressed', String(+c.dataset.min === m));
   try { localStorage.setItem('lc.minutes', String(m)); } catch {}
 }
 setBudget(minutes);
-
 for (const c of document.querySelectorAll('.chip')) c.onclick = () => setBudget(+c.dataset.min);
-for (const b of document.querySelectorAll('.examples button')) {
+for (const b of document.querySelectorAll('.starter')) {
   b.onclick = () => { $('#topic').value = b.dataset.ex; setBudget(+b.dataset.min); $('#f').requestSubmit(); };
 }
+$('#topic').addEventListener('input', () => body.classList.remove('is-invalid'));
 
+/* ------------------------------------------------------------------ status */
 fetch('/api/status').then((r) => r.json()).then((s) => {
-  $('#idxtag').textContent = `${s.segments.toLocaleString()} segments · ${s.channels} creators · ${s.hours}h`;
   $('#footidx').textContent =
-    `Built from ${s.hours} hours of YouTube transcripts, cut into ${s.segments.toLocaleString()} segments across ${s.channels} creators.`;
-  // Say the budget is gone up front rather than after someone waits twelve
-  // seconds to be told the same thing.
+    `Built from ${s.hours} hours of YouTube transcripts, cut into ${s.segments.toLocaleString()} segments across ${s.channels} creators. One domain: AI and language models.`;
+  if (s.demo) body.classList.add('is-demo');
   if (s.open === false) {
     $('#go').disabled = true;
     $('#err').textContent = {
-      'no-key': 'This deployment has no API key configured yet, so it cannot compile anything.',
+      'no-key': 'This deployment has no API key configured, so it cannot compile anything.',
       disabled: 'This is switched off right now.',
-      budget: 'This has used up its API budget for today and cannot compile anything new. ' +
-              'It resets at midnight UTC. It is a personal project on a capped key, not a service.',
+      budget: 'This has used up its API budget for today and cannot compile anything new. It resets at midnight UTC. It is a personal project on a capped key, not a service.',
     }[s.reason] || 'This cannot compile anything right now.';
     $('#err').classList.add('on');
   }
 }).catch(() => {});
 
-const STAGES = 5;
-function renderProgress(step, text, all) {
-  const box = $('#progress');
-  box.classList.add('on');
-  box.innerHTML = '';
-  for (let i = 1; i <= STAGES; i++) {
-    const row = el('div', 'stage' + (i < step ? ' done' : i === step ? ' active' : ''));
-    row.append(el('span', 'dot'));
-    row.append(el('span', null, all[i] || ''));
-    box.append(row);
-  }
-}
-
-$('#f').onsubmit = async (e) => {
+/* ----------------------------------------------------------------- compile */
+let live = null;
+$('#f').onsubmit = (e) => {
   e.preventDefault();
   const topic = $('#topic').value.trim();
-  if (!topic) return;
+  if (topic.length < 3) { body.classList.add('is-invalid'); $('#topic').focus(); return; }
 
-  $('#go').disabled = true;
-  $('#result').classList.remove('on');
+  if (live) live.close();
+  body.classList.remove('is-invalid');
   $('#err').classList.remove('on');
-  const labels = {};
-  renderProgress(0, '', labels);
+  $('#result').innerHTML = '';
+  clearStages();
+  $('#trackfill').style.width = '0%';
+  $('#rstep').textContent = '';
+  $('#livetext').textContent = 'Starting\u2026';
+  state('is-running');
+  $('#go').disabled = true;
+  $('#golabel').textContent = 'Compiling…';
+  history.replaceState({ v: 'landing' }, '', BASE());
 
   const es = new EventSource(`/api/compile?topic=${encodeURIComponent(topic)}&minutes=${minutes}`);
+  live = es;
+  const finish = () => { $('#go').disabled = false; $('#golabel').textContent = 'Compile'; es.close(); live = null; };
 
   es.addEventListener('stage', (ev) => {
     const d = JSON.parse(ev.data);
-    labels[d.step] = d.text;
-    renderProgress(d.step, d.text, labels);
+    markStage(d.step);
+    $('#livetext').textContent = d.text;
+    // The strip is at the foot of the page now, so the bar under the search
+    // carries progress where the person is actually looking. The denominator
+    // counts all eight stages, matching that strip; the server only reports
+    // its own seven, because the eighth runs here.
+    $('#trackfill').style.width = Math.round((d.step / STAGES.length) * 100) + '%';
+    $('#rstep').textContent = `Step ${d.step} of ${STAGES.length}`;
   });
-
   es.addEventListener('error', (ev) => {
-    let msg = 'Something broke while compiling. The terminal running the server will say what.';
+    let msg = 'Something broke while compiling.';
     try { msg = JSON.parse(ev.data).message; } catch {}
     $('#err').textContent = msg;
     $('#err').classList.add('on');
-    $('#progress').classList.remove('on');
-    $('#go').disabled = false;
-    es.close();
+    state('is-idle'); clearStages(); finish();
   });
-
   es.addEventListener('done', (ev) => {
-    render(JSON.parse(ev.data));
-    $('#progress').classList.remove('on');
-    $('#go').disabled = false;
-    es.close();
+    markStage(STAGES.length + 1);
+    $('#trackfill').style.width = '100%';
+    $('#rstep').textContent = `Step ${STAGES.length} of ${STAGES.length}`;
+    const d = JSON.parse(ev.data);
+    history.pushState({ v: 'plan' }, '',
+      `${BASE()}?q=${encodeURIComponent(topic)}&t=${minutes}`);
+    render(d);
+    finish();
   });
-
-  es.onerror = () => { $('#go').disabled = false; es.close(); };
+  es.onerror = () => { if (live) { state('is-idle'); finish(); } };
 };
 
-function render(d) {
+/* ------------------------------------------------------------------ render */
+let current = null;
+const clockOf = (sec) => {
+  const m = Math.round(sec / 60);
+  return m < 60 ? `0:${String(m).padStart(2, '0')}` : `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`;
+};
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const vidOf = (url) => { try { return new URL(url).searchParams.get('v'); } catch { return null; } };
+const shortUrl = (url) => {
+  try { const u = new URL(url); return `youtu.be/${u.searchParams.get('v')}?t=${parseInt(u.searchParams.get('t')) || 0}`; }
+  catch { return url; }
+};
+
+function countUp(node, to) {
+  if (reduced()) { node.textContent = to; return; }
+  const t0 = performance.now(), ms = 900;
+  const step = (t) => {
+    const k = Math.min(1, (t - t0) / ms);
+    node.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
+    if (k < 1) requestAnimationFrame(step); else node.textContent = to;
+  };
+  requestAnimationFrame(step);
+}
+
+function render(d, opts = {}) {
+  current = d;
   const out = $('#result');
   out.innerHTML = '';
+  if (d.demo) body.classList.add('is-demo');
 
-  const sum = el('div', 'summary');
-  sum.append(el('h2', null, d.topic));
-  for (const [label, value] of [['minutes', d.totalMin], ['segments', d.plan.length], ['creators', d.creators]]) {
-    const s = el('div', 'stat', label);
-    s.prepend(el('b', null, String(value)));
-    sum.append(s);
+  const cover = el('div', 'print-cover');
+  const pt = el('div', 'pc-top');
+  pt.append(el('span', null, 'Learning Compiler'));
+  pt.append(el('span', null, new Intl.DateTimeFormat(undefined, { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date())));
+  cover.append(pt);
+  cover.append(el('h1', null, d.topic));
+  cover.append(el('div', 'pc-figs', `${d.totalMin} minutes · ${d.plan.length} segments · ${d.creators} creators · asked for ${d.budgetMin} min`));
+  out.append(cover);
+
+  if (opts.shared) {
+    const sh = el('div', 'shared');
+    const t = el('div');
+    t.innerHTML = '<b>Someone compiled this and shared it with you.</b> The whole plan travels inside the link, so nothing was stored to make it.';
+    sh.append(t);
+    const b = el('button', null, 'Clear');
+    b.type = 'button';
+    b.onclick = () => { history.replaceState(null, '', location.pathname); location.reload(); };
+    sh.append(b);
+    out.append(sh);
   }
+
+  // ---- summary
+  const sum = el('section', 'summary');
+  const top = el('div', 'sum-top');
+  top.append(el('h2', null, d.topic));
+  const acts = el('div', 'acts');
+  const pdf = el('button', 'act'); pdf.type = 'button';
+  pdf.innerHTML = ICON.pdf + '<span>Download PDF</span>';
+  pdf.onclick = downloadPdf;
+  const share = el('button', 'act'); share.type = 'button';
+  share.innerHTML = ICON.link + '<span>Copy link</span>';
+  share.onclick = () => copyShareLink(share);
+  acts.append(pdf, share);
+  top.append(acts);
+  sum.append(top);
+
+  const figs = el('div', 'figures');
+  for (const [value, label, sub] of [
+    [d.totalMin, 'Minutes', `of ${d.budgetMin} you asked for`],
+    [d.plan.length, 'Segments', 'after duplicates removed'],
+    [d.creators, 'Creators', 'no single voice dominates'],
+  ]) {
+    const f = el('div', 'fig');
+    const b = el('b', null, '0');
+    f.append(b, el('span', 'lbl', label), el('span', 'sub', sub));
+    figs.append(f);
+    countUp(b, value);
+  }
+  sum.append(figs);
   out.append(sum);
 
-  const longest = Math.max(...d.plan.map((p) => p.seconds), 1);
-  const list = el('ol', 'plan');
-  let elapsed = 0;
-
-  for (const p of d.plan) {
-    const li = el('li', 'seg ' + p.depth);
-
-    const c = el('div', 'clock');
-    c.append(el('b', null, clock(elapsed)));
-    c.append(el('span', 'dur', '+' + p.minutes + 'm'));
-    li.append(c);
-    elapsed += p.seconds;
-
-    const body = el('div');
-    const head = el('div', 'seg-head');
-    head.append(el('h3', null, p.concept));
-    head.append(el('span', 'depth ' + p.depth, p.depth));
-    body.append(head);
-    body.append(el('p', 'why', p.why || p.teaches));
-
-    const meta = el('p', 'meta');
-    meta.append(document.createTextNode(p.channel + ' · '));
-    const a = el('a', null, p.from + '–' + p.to);
-    a.href = p.url; a.target = '_blank'; a.rel = 'noopener';
-    meta.append(a);
-    body.append(meta);
-
-    const bar = el('div', 'bar');
-    const fill = el('span');
-    fill.style.width = Math.max(4, (p.seconds / longest) * 100) + '%';
-    bar.append(fill);
-    body.append(bar);
-
-    if (p.flagged) {
-      body.append(el('div', 'flag', 'This segment may not fully deliver what it claims. ' + (p.flagNote || '')));
-    }
-
-    li.append(body);
-    list.append(li);
-  }
-  out.append(list);
-
-  const cov = el('div', 'coverage');
-  cov.append(el('h3', null, 'What this plan covers'));
-  cov.append(el('p', null,
-    d.missing.length
-      ? `It covers ${d.concepts.length - d.missing.length} of the ${d.concepts.length} things this topic needs. The struck-through ones are missing because nothing good enough is indexed, not because they do not matter.`
-      : `It covers all ${d.concepts.length} things this topic needs.`));
+  // ---- things to cover
+  const covered = d.concepts.filter((c) => c.covered).length;
+  const cov = el('section', 'sec');
+  const ch = el('div', 'sec-head');
+  ch.append(el('h2', null, 'Things to cover'));
+  ch.append(el('span', 'side', `${covered} of ${d.concepts.length} found in the index`));
+  cov.append(ch);
+  cov.append(el('p', 'cover-note', d.missing.length
+    ? `These are the things this topic needs before it makes sense. The struck-through ones are missing because nothing good enough is indexed, not because they do not matter.`
+    : `These are the things this topic needs before it makes sense, and the plan covers all ${d.concepts.length} of them.`));
   const ul = el('ul', 'concepts');
-  for (const c of d.concepts) ul.append(el('li', c.covered ? '' : 'no', c.name));
+  for (const c of d.concepts) {
+    const li = el('li', c.covered ? '' : 'no');
+    li.append(el('span', 'mk', c.covered ? '✓' : '✕'));
+    li.append(el('span', 'nm', c.name));
+    ul.append(li);
+  }
   cov.append(ul);
   if (d.missing.length) {
-    cov.append(el('p', 'missing-note',
-      'To cover those, the index needs more material on them. That is a gap in what has been indexed, and it is being told to you rather than filled with something loosely related.'));
+    cov.append(el('p', 'gap-note',
+      'Covering those needs more material in the index. That is a gap in what has been indexed, and it is being told to you rather than filled with something loosely related.'));
   }
   out.append(cov);
 
-  out.classList.add('on');
-  out.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-  $('#cost').textContent = d.cached
-    ? 'Served from cache: someone already asked this, so it cost nothing to return.'
-    : `Compiled in ${d.seconds}s. Cost to produce: Rs ${d.costInr}.`;
+  // ---- the plan
+  const wrap = el('section', 'sec');
+  const ph = el('div', 'sec-head');
+  ph.append(el('h2', null, 'The plan, in teaching order'));
+  ph.append(el('span', 'side', `${d.totalMin} minutes end to end`));
+  wrap.append(ph);
+
+  const list = el('ol', 'plan');
+  let elapsed = 0;
+
+  d.plan.forEach((p, i) => {
+    const li = el('li', 'step');
+    li.style.setProperty('--i', String(i));
+
+    const ord = el('div', 's-ord');
+    ord.append(el('div', 'num', String(i + 1).padStart(2, '0')));
+    li.append(ord);
+
+    // The thumbnail is the primary control: it is the thing that looks like
+    // a video, so it is the thing people click.
+    const thumb = el('a', 's-thumb');
+    thumb.href = p.url; thumb.target = '_blank'; thumb.rel = 'noopener';
+    thumb.setAttribute('aria-label', `Watch ${p.concept} on YouTube, from ${p.from}`);
+    const vid = vidOf(p.url);
+    if (vid) {
+      const img = el('img');
+      img.src = `https://i.ytimg.com/vi/${vid}/mqdefault.jpg`;
+      img.alt = '';
+      img.loading = 'lazy';
+      img.width = 320; img.height = 180;
+      img.referrerPolicy = 'no-referrer';
+      img.onerror = () => { img.style.opacity = '0'; };
+      thumb.append(img);
+    }
+    const play = el('div', 'play');
+    play.innerHTML = '<span>' + ICON.play + '</span>';
+    thumb.append(play);
+    thumb.append(el('span', 'tag', `${p.from}–${p.to}`));
+    li.append(thumb);
+
+    const b = el('div', 's-body');
+    b.append(el('h3', null, p.concept));
+    b.append(el('p', 'why', p.why || p.teaches));
+    const meta = el('div', 's-meta');
+    const k = el('span', 'kind ' + p.depth);
+    k.append(el('span', 'gl'), el('span', null, p.depth));
+    meta.append(k);
+    meta.append(el('span', 'dot'));
+    meta.append(el('span', 'who', p.channel));
+    meta.append(el('span', 'dot'));
+    meta.append(el('span', 'when', `Starts ${clockOf(elapsed)} into your plan`));
+    b.append(meta);
+    b.append(el('p', 'plain-url', shortUrl(p.url)));
+    li.append(b);
+    elapsed += p.seconds;
+
+    const side = el('div', 's-side');
+    const len = el('div', 'len', `${p.minutes}`);
+    len.append(el('i', null, p.minutes === 1 ? 'minute' : 'minutes'));
+    side.append(len);
+    const w = el('a', 'watch');
+    w.href = p.url; w.target = '_blank'; w.rel = 'noopener';
+    w.innerHTML = ICON.play + `<span>Watch ${p.from}</span>`;
+    side.append(w);
+    li.append(side);
+
+    if (p.flagged) {
+      const f = el('div', 'flag');
+      f.innerHTML = '<b>The verifier is not convinced by this one.</b> ' +
+        esc(p.flagNote || 'The transcript may not deliver what the label claims.');
+      li.append(f);
+    }
+
+    // Cursor-tracked highlight. Pointer-only, so it costs touch devices nothing.
+    if (!reduced() && matchMedia('(hover:hover)').matches) {
+      li.addEventListener('pointermove', (ev) => {
+        const r = li.getBoundingClientRect();
+        li.style.setProperty('--mx', `${ev.clientX - r.left}px`);
+        li.style.setProperty('--my', `${ev.clientY - r.top}px`);
+      });
+    }
+
+    list.append(li);
+  });
+  wrap.append(list);
+  out.append(wrap);
+
+  $('#printfoot').textContent =
+    'Compiled by Learning Compiler, learning-compiler.vercel.app. Every timestamp links to the creator’s own video on YouTube. Nothing here is hosted or re-uploaded.';
+
+  showPlan();
 }
+
+/* --------------------------------------------------------------------- PDF */
+function downloadPdf() {
+  if (!current) return;
+  const was = document.title;
+  document.title = `Learning Compiler - ${current.topic} (${current.totalMin} min)`.replace(/[\\/:*?"<>|]/g, '-');
+  const restore = () => { document.title = was; removeEventListener('afterprint', restore); };
+  addEventListener('afterprint', restore);
+  setTimeout(() => { print(); setTimeout(restore, 1000); }, 60);
+}
+
+/* -------------------------------------------------------------- share link */
+const DEPTHS = ['intro', 'mechanism', 'example', 'debate'];
+const mmss = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+
+const packPlan = (d) => ({
+  v: 1, t: d.topic, b: d.budgetMin, m: d.totalMin, c: d.creators,
+  k: d.concepts.map((x) => [x.name, x.covered ? 1 : 0]),
+  g: d.missing, s: d.stats || {}, e: d.seconds ?? null, i: d.costInr ?? null,
+  p: d.plan.map((p) => {
+    const u = new URL(p.url);
+    return [p.concept, p.why || p.teaches || '', DEPTHS.indexOf(p.depth), p.channel,
+      p.seconds, u.searchParams.get('v'), parseInt(u.searchParams.get('t')) || 0,
+      p.flagged ? 1 : 0, p.flagNote || 0, p.title || 0];
+  }),
+});
+const unpackPlan = (o) => ({
+  topic: o.t, budgetMin: o.b, totalMin: o.m, creators: o.c,
+  concepts: (o.k || []).map(([name, cv]) => ({ name, covered: !!cv })),
+  missing: o.g || [], stats: o.s || {}, seconds: o.e, costInr: o.i,
+  plan: (o.p || []).map(([concept, why, dep, channel, seconds, vid, t, flagged, note, title]) => ({
+    concept, why, teaches: why, depth: DEPTHS[dep] || 'mechanism', channel,
+    seconds, minutes: Math.max(1, Math.round(seconds / 60)),
+    from: mmss(t), to: mmss(t + seconds),
+    url: `https://youtube.com/watch?v=${vid}&t=${t}s`,
+    flagged: !!flagged, flagNote: note || null, title: title || null,
+  })),
+});
+
+const b64u = {
+  from(bytes) {
+    let s = '';
+    for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  },
+  to(str) {
+    const b = atob(str.replace(/-/g, '+').replace(/_/g, '/'));
+    const out = new Uint8Array(b.length);
+    for (let i = 0; i < b.length; i++) out[i] = b.charCodeAt(i);
+    return out;
+  },
+};
+async function encodeShare(d) {
+  const json = JSON.stringify(packPlan(d));
+  if (typeof CompressionStream === 'undefined') return 'q=' + b64u.from(new TextEncoder().encode(json));
+  const buf = await new Response(new Blob([json]).stream().pipeThrough(new CompressionStream('deflate-raw'))).arrayBuffer();
+  return 'p=' + b64u.from(new Uint8Array(buf));
+}
+async function decodeShare(hash) {
+  const [, kind, data] = hash.match(/^#(p|q)=(.+)$/s) || [];
+  if (!kind) return null;
+  const bytes = b64u.to(data);
+  const json = kind === 'q' ? new TextDecoder().decode(bytes)
+    : await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text();
+  return unpackPlan(JSON.parse(json));
+}
+async function copyShareLink(btn) {
+  if (!current) return;
+  try {
+    const frag = await encodeShare(current);
+    await navigator.clipboard.writeText(`${location.origin}${location.pathname}#${frag}`);
+    lastHash = '#' + frag;
+    history.replaceState(null, '', '#' + frag);
+    btn.classList.add('ok');
+    btn.innerHTML = ICON.tick + '<span>Link copied</span>';
+    setTimeout(() => { btn.classList.remove('ok'); btn.innerHTML = ICON.link + '<span>Copy link</span>'; }, 2400);
+  } catch {
+    btn.querySelector('span').textContent = 'Could not copy';
+    setTimeout(() => { btn.querySelector('span').textContent = 'Copy link'; }, 2400);
+  }
+}
+
+/* A shared link renders immediately and compiles nothing. Bound to hashchange
+   too: pasting a link while the page is open changes only the fragment, which
+   is a same-document navigation, so the script would never re-run. */
+let lastHash = null;
+async function openShared() {
+  const h = location.hash;
+  if (!h.startsWith('#p=') && !h.startsWith('#q=')) return;
+  if (h === lastHash) return;
+  lastHash = h;
+  try {
+    const d = await decodeShare(h);
+    if (!d || !d.plan.length) throw new Error('empty');
+    $('#topic').value = d.topic;
+    if (d.budgetMin) setBudget(d.budgetMin);
+    history.replaceState({ v: 'plan' }, '', location.href);
+    render(d, { shared: true });
+  } catch {
+    $('#err').textContent = 'That shared link could not be read. It may have been cut short when it was pasted.';
+    $('#err').classList.add('on');
+  }
+}
+$('#closergo').onclick = () => {
+  $('#topic').focus({ preventScroll: true });
+  scrollTo({ top: 0, behavior: reduced() ? 'auto' : 'smooth' });
+};
+
+$('#back').onclick = () => {
+  if (history.state && history.state.v === 'plan') history.back();
+  else { history.pushState({ v: 'landing' }, '', BASE()); showLanding(); }
+};
+// Wordmark returns to the landing view without a reload, keeping the plan in
+// memory so forward navigation still works.
+document.querySelector('.wordmark').addEventListener('click', (e) => {
+  if (!body.classList.contains('is-done')) return;
+  e.preventDefault();
+  $('#back').click();
+});
+
+addEventListener('hashchange', openShared);
+openShared();
+
+// ?q= prefills the box and stops there. Compiling costs money, so it stays a
+// thing a person chooses, never something a URL does on their behalf.
+(function prefillFromQuery() {
+  if (location.hash.startsWith('#p=') || location.hash.startsWith('#q=')) return;
+  const p = new URLSearchParams(location.search);
+  const q = (p.get('q') || '').trim();
+  if (q) $('#topic').value = q.slice(0, 300);
+  const t = parseInt(p.get('t'), 10);
+  if ([30, 60, 90, 120].includes(t)) setBudget(t);
+  history.replaceState({ v: 'landing' }, '', location.href);
+})();
 </script>
 </body>
 </html>
