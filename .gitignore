@@ -6,10 +6,6 @@ node_modules/
 data/transcripts/
 *.log
 
-# Experiment caches: transcripts and embedding vectors, regenerable and large
-experiments/*/out/cache/
-experiments/*/node_modules/
-
 # The index is regenerable from candidates + the API, and is large
 data/index.db
 data/index.db-wal
@@ -18,3 +14,7 @@ data/index.db-shm
 # Deployable index bundle: regenerate with `npm run index:export` before deploying
 data/index-bundle/
 .vercel
+
+# Local working notes, never published
+private/
+data/spend.jsonl

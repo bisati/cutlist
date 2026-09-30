@@ -2,9 +2,9 @@
 //
 // SQLite rather than Postgres for now. The indexer and the CLI iterate many
 // times a day and neither needs a server, credentials, or a network hop. Column
-// names mirror the Postgres schema this was planned against exactly, and embeddings
-// are stored as raw float32, so moving to Supabase and pgvector later is a dump
-// and a load rather than a rewrite.
+// names mirror the Postgres schema this was planned against exactly, and
+// embeddings are stored as raw float32, so moving to Supabase and pgvector later
+// is a dump and a load rather than a rewrite.
 //
 // Uses node:sqlite, built into Node 22+, so this adds no dependency.
 

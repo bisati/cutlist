@@ -1,9 +1,9 @@
 // Persistent spend ledger with a hard cap.
 //
-// An early run overran its cost estimate by five times, and the reason it was not
-// caught in flight is that nothing was keeping a running total across runs.
-// Every process started its count at zero. This file fixes that: the ledger is
-// on disk, append-only, and survives everything.
+// An early build overran its cost estimate by five times, and the reason it was
+// not caught in flight is that nothing kept a running total across runs. Every
+// process started its count at zero. This file fixes that: the ledger is on
+// disk, append-only, and survives everything.
 //
 // Set your own ceiling with LC_BUDGET_INR. The cap is enforced, not advisory:
 // it throws rather than warns, because a limit you can ignore is not a limit.

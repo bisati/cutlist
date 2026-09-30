@@ -158,13 +158,20 @@ Demo mode replays one captured plan and needs no index, no API key and no
 network. It times the stages the way a real run does, so the whole interface is
 there to use. This is the fastest way to see the product.
 
-Compiling for real needs a `GEMINI_API_KEY` and an index:
+Compiling for real needs your own Gemini API key and an index. The key is read
+from `GEMINI_API_KEY`, or from `~/.config/gemini/api_key` if that is not set. No
+key is ever read from, written to, or committed to this repository.
 
 ```bash
+export GEMINI_API_KEY=your-own-key
 npm run web          # localhost:4321, real compiles, about ₹0.51 each
 npm run eval         # the golden set above
-npm run spend        # every API call this project has made, and what it cost
+npm run spend        # what your key has spent so far, by what it was spent on
 ```
+
+Every call goes through a ledger with a hard budget ceiling that throws rather
+than warns, and a model with no price on file is refused outright, so a newly
+released model cannot quietly cost you anything.
 
 The index is not committed, because it is regenerable and large. Building one
 takes a residential IP, since YouTube refuses transcript fetches from datacenter
@@ -197,9 +204,8 @@ token passes WCAG AA in both themes, and all motion stops under
 
 ---
 
-## Further reading
+## License
 
-Written as the work happened rather than afterwards:
-
-[MIT licensed](LICENSE). The index holds no video content, only timestamps and
-short transcript excerpts used to locate and verify segments.
+[MIT](LICENSE). The index holds no video content, only timestamps and short
+transcript excerpts used to locate and verify segments. Every link points at the
+creator's own video on YouTube, and nothing is rehosted or re-uploaded.
