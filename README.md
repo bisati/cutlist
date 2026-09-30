@@ -1,59 +1,88 @@
 # Learning Compiler
 
-**[learning-compiler.vercel.app](https://learning-compiler.vercel.app)**
+[![Live](https://img.shields.io/badge/live-learning--compiler.vercel.app-f2564d?style=flat-square)](https://learning-compiler.vercel.app)
+[![License](https://img.shields.io/badge/license-MIT-3f3f46?style=flat-square)](LICENSE)
+[![Node](https://img.shields.io/badge/node-%E2%89%A5%2022-3f3f46?style=flat-square)](package.json)
 
-Say what you want to understand and how long you have. Get back the segments worth watching, in the order that teaches best, with exact timestamps.
+### Learn the thing, not the video.
 
-```
-"how RAG works", 2 hours  ->  20 segments, 119 minutes, 19 creators, 8 seconds
-```
+YouTube already has the explanation you need. It is buried in minute 34 of an
+hour-long video you have not found yet.
 
-The unit of YouTube is the video. The unit of learning is the concept. They do not line up, so every video costs a search-and-skip tax and you pay it again on the next one. Someone with two hours can burn thirty minutes before learning anything.
+Learning Compiler takes a topic and a time budget and returns the exact minutes
+worth watching, in the order that teaches them, each one timestamped so you land
+on the part that answers your question.
 
-The scarce resource is the learner's time, not the content. **The plan is the product.** You watch on YouTube; nothing is hosted or re-uploaded here, and every link goes to the creator's own video at the right moment in it.
+**[Try it, no sign-up needed](https://learning-compiler.vercel.app)** &nbsp;·&nbsp;
+[How it works](#how-it-works) &nbsp;·&nbsp;
+[Measured](#measured) &nbsp;·&nbsp;
+[Run it locally](#run-it-locally)
 
----
-
-## What comes out
-
-```
- 0 min  The limitations of standalone LLMs          [intro]      IBM Technology     5 min
- 5 min  Defining the LLM context window             [intro]      Matt Pocock        6 min
-11 min  Word and sentence embeddings                [mechanism]  codebasics         3 min
-14 min  How text embeddings represent data          [mechanism]  Chai aur Code      3 min
-        ...
-94 min  Limitations of long-context LLMs            [debate]     freeCodeCamp       9 min
-```
-
-Each segment carries one line saying what it gives you *at that point in the plan*, a deep link with the timestamp, and a running clock so you can see where your two hours actually go.
-
-Every plan ends with what it could **not** cover, and says why:
-
-> *It covers 9 of the 10 things this topic needs. Reranking is struck through because nothing good enough is indexed, not because it does not matter.*
-
-That honesty is the feature. A thin index should say so rather than quietly filling the gap with something loosely related.
+![The landing page: a single search box, a time budget, and three starting points](docs/img/landing.jpg)
 
 ---
 
-## Taking it with you
+## What you get
 
-A plan you cannot keep is a plan you close the tab on, so there are two ways out of the page and **neither of them stores anything**.
+Ask for *how RAG works* in two hours and you get 26 segments from 25 creators
+filling 119 of your 120 minutes, ordered so each one makes sense by the time you
+reach it.
 
-**Download PDF** prints through a purpose-built stylesheet: A4 page boxes, no segment split across a page break, a cover block, the real typefaces, live links, and the bare `youtu.be/ID?t=920` beside every timestamp so it still works on paper. Four pages for a two-hour plan. It ships no bytes, because the browser already contains a typesetter and a PDF writer.
+![A compiled plan: 119 minutes, 26 segments, 25 creators, the concepts it covers with one struck through, then the timetable](docs/img/plan.jpg)
 
-**Copy link** puts the whole plan inside the URL fragment: compacted to positional arrays, deflated, base64url encoded. Median 2,740 characters.
+Every row is one idea rather than one video. It carries the creator, how long it
+takes, how far into your session it starts, a line saying what it gives you at
+that point, and whether it orients you, explains a mechanism, works an example
+or argues a position. **Watch 00:21** opens the creator's own video at 21
+seconds. Nothing here is rehosted, reuploaded or embedded.
 
-A fragment is never sent to the server. So a shared plan needs no database, no row to expire and no bill, and what the recipient opens is byte-identical to what the sender saw. A server-side permalink would have been worse on every count: the plan cache is per serverless instance, so a miss would either recompile at about ₹0.51, letting anyone drain the budget by sharing a link widely, or hand the recipient a *different* plan than the one that was shared.
+---
 
-The cost is honest and stated on the 404 page: the links are long, and anything that truncates URLs will break them.
+## Why this is not a search box
+
+**You watch minutes, not videos.** A search result is a 52-minute video with the
+right words in the title. A plan is the four minutes inside it that answer your
+question, starting at 08:12.
+
+**You never sit through the same idea twice.** Ten creators explain embeddings,
+and nine of them explain it much the same way. Segments are clustered by meaning
+before anything is chosen, so your second hour goes on something new.
+
+**The plan fits the time you actually have.** Thirty minutes and two hours are
+different plans, not the same plan cut short. Filling a budget is a packing
+problem, solved in code, which is why a 120-minute request comes back at 119.
+
+**You are told what is missing.** When part of a topic has nothing good enough
+behind it, that part is named on the page and struck through rather than filled
+with something loosely related.
+
+**You keep the plan.** Two ways to take it with you, and neither one stores
+anything:
+
+- **Download PDF** prints through a purpose-built stylesheet. A4 page boxes, no
+  segment split across a page break, live links, and the bare
+  `youtu.be/ID?t=920` printed beside every timestamp so the plan still works on
+  paper. Four pages for a two-hour plan.
+- **Copy link** puts the whole plan inside the URL fragment, deflated and
+  base64url encoded, median 2,740 characters. A fragment is never sent to a
+  server, so a shared plan needs no database and has nothing to expire, and what
+  the recipient opens is byte-identical to what was sent.
+
+---
+
+## What is indexed
+
+1,906 segments from 514 creators, 202 hours of source video, covering AI and
+language models: embeddings, retrieval, transformers, fine-tuning, agents and
+tool use.
+
+Ask about something outside that and the answer says so rather than guessing.
 
 ---
 
 ## How it works
 
 Eight stages. **Three call a model. Five are plain code.**
-
-The page shows this live. The same eight-segment strip is the architecture diagram when idle and the progress indicator while compiling, with each stage badged `code` or `model`, so you learn how it works by watching it work. The badges are driven by the same stage list the server runs, which makes the claim below checkable rather than asserted.
 
 | | stage | |
 |---|---|---|
@@ -66,29 +95,37 @@ The page shows this live. The same eight-segment strip is the architecture diagr
 | 7 | verify | code + model |
 | 8 | render | code |
 
-That split is the architecture, not an optimisation, and it came from a failure.
+Deduplication is a similarity problem, so it belongs to embeddings. Filling a
+time budget is a constraint problem, so it belongs to an algorithm. Only the
+three jobs that need judgment go to a model: reading what you actually asked
+for, ordering the result so it teaches, and checking that each segment is
+labelled as what it really is.
 
-An early version was a chain of agents: twenty cheap models each read one video in parallel, then a strong model selected and ordered from their one-line summaries. It produced a plan containing **"ONDC Architecture" seven times, from seven different creators.**
-
-The cause was structural. The planner saw labels, not content, so seven identical explanations were indistinguishable from seven different ones. Told to fill 120 minutes, it filled them with duplicates. **The information needed to spot the repetition had been destroyed at the boundary between the agents.**
-
-So: deduplication is a similarity problem and belongs to embeddings. Packing is a constraint problem and belongs to an algorithm. A cheap model handed the time budget produced a 15-minute plan against a 120-minute request; it picked fine segments and ignored the constraint entirely.
+The page shows all eight while it compiles, each badged `code` or `model`, and
+the badges come from the same stage list the server runs. The split above is
+something you can watch rather than something you have to take on trust.
 
 ### Storage
 
 **No vector database. In production, no database at all.**
 
-The index is written once by an offline job and only ever read afterwards. Nothing mutates it at runtime, which makes it a file. It ships inside the deployment as a **6.7MB bundle** that loads in **20ms**: half-precision vectors and transcripts truncated to what the verifier actually reads.
+The index is written once by an offline job and only ever read afterwards.
+Nothing mutates it at runtime, which makes it a file. It ships inside the
+deployment as a 6.7MB bundle that loads in 20ms: half-precision vectors, and
+transcripts truncated to what the verifier reads.
 
-Search is a brute-force cosine loop: 19,060 comparisons in **34ms**, against 7 to 12 seconds of model calls in the same request. An ANN index would add a service and a bill to speed up the part that is already 200x smaller than the part next to it.
-
-Indexing uses SQLite locally, because that side is write-heavy and resumable. A video already indexed is never paid for twice.
+Search is a brute-force cosine loop, 19,060 comparisons in **34ms**, against 7
+to 12 seconds of model calls in the same request. An ANN index would add a
+service and a bill to speed up the part that is already 200 times smaller than
+the part beside it.
 
 ---
 
 ## Measured
 
-A hand-written golden set of 20 questions at budgets from 30 to 120 minutes, each with what a good plan must cover and what it must not drift into. Written before any were run, so the expectations are not reverse-engineered from the output. Scoring is deterministic code.
+A hand-written golden set of 20 questions at budgets from 30 to 120 minutes,
+each with what a good plan must cover and what it must not drift into, written
+before any of them were run. Scoring is deterministic code.
 
 | | |
 |---|---|
@@ -96,75 +133,73 @@ A hand-written golden set of 20 questions at budgets from 30 to 120 minutes, eac
 | plans that fill their time budget | **100%** |
 | concept coverage | **96%** |
 | ordering integrity | **100%** |
-| escalation to an expensive model | **0%** |
 | minutes drifting off topic | **0** |
+| escalation to an expensive model | **0%** |
 | creators per plan | 18.1 |
 | per plan | **11.5s, about ₹0.51** |
 
-Index: 1,906 segments from 514 creators, 202 hours of source video.
-
-`npm run eval` reproduces it. `--compare <previous>` diffs two runs, which is how every change below was checked.
-
----
-
-## Five things building it found
-
-**An instruction is not a constraint.** The ordering model kept silently returning fewer segments than it was given, so a fifth of queries escalated to an expensive fallback. Plan size was not the cause: escalating plans averaged 18.8 segments, clean ones 18.0. Adding `minItems`/`maxItems` to the response schema took escalation to zero and **halved cost and latency**.
-
-**One vector cannot do two jobs.** Embedding a four-minute transcript is right for spotting duplicates and wrong for finding things, because it averages into a blur. Segments now carry a second vector built from their own label. Relevance went from 0.73-0.80 to 0.81-0.87, and the matches became correct: asked for "Vector Embeddings", the old way returned "Vector databases vs SQL".
-
-**Retrieval needs a floor.** Taking the top 40 matches regardless of quality meant a thin index got padded with whatever was 38th-best. A reinforcement learning segment was ranking for "Reranking" because nothing better existed. With a floor, that concept is simply reported as uncovered.
-
-**A prompt is biased by its own wording.** The extractor defined a segment using the word "mechanism" and duly labelled 68% of everything that way.
-
-**The eval harness caught itself lying.** It reported 103% concept coverage, which is not a number. The index is loaded once and shared, so segments kept their concept match between queries and, because matches only update on a *higher* score, stale ones could never be displaced. There is now an invariant that crashes instead.
+```bash
+npm run eval                      # reproduce it, about ₹10 for all 20
+npm run eval -- --compare <prev>  # diff two runs
+```
 
 ---
 
-## What is still wrong
+## Run it locally
 
-- **Labels are wrong about twice per plan.** The verification step flags them on the page rather than hiding them, but that rate is too high. It is the next thing to fix.
-- **Must-cover sits at 72%**, part genuine index gaps and part the golden set being phrased more colloquially than any video label.
-- **One domain only.** AI and language models. Ask about anything else and it will correctly tell you it has nothing.
-- **Rate limits are per serverless instance, not global.** A brake, not a guarantee. The real ceiling is a budget cap on the API project.
-
----
-
-## Running it
+Node 22 or newer.
 
 ```bash
 npm install
-npm run web          # localhost:4321, real compiles, spends money
-npm run web:demo     # replays one captured plan, no index, no API calls, free
+npm run web:demo     # localhost:4321
+```
 
-npm run eval         # the golden set
+Demo mode replays one captured plan and needs no index, no API key and no
+network. It times the stages the way a real run does, so the whole interface is
+there to use. This is the fastest way to see the product.
+
+Compiling for real needs a `GEMINI_API_KEY` and an index:
+
+```bash
+npm run web          # localhost:4321, real compiles, about ₹0.51 each
+npm run eval         # the golden set above
 npm run spend        # every API call this project has made, and what it cost
 ```
 
-`web:demo` exists because the interface needed working on far more often than the pipeline did, and iterating on a page should not cost ₹0.51 a refresh. It times the stages the way a real run does so the pipeline strip behaves honestly.
-
-Rebuilding the index needs a residential IP, because YouTube refuses transcript fetches from datacenter addresses (58 of 60 succeeded from a laptop, 0 of 3 from a server):
+The index is not committed, because it is regenerable and large. Building one
+takes a residential IP, since YouTube refuses transcript fetches from datacenter
+addresses (58 of 60 succeeded from a laptop, 0 of 3 from a server):
 
 ```bash
-npm run index:candidates   # plan the domain, search, free
+npm run index:candidates   # plan the domain and search, free
 npm run index:run          # extract and embed, this is where the money goes
 npm run index:topup        # read the eval, search for exactly what is missing
-npm run index:export       # build the deployable bundle
+npm run index:export       # build the deployable bundle that ships to production
 ```
 
+Deployment, environment variables and what protects the budget are in
+[DEPLOY.md](DEPLOY.md).
+
 ---
-## The interface
-
-Dark, editorial, image-led. One serif for display, one grotesk for everything functional, one warm red accent. The page opens with the search, then a worked example that types a real question and deals in three real rows, so a visitor understands the product without reading this file.
-
-Every row shows the actual video frame, pulled from the segment's own id. That single addition did more than any typographic choice: the page stopped looking austere, and the link finally looked like a link. The cost is stated on the page itself, since thumbnails come from YouTube's servers and that is the only third party involved.
-
-The four depth categories are colour **and** a glyph, never colour alone. The hues were measured under simulated protanopia, deuteranopia and tritanopia rather than chosen by eye, which caught a first attempt where two categories were indistinguishable to a deuteranope. Spreading lightness, not hue, is what fixes it. Every text token passes WCAG AA in both themes.
-
-Animation is written in plain DOM, not pulled from a component library: there is no build step here, and a framework for four effects would cost more than it returns. All of it is `transform` and `opacity`, all of it disabled under `prefers-reduced-motion`.
 
 ## Built with
 
-Node, no framework. Gemini for the three model calls and for embeddings. `youtubei.js` and `youtube-transcript` for source material. SQLite via `node:sqlite` for indexing. Vercel for hosting.
+Node, no framework and no build step. Gemini for the three model calls and for
+embeddings. `youtubei.js` and `youtube-transcript` for source material. SQLite
+via `node:sqlite` for indexing. Vercel for hosting.
 
-MIT licensed. The index contains no video content, only timestamps and short transcript excerpts used to locate and verify segments.
+The interface is one HTML file: dark, editorial, image-led, one serif for
+display and one grotesk for everything with a job. The four depth categories are
+encoded as colour **and** a glyph, with the hues measured under simulated
+protanopia, deuteranopia and tritanopia rather than picked by eye. Every text
+token passes WCAG AA in both themes, and all motion stops under
+`prefers-reduced-motion`.
+
+---
+
+## Further reading
+
+Written as the work happened rather than afterwards:
+
+[MIT licensed](LICENSE). The index holds no video content, only timestamps and
+short transcript excerpts used to locate and verify segments.

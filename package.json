@@ -1,8 +1,19 @@
 {
   "name": "learning-compiler",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Say what you want to learn and how long you have. Get back the segments worth watching, in order.",
+  "description": "Say what you want to understand and how long you have. Get back the exact YouTube minutes worth watching, in the order that teaches them.",
+  "homepage": "https://learning-compiler.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bisati/learning-compiler.git"
+  },
+  "license": "MIT",
+  "author": "Mihir Shende",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "spend": "node src/spend-report.mjs",
     "index:candidates": "node src/indexer/candidates.mjs",
