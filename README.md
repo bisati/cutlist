@@ -1,19 +1,22 @@
-# Learning Compiler
+# Cutlist
 
-[![Live](https://img.shields.io/badge/live-learning--compiler.vercel.app-f2564d?style=flat-square)](https://learning-compiler.vercel.app)
+[![Live](https://img.shields.io/badge/live-cutlist--learn.vercel.app-f2564d?style=flat-square)](https://cutlist-learn.vercel.app)
 [![License](https://img.shields.io/badge/license-MIT-3f3f46?style=flat-square)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A5%2022-3f3f46?style=flat-square)](package.json)
 
-### Learn the thing, not the video.
+### Only the minutes that matter.
 
 YouTube already has the explanation you need. It is buried in minute 34 of an
 hour-long video you have not found yet.
 
-Learning Compiler takes a topic and a time budget and returns the exact minutes
-worth watching, in the order that teaches them, each one timestamped so you land
-on the part that answers your question.
+Cutlist takes a topic and a time budget and works out what the topic is actually
+made of: the ideas that have to land before it makes sense. Then it decides how
+many of them fit your time, finds the clearest explanation of each across
+YouTube, and sequences them so each one is ready for the next.
 
-**[Try it, no sign-up needed](https://learning-compiler.vercel.app)** &nbsp;·&nbsp;
+What comes back is a roadmap with timestamps, not a list of videos.
+
+**[Try it, no sign-up needed](https://cutlist-learn.vercel.app)** &nbsp;·&nbsp;
 [How it works](#how-it-works) &nbsp;·&nbsp;
 [Measured](#measured) &nbsp;·&nbsp;
 [Run it locally](#run-it-locally)
@@ -24,9 +27,11 @@ on the part that answers your question.
 
 ## What you get
 
-Ask for *how RAG works* in two hours and you get 26 segments from 25 creators
-filling 119 of your 120 minutes, ordered so each one makes sense by the time you
-reach it.
+Ask for *how RAG works* in two hours. The topic comes apart into the nine ideas
+it depends on, and you get 26 segments from 25 creators filling 119 of your 120
+minutes, ordered so each one makes sense by the time you reach it. The page
+shows the breakdown above the plan, so you can see the shape of what you are
+about to learn before you start.
 
 ![A compiled plan: 119 minutes, 26 segments, 25 creators, the concepts it covers with one struck through, then the timetable](docs/img/plan.jpg)
 
@@ -39,6 +44,12 @@ seconds. Nothing here is rehosted, reuploaded or embedded.
 ---
 
 ## Why this is not a search box
+
+**You get a syllabus, not results.** A search box takes your words and returns
+things containing them. Cutlist works out what the topic is made of first: the
+nine or ten ideas that have to land before it makes sense, and the order they
+have to land in. Everything below follows from having that skeleton before
+anything is chosen, and you see it on the page above the plan itself.
 
 **You watch minutes, not videos.** A search result is a 52-minute video with the
 right words in the title. A plan is the four minutes inside it that answer your

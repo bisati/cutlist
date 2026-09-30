@@ -1,13 +1,13 @@
 {
-  "name": "learning-compiler",
+  "name": "cutlist",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Say what you want to understand and how long you have. Get back the exact YouTube minutes worth watching, in the order that teaches them.",
-  "homepage": "https://learning-compiler.vercel.app",
+  "description": "Only the minutes that matter. Breaks a topic into what it is made of, fits it to the time you have, and sequences it into a timestamped YouTube plan.",
+  "homepage": "https://cutlist-learn.vercel.app",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bisati/learning-compiler.git"
+    "url": "git+https://github.com/bisati/cutlist.git"
   },
   "license": "MIT",
   "author": "Mihir Shende",

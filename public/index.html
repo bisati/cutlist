@@ -3,25 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Learning Compiler</title>
-<meta name="description" content="Say what you want to understand and how long you have. Get back the YouTube segments worth watching, in the order that teaches best, with exact timestamps.">
+<title>Cutlist</title>
+<meta name="description" content="Only the minutes that matter. Cutlist breaks a topic into what it is made of, fits it to the time you have, and sequences it into a timestamped YouTube plan.">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#0a0a0c">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/favicon.svg">
 
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Learning Compiler">
-<meta property="og:title" content="Learning Compiler">
-<meta property="og:description" content="Say what you want to understand and how long you have. Get back the YouTube segments worth watching, in the order that teaches best, with exact timestamps.">
-<meta property="og:url" content="https://learning-compiler.vercel.app">
-<meta property="og:image" content="https://learning-compiler.vercel.app/og.png">
+<meta property="og:site_name" content="Cutlist">
+<meta property="og:title" content="Cutlist">
+<meta property="og:description" content="Only the minutes that matter. Cutlist breaks a topic into what it is made of, fits it to the time you have, and sequences it into a timestamped YouTube plan.">
+<meta property="og:url" content="https://cutlist-learn.vercel.app">
+<meta property="og:image" content="https://cutlist-learn.vercel.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Learning Compiler">
-<meta name="twitter:description" content="Tell it what you want to understand and how long you have. It returns the segments worth watching, in teaching order.">
-<meta name="twitter:image" content="https://learning-compiler.vercel.app/og.png">
+<meta name="twitter:title" content="Cutlist">
+<meta name="twitter:description" content="Only the minutes that matter. A topic and a deadline in, an ordered timestamped watch plan out.">
+<meta name="twitter:image" content="https://cutlist-learn.vercel.app/og.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -285,6 +285,17 @@ body.is-done .explain{display:none}
 }
 .st-chips span.picked{background:var(--ink); border-color:var(--ink); color:var(--canvas)}
 
+.st-break{margin-top:calc(var(--u)*2.5); padding-top:calc(var(--u)*2); border-top:1px solid var(--line)}
+.st-breakhead{font-size:11px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+.st-concepts{margin:calc(var(--u)*1.5) 0 0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:calc(var(--u))}
+.st-concepts li{
+  font-size:12.5px; padding:5px 11px; border:1px solid var(--line); border-radius:999px;
+  color:var(--ink-2); background:var(--raise); opacity:0; transform:translateY(6px);
+}
+.stage-broke .st-concepts li{animation:rise .45s var(--ease) forwards; animation-delay:calc(var(--i)*120ms)}
+.stage-settled .st-concepts li{opacity:1; transform:none; animation:none}
+.st-concepts li.no{border-style:dashed; color:var(--ink-3); text-decoration:line-through; text-decoration-color:var(--accent)}
+
 .st-out{margin-top:calc(var(--u)*3); padding-top:calc(var(--u)*2.5); border-top:1px solid var(--line)}
 .st-outhead{
   display:flex; align-items:baseline; justify-content:space-between; gap:calc(var(--u)*2);
@@ -300,7 +311,7 @@ body.is-done .explain{display:none}
 .st-rows li.more{
   grid-template-columns:1fr; font-size:12.5px; color:var(--ink-3); padding-top:calc(var(--u)*.5);
 }
-.stage-go .st-rows li{animation:rise .55s var(--ease) forwards; animation-delay:calc(var(--i)*130ms + 1900ms)}
+.stage-go .st-rows li{animation:rise .55s var(--ease) forwards; animation-delay:calc(var(--i)*130ms + 700ms)}
 /* Pausing part-way through must not leave the rows mid-animation at zero
    opacity, so the settled state is painted directly rather than waited for. */
 .stage-settled .st-rows li{opacity:1; transform:none; animation:none}
@@ -323,7 +334,8 @@ body.is-done .explain{display:none}
 
 @media (prefers-reduced-motion:reduce){
   .st-caret{animation:none}
-  .stage-go .st-rows li, .st-rows li{opacity:1; transform:none; animation:none}
+  .stage-go .st-rows li, .st-rows li,
+  .stage-broke .st-concepts li, .st-concepts li{opacity:1; transform:none; animation:none}
   .ex-steps li{opacity:1}
 }
 
@@ -699,7 +711,7 @@ body.is-demo .demo{display:block}
         <rect x="6.5" y="14.5" width="12" height="3" rx="1.5" fill="#F7F7F8" opacity=".55"/>
         <rect x="6.5" y="21" width="15" height="3" rx="1.5" fill="#F2564D"/>
       </svg>
-      <b translate="no">Learning Compiler</b>
+      <b translate="no">Cutlist</b>
     </a>
     <button class="back" id="back" type="button">
       <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 3.5 5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -711,12 +723,13 @@ body.is-demo .demo{display:block}
 <div class="shell">
 
   <section class="hero">
-    <h1 id="headline">Learn the thing, <em>not the video.</em></h1>
+    <h1 id="headline">Only the minutes <em>that matter.</em></h1>
     <p class="lede">
       YouTube has the explanation you need. It is buried in minute 34 of an
       hour-long video you have not found yet. Say what you want to understand
-      and how long you have, and this returns the exact minutes worth watching,
-      in the order that teaches them.
+      and how long you have: Cutlist works out what the topic is made of, fits
+      as much of it as your time allows, finds the clearest explanation of each
+      piece, and orders them so each one is ready for the next.
     </p>
   </section>
 
@@ -777,11 +790,13 @@ body.is-demo .demo{display:block}
       <div class="ex-head">
         <h2 class="serif">You bring a question<br>and a deadline.</h2>
         <p>
-          A search box gives you ten hour-long videos and wishes you luck. The
-          unit of YouTube is the video; the unit of learning is the idea, and
-          they do not line up. So you pay a search-and-skip tax on every video,
-          and pay it again on the next one. Two free hours can lose thirty
-          minutes before you learn anything.
+          A search box gives you ten hour-long videos and wishes you luck. But
+          the harder problem comes first: knowing what the topic is even made
+          of, and how much of it you can realistically learn before the time
+          runs out. Cutlist answers that first and then fills it in. The unit of
+          YouTube is the video, the unit of learning is the idea, and they do
+          not line up, so you pay a search-and-skip tax on every video and pay
+          it again on the next one.
         </p>
       </div>
 
@@ -799,6 +814,11 @@ body.is-demo .demo{display:block}
           </li>
           <li data-step="3">
             <b>03</b>
+            <h3>The topic comes apart</h3>
+            <p>Cutlist works out the ideas the topic is actually made of, then how many of them fit the time you gave it. You see that skeleton before you see a single video.</p>
+          </li>
+          <li data-step="4">
+            <b>04</b>
             <h3>Get a plan, not a results page</h3>
             <p>Every entry opens the creator's own video at the second it starts being useful. Nothing repeats, and nothing is filler.</p>
           </li>
@@ -817,6 +837,17 @@ body.is-demo .demo{display:block}
             <div class="st-chips">
               <span>30 min</span><span>1 hour</span><span>90 min</span><span data-pick>2 hours</span>
             </div>
+          </div>
+
+          <div class="st-break" aria-hidden="true">
+            <span class="st-breakhead">What this topic is made of</span>
+            <ol class="st-concepts">
+              <li style="--i:0">The limits of a standalone LLM</li>
+              <li style="--i:1">What an embedding is</li>
+              <li style="--i:2">Vector search and retrieval</li>
+              <li style="--i:3">Chunking and context</li>
+              <li class="no" style="--i:4">Reranking</li>
+            </ol>
           </div>
 
           <div class="st-out" aria-hidden="true">
@@ -921,7 +952,7 @@ body.is-demo .demo{display:block}
         <span class="lbl">What this does with your data</span>
         <p>No accounts, no cookies, no analytics. Your question is compiled on the server and held in memory so asking it again costs nothing; that cache dies with the server process. Your time budget is kept in your own browser. <strong>Shared links carry the whole plan inside the link</strong>, so sharing one stores nothing anywhere.</p>
         <p>Video thumbnails are loaded from YouTube's own servers, which means YouTube can see that your browser requested them. That is the one third party this page talks to.</p>
-        <p>A personal project on a capped API key, not a service. <a href="https://github.com/bisati/learning-compiler">Source, decisions and costs on GitHub</a>.</p>
+        <p>A personal project on a capped API key, not a service. <a href="https://github.com/bisati/cutlist">Source, decisions and costs on GitHub</a>.</p>
       </div>
     </div>
   </div>
@@ -1052,7 +1083,7 @@ const clearStages = () => { for (const r of $('#stages').children) r.classList.r
   const settle = () => {
     type.textContent = QUESTION;
     pick.classList.add('picked');
-    stage.classList.add('stage-go', 'stage-settled');
+    stage.classList.add('stage-broke', 'stage-go', 'stage-settled');
     $('#stmin').textContent = '119'; $('#stseg').textContent = '26'; $('#stcre').textContent = '25';
     steps.forEach((s) => s.classList.add('on'));
   };
@@ -1061,7 +1092,7 @@ const clearStages = () => { for (const r of $('#stages').children) r.classList.r
     clear();
     type.textContent = '';
     pick.classList.remove('picked');
-    stage.classList.remove('stage-go', 'stage-settled');
+    stage.classList.remove('stage-broke', 'stage-go', 'stage-settled');
     $('#stmin').textContent = '0'; $('#stseg').textContent = '0'; $('#stcre').textContent = '0';
     steps.forEach((s) => s.classList.remove('on'));
   };
@@ -1078,13 +1109,15 @@ const clearStages = () => { for (const r of $('#stages').children) r.classList.r
       type.textContent = QUESTION.slice(0, ++i);
       if (i < QUESTION.length) return after(55, typeOn);
       after(380, () => { lite(1); pick.classList.add('picked'); });
-      after(1500, () => {
-        lite(2);
+      // The topic comes apart before anything is chosen. That order is the product.
+      after(1100, () => { lite(2); stage.classList.add('stage-broke'); });
+      after(2300, () => {
+        lite(3);
         stage.classList.add('stage-go');
         countUp($('#stmin'), 119); countUp($('#stseg'), 26); countUp($('#stcre'), 25);
       });
-      after(3600, () => steps.forEach((s) => s.classList.add('on')));
-      after(3600 + GAP, () => { running = false; run(); });
+      after(4200, () => steps.forEach((s) => s.classList.add('on')));
+      after(4200 + GAP, () => { running = false; run(); });
     };
     after(260, typeOn);
   }
@@ -1228,7 +1261,7 @@ function render(d, opts = {}) {
 
   const cover = el('div', 'print-cover');
   const pt = el('div', 'pc-top');
-  pt.append(el('span', null, 'Learning Compiler'));
+  pt.append(el('span', null, 'Cutlist'));
   pt.append(el('span', null, new Intl.DateTimeFormat(undefined, { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date())));
   cover.append(pt);
   cover.append(el('h1', null, d.topic));
@@ -1281,12 +1314,12 @@ function render(d, opts = {}) {
   const covered = d.concepts.filter((c) => c.covered).length;
   const cov = el('section', 'sec');
   const ch = el('div', 'sec-head');
-  ch.append(el('h2', null, 'Things to cover'));
-  ch.append(el('span', 'side', `${covered} of ${d.concepts.length} found in the index`));
+  ch.append(el('h2', null, 'What this topic is made of'));
+  ch.append(el('span', 'side', `${d.concepts.length} ideas, ${covered} of them covered below`));
   cov.append(ch);
   cov.append(el('p', 'cover-note', d.missing.length
-    ? `These are the things this topic needs before it makes sense. The struck-through ones are missing because nothing good enough is indexed, not because they do not matter.`
-    : `These are the things this topic needs before it makes sense, and the plan covers all ${d.concepts.length} of them.`));
+    ? `Your question was broken into the ideas it actually depends on, and the plan below is built to cover them in order. The struck-through ones are missing because nothing good enough is indexed, not because they do not matter.`
+    : `Your question was broken into the ideas it actually depends on, and the plan below covers all ${d.concepts.length} of them, in an order where each one is ready for the next.`));
   const ul = el('ul', 'concepts');
   for (const c of d.concepts) {
     const li = el('li', c.covered ? '' : 'no');
@@ -1389,7 +1422,7 @@ function render(d, opts = {}) {
   out.append(wrap);
 
   $('#printfoot').textContent =
-    'Compiled by Learning Compiler, learning-compiler.vercel.app. Every timestamp links to the creator’s own video on YouTube. Nothing here is hosted or re-uploaded.';
+    'Compiled by Cutlist, cutlist-learn.vercel.app. Every timestamp links to the creator’s own video on YouTube. Nothing here is hosted or re-uploaded.';
 
   showPlan();
 }
@@ -1398,7 +1431,7 @@ function render(d, opts = {}) {
 function downloadPdf() {
   if (!current) return;
   const was = document.title;
-  document.title = `Learning Compiler - ${current.topic} (${current.totalMin} min)`.replace(/[\\/:*?"<>|]/g, '-');
+  document.title = `Cutlist - ${current.topic} (${current.totalMin} min)`.replace(/[\\/:*?"<>|]/g, '-');
   const restore = () => { document.title = was; removeEventListener('afterprint', restore); };
   addEventListener('afterprint', restore);
   setTimeout(() => { print(); setTimeout(restore, 1000); }, 60);
