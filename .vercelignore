@@ -8,3 +8,5 @@ eval/results
 experiments
 docs
 *.log
+private
+.github
