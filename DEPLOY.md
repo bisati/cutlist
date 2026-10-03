@@ -12,22 +12,26 @@ file rather than a database. Cold load measured at 20ms.
 public/index.html      the page
 api/compile.mjs        the streaming endpoint, 3 model calls
 api/status.mjs         index size and whether the budget is open
-data/index-bundle/     the index, generated, not committed
+data/index-bundle/     the index, generated, committed to the private repo only
 ```
 
-## Before every deploy
+## Where it deploys from
+
+Vercel builds from GitHub, not from a laptop. The full project, index included,
+lives in a private repo; this public repo is a mirror of it with `data/` and
+`private/` stripped out by a workflow on every push.
+
+- A push to `main` is a production deploy.
+- A push to any other branch gets a preview URL, behind Vercel's deployment
+  protection, so only the account owner can open it.
+- A bad deploy is undone with Instant Rollback in the Vercel dashboard.
+
+## Before committing a new index
 
 ```
 npm run index:export      # rebuild the bundle from data/index.db
 node src/indexer/verify-bundle.mjs
 ```
-
-The verify step replays saved eval topics against both the database and the
-bundle and fails if they choose different segments. The bundle quantises
-vectors to float16 and truncates transcripts, and neither is worth anything if
-it changes what gets selected, because then the deployed product is not the one
-the eval measured. Current worst-case cosine error is 8.35e-5, against a
-tolerance of 2e-3.
 
 ## Environment variables
 
@@ -78,8 +82,10 @@ question is ₹0.51.
 ## Deploying
 
 ```
-vercel                 # preview, protected, only the account owner can open it
-vercel --prod          # public
+git checkout -b my-change     # work on a branch
+git push -u origin my-change  # Vercel builds a preview URL for it
+# open the preview, check it, then merge into main
+git checkout main && git merge my-change && git push   # live
 ```
 
 Preview first. A preview deployment carries Vercel's deployment protection, so
@@ -93,5 +99,6 @@ npm run index:topup     # reads the newest eval result, searches for the gaps
 npm run index:run       # pays to index what it found
 npm run eval            # confirm coverage improved
 npm run index:export    # rebuild the bundle
-vercel --prod           # ship it
+node src/indexer/verify-bundle.mjs
+git add data && git commit -m "data: re-index" && git push   # ship it
 ```
