@@ -14,7 +14,11 @@
         "searching by meaning rather than keywords",
         "putting retrieved text into the prompt"
       ],
-      "avoid": ["training a model from scratch", "reinforcement learning", "image and video models"]
+      "avoid": [
+        "training a model from scratch",
+        "reinforcement learning",
+        "image and video models"
+      ]
     },
     {
       "id": "rag-short",
@@ -24,7 +28,10 @@
         "what retrieval augmented generation is for",
         "the retrieve then generate loop"
       ],
-      "avoid": ["mathematical derivations", "coding a system from scratch"],
+      "avoid": [
+        "mathematical derivations",
+        "coding a system from scratch"
+      ],
       "notes": "Short budget. Should be orientation heavy and skip implementation detail entirely."
     },
     {
@@ -38,7 +45,10 @@
         "how word order is represented",
         "stacking blocks into a full architecture"
       ],
-      "avoid": ["prompt engineering tips", "which chatbot is best"]
+      "avoid": [
+        "prompt engineering tips",
+        "which chatbot is best"
+      ]
     },
     {
       "id": "attention-deep",
@@ -50,7 +60,9 @@
         "softmax turning scores into weights",
         "masking so a token cannot see the future"
       ],
-      "avoid": ["high level overviews with no mathematics"],
+      "avoid": [
+        "high level overviews with no mathematics"
+      ],
       "notes": "Explicitly asks past the analogy. A plan of introductory overviews fails this."
     },
     {
@@ -63,7 +75,9 @@
         "LoRA and adapters instead of full retraining",
         "when fine tuning is the wrong choice"
       ],
-      "avoid": ["basic prompt writing"]
+      "avoid": [
+        "basic prompt writing"
+      ]
     },
     {
       "id": "finetune-vs-rag",
@@ -75,7 +89,9 @@
         "the cases where retrieval wins",
         "the cases where fine tuning wins"
       ],
-      "avoid": ["deep architecture internals"],
+      "avoid": [
+        "deep architecture internals"
+      ],
       "notes": "A comparison question. The plan should be weighted toward tradeoffs and debate, not mechanism."
     },
     {
@@ -88,7 +104,10 @@
         "the loop of thinking then acting then observing",
         "what goes wrong when an agent fails partway"
       ],
-      "avoid": ["training language models", "image generation"]
+      "avoid": [
+        "training language models",
+        "image generation"
+      ]
     },
     {
       "id": "agent-build",
@@ -100,7 +119,10 @@
         "feeding the tool result back in",
         "chaining several tool calls together"
       ],
-      "avoid": ["philosophical discussion of AGI", "model architecture"],
+      "avoid": [
+        "philosophical discussion of AGI",
+        "model architecture"
+      ],
       "notes": "Practical build question. Known gap in the index as of 2026-09-27."
     },
     {
@@ -112,7 +134,9 @@
         "distance between vectors meaning similarity",
         "how embedding models are trained"
       ],
-      "avoid": ["setting up a vector database product"]
+      "avoid": [
+        "setting up a vector database product"
+      ]
     },
     {
       "id": "prompting",
@@ -123,7 +147,10 @@
         "showing examples in the prompt",
         "structuring a prompt so the parts are distinct"
       ],
-      "avoid": ["model internals", "fine tuning"],
+      "avoid": [
+        "model internals",
+        "fine tuning"
+      ],
       "notes": "Should skew practical. Heavy mechanism content here is a failure."
     },
     {
@@ -135,7 +162,9 @@
         "grounding answers in retrieved sources",
         "whether hallucination can ever be eliminated"
       ],
-      "avoid": ["unrelated safety topics like job loss"],
+      "avoid": [
+        "unrelated safety topics like job loss"
+      ],
       "notes": "Asks a contested question. Should contain real disagreement, not one settled view."
     },
     {
@@ -148,7 +177,9 @@
         "building a test set for your own use case",
         "benchmarks and how they mislead"
       ],
-      "avoid": ["training loss curves"]
+      "avoid": [
+        "training loss curves"
+      ]
     },
     {
       "id": "tokenization",
@@ -159,7 +190,9 @@
         "byte pair encoding",
         "why token count affects cost and context limits"
       ],
-      "avoid": ["full model architecture"]
+      "avoid": [
+        "full model architecture"
+      ]
     },
     {
       "id": "training",
@@ -171,7 +204,10 @@
         "the difference between pretraining and what comes after",
         "how much data and compute this takes"
       ],
-      "avoid": ["prompt writing", "which model to use in production"]
+      "avoid": [
+        "prompt writing",
+        "which model to use in production"
+      ]
     },
     {
       "id": "rlhf",
@@ -182,7 +218,10 @@
         "training a reward model",
         "the difference between RLHF and direct preference optimisation"
       ],
-      "avoid": ["basic prompting", "retrieval"]
+      "avoid": [
+        "basic prompting",
+        "retrieval"
+      ]
     },
     {
       "id": "quantization",
@@ -193,7 +232,9 @@
         "what accuracy you lose and what you gain",
         "running a model locally"
       ],
-      "avoid": ["cloud API pricing"]
+      "avoid": [
+        "cloud API pricing"
+      ]
     },
     {
       "id": "context-windows",
@@ -205,7 +246,9 @@
         "models losing information in the middle of long inputs",
         "the argument that retrieval is still needed"
       ],
-      "avoid": ["training a model"],
+      "avoid": [
+        "training a model"
+      ],
       "notes": "A live disagreement. The plan should present both sides."
     },
     {
@@ -217,7 +260,9 @@
         "approximate nearest neighbour search",
         "combining keyword and vector search"
       ],
-      "avoid": ["training embedding models from scratch"]
+      "avoid": [
+        "training embedding models from scratch"
+      ]
     },
     {
       "id": "interpretability",
@@ -228,7 +273,10 @@
         "looking at individual neurons and features",
         "what mechanistic interpretability has found so far"
       ],
-      "avoid": ["general AI ethics discussion", "policy and regulation"],
+      "avoid": [
+        "general AI ethics discussion",
+        "policy and regulation"
+      ],
       "notes": "Narrow research topic. Likely thin in the index, so the coverage panel should say so rather than drifting into ethics."
     },
     {
@@ -241,8 +289,165 @@
         "how to call a model from your own code",
         "the main ways people build on top of models"
       ],
-      "avoid": ["mathematical derivations", "cutting edge research"],
+      "avoid": [
+        "mathematical derivations",
+        "cutting edge research"
+      ],
       "notes": "The hardest test of the depth quota. Should be intro heavy with worked examples, and almost no deep mechanism."
+    },
+    {
+      "id": "classic-ml",
+      "topic": "machine learning basics before deep learning",
+      "budgetMin": 120,
+      "mustCover": [
+        "fitting a line to data with linear regression",
+        "predicting a yes or no outcome with logistic regression",
+        "decision trees and random forests",
+        "overfitting and how regularization prevents it",
+        "measuring a classifier with precision and recall"
+      ],
+      "avoid": [
+        "large language models",
+        "prompt engineering",
+        "image generation"
+      ]
+    },
+    {
+      "id": "cnn-vision",
+      "topic": "how computers see images with neural networks",
+      "budgetMin": 90,
+      "mustCover": [
+        "what a convolution does to an image",
+        "pooling layers",
+        "training an image classifier",
+        "detecting objects in an image"
+      ],
+      "avoid": [
+        "prompt engineering",
+        "retrieval augmented generation",
+        "tokenization"
+      ]
+    },
+    {
+      "id": "diffusion",
+      "topic": "how AI image generators like Stable Diffusion work",
+      "budgetMin": 60,
+      "mustCover": [
+        "adding noise and learning to remove it",
+        "generating an image from a text prompt",
+        "working in a compressed latent space",
+        "controlling the output with ControlNet or similar"
+      ],
+      "avoid": [
+        "linear regression",
+        "agents and tool use"
+      ]
+    },
+    {
+      "id": "speech-voice",
+      "topic": "speech to text and building a voice agent",
+      "budgetMin": 60,
+      "mustCover": [
+        "how speech recognition turns audio into text",
+        "using Whisper to transcribe audio",
+        "turning text back into speech",
+        "the latency of a voice agent pipeline"
+      ],
+      "avoid": [
+        "image generation",
+        "decision trees"
+      ]
+    },
+    {
+      "id": "mcp",
+      "topic": "what is MCP and how do I build an MCP server",
+      "budgetMin": 60,
+      "mustCover": [
+        "what problem the model context protocol solves",
+        "clients and servers in MCP",
+        "building an MCP server",
+        "MCP compared with plain function calling"
+      ],
+      "avoid": [
+        "convolutional neural networks",
+        "diffusion models"
+      ]
+    },
+    {
+      "id": "reasoning-models",
+      "topic": "how reasoning models like DeepSeek R1 think",
+      "budgetMin": 60,
+      "mustCover": [
+        "what makes a reasoning model different from a regular LLM",
+        "spending more compute at test time",
+        "training reasoning with reinforcement learning",
+        "the limits of model reasoning"
+      ],
+      "avoid": [
+        "image classification",
+        "feature scaling"
+      ]
+    },
+    {
+      "id": "llm-evals-pm",
+      "topic": "how to set up evals for an AI product as a PM",
+      "budgetMin": 90,
+      "mustCover": [
+        "why AI products need evals",
+        "building an eval dataset from real failures",
+        "using an LLM as a judge",
+        "offline versus online evaluation"
+      ],
+      "avoid": [
+        "convolutional neural networks",
+        "backpropagation math"
+      ]
+    },
+    {
+      "id": "finetune-lora",
+      "topic": "fine tune an open model with LoRA step by step",
+      "budgetMin": 90,
+      "mustCover": [
+        "what LoRA changes in the model",
+        "preparing a dataset for fine tuning",
+        "running a fine tuning job on a GPU",
+        "when fine tuning is the wrong choice"
+      ],
+      "avoid": [
+        "image generation",
+        "speech recognition"
+      ]
+    },
+    {
+      "id": "multi-agent",
+      "topic": "building multi agent systems with LangGraph",
+      "budgetMin": 90,
+      "mustCover": [
+        "what an agent framework gives you",
+        "modelling an agent as a graph of steps",
+        "coordinating several agents",
+        "why multi agent systems fail"
+      ],
+      "avoid": [
+        "linear regression",
+        "diffusion models"
+      ]
+    },
+    {
+      "id": "ai-product",
+      "topic": "what an AI product manager needs to know",
+      "budgetMin": 120,
+      "mustCover": [
+        "how large language models work at a high level",
+        "choosing a model on cost and latency",
+        "measuring whether an AI feature works",
+        "why AI products fail in production",
+        "guarding against prompt injection"
+      ],
+      "avoid": [
+        "backpropagation math",
+        "convolution arithmetic"
+      ]
     }
   ]
 }

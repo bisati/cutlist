@@ -210,6 +210,13 @@ body.is-running #go .spin{display:block}
 }
 .chip:hover{border-color:var(--line-2); color:var(--ink); transform:translateY(-1px)}
 .chip[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:var(--canvas)}
+/* What the index covers, said where people decide what to type. */
+.scope{
+  margin:calc(var(--u)*2.5) auto 0; max-width:62ch; text-align:center;
+  font-size:14px; line-height:1.55; color:var(--ink-3); text-wrap:pretty;
+}
+.scope b{font-weight:600; color:var(--ink-2)}
+body.is-running .scope{display:none}
 #validate{display:none; margin-top:calc(var(--u)*1.5); text-align:center; font-size:14px; color:var(--accent)}
 body.is-invalid #validate{display:block}
 body.is-invalid .q-shell{border-color:var(--accent)}
@@ -747,6 +754,11 @@ body.is-demo .demo{display:block}
       <button class="chip" type="button" data-min="90">90 min</button>
       <button class="chip" type="button" data-min="120" aria-pressed="true">2 hours</button>
     </div>
+    <p class="scope" id="scope">
+      <b>Covers AI and everything around it:</b> machine learning and deep
+      learning, LLMs and agents, image, video and voice generation, and the
+      evals, fine-tuning and product skills that go with them.
+    </p>
     <p id="validate">Say what you want to understand first.</p>
 
     <!-- The stage strip now lives at the foot of the page, so progress needs
@@ -931,8 +943,9 @@ body.is-demo .demo{display:block}
 
     <section class="closer" id="closer">
       <h2 class="serif">How much time have you got?</h2>
-      <p>One domain so far, AI and language models. Ask it something in that
-         world and it will tell you honestly what it can and cannot cover.</p>
+      <p>One domain so far: AI, from machine learning basics to LLMs, agents
+         and generative media. Ask it something in that world and it will tell
+         you honestly what it can and cannot cover.</p>
       <button class="closer-go" type="button" id="closergo">Compile a plan</button>
     </section>
 
@@ -1161,7 +1174,7 @@ $('#topic').addEventListener('input', () => body.classList.remove('is-invalid'))
 /* ------------------------------------------------------------------ status */
 fetch('/api/status').then((r) => r.json()).then((s) => {
   $('#footidx').textContent =
-    `Built from ${s.hours} hours of YouTube transcripts, cut into ${s.segments.toLocaleString()} segments across ${s.channels} creators. One domain: AI and language models.`;
+    `Built from ${s.hours} hours of YouTube transcripts, cut into ${s.segments.toLocaleString()} segments across ${s.channels} creators. One domain: AI, from machine learning to LLMs, agents and generative media.`;
   if (s.demo) body.classList.add('is-demo');
   if (s.open === false) {
     $('#go').disabled = true;

@@ -83,9 +83,10 @@ anything:
 
 ## What is indexed
 
-1,906 segments from 514 creators, 202 hours of source video, covering AI and
-language models: embeddings, retrieval, transformers, fine-tuning, agents and
-tool use.
+2,952 segments from 664 creators, 320 hours of source video, covering AI end to
+end: machine learning and deep learning, computer vision, image, video and voice
+generation, language models, retrieval, agents and MCP, and the evals,
+fine-tuning and product skills that go with them.
 
 Ask about something outside that and the answer says so rather than guessing.
 
@@ -134,23 +135,24 @@ the part beside it.
 
 ## Measured
 
-A hand-written golden set of 20 questions at budgets from 30 to 120 minutes,
+A hand-written golden set of 30 questions at budgets from 30 to 120 minutes,
 each with what a good plan must cover and what it must not drift into, written
 before any of them were run. Scoring is deterministic code.
 
 | | |
 |---|---|
-| topics succeeding | 20/20 |
+| topics succeeding | 30/30 |
 | plans that fill their time budget | **100%** |
-| concept coverage | **96%** |
+| concept coverage | **95%** |
+| must-cover ideas present | **78%** |
 | ordering integrity | **100%** |
-| minutes drifting off topic | **0** |
+| minutes drifting off topic | **2**, across all 30 plans |
 | escalation to an expensive model | **0%** |
-| creators per plan | 18.1 |
-| per plan | **11.5s, about ₹0.51** |
+| creators per plan | 18.6 |
+| per plan | **10.7s, about ₹0.51** |
 
 ```bash
-npm run eval                      # reproduce it, about ₹10 for all 20
+npm run eval                      # reproduce it, about ₹15 for all 30
 npm run eval -- --compare <prev>  # diff two runs
 ```
 
